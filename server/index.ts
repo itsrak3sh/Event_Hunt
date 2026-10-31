@@ -313,7 +313,7 @@ if (fs.existsSync(distPath)) {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`🚀 BharatHack API Server running on http://localhost:${PORT}`);
+const server = app.listen(Number(PORT), '0.0.0.0', () => {
+  console.log(`🚀 BharatHack API Server running on http://localhost:${PORT} and http://127.0.0.1:${PORT}`);
   console.log(`🔑 TinyFish API Key loaded: ${process.env.TINYFISH_API_KEY ? 'Yes (configured)' : 'No'}`);
 });

@@ -64,7 +64,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-06T21:00:00+05:30",
       durationHours: 36
     },
-    registrationLink: "https://techfest.org/competitions/hackathon",
+    registrationLink: "https://techfest.org/competitions",
     description: "IIT Bombay Techfest invites innovators, developers, and designers across India to solve critical national and industrial challenges. Free lodging and food inside IIT Bombay campus provided for shortlisted teams.",
     tracks: ["Generative AI & LLMs", "Smart Mobility & EV", "Autonomous Robotics", "FinTech & Open Banking", "Green Energy"],
     eligibility: "Open to all enrolled undergraduate, postgraduate, and PhD students in India. Valid college ID required.",
@@ -150,7 +150,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-13T16:00:00+05:30",
       durationHours: 30
     },
-    registrationLink: "https://tryst-iitd.org/hackathon",
+    registrationLink: "https://www.tryst-iitd.org/",
     description: "Compete with the sharpest minds at IIT Delhi campus in an intense overnight sprint. Mentors from top venture capital firms and leading tech labs will guide finalist teams.",
     tracks: ["AI Systems & Agents", "Web3 Infrastructures", "Health Informatics", "Cyber Defense"],
     eligibility: "College students from all disciplines with a valid student identification card.",
@@ -192,7 +192,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-03T18:00:00+05:30",
       durationHours: 32
     },
-    registrationLink: "https://iiitb.ac.in/innovatex-2026",
+    registrationLink: "https://www.iiitb.ac.in/",
     description: "Located right in the heart of Electronic City Bangalore, InnovateX brings together 400+ top hackers. Judges include engineering directors from Bengaluru's leading tech headquarters.",
     tracks: ["Large Multimodal Models", "Zero Knowledge & Blockchain", "Edge Computing & IoT", "B2B SaaS"],
     eligibility: "Open to students across India. Round 1 online pitch followed by offline hackathon at IIIT Bangalore campus.",
@@ -234,7 +234,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-20T17:00:00+05:30",
       durationHours: 36
     },
-    registrationLink: "https://pragyan.org/26/home/events/hackathon/",
+    registrationLink: "https://pragyan.org/",
     description: "Pragyan Hackathon is NIT Trichy's signature flagship coding challenge. Teams develop real-world tech prototypes evaluated by industry veterans and academia.",
     tracks: ["Smart City & Traffic AI", "FinTech Inclusion", "Healthcare Assistive Tech", "Open Innovation"],
     eligibility: "Undergraduate and postgraduate students from recognized technical colleges across India.",
@@ -317,7 +317,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-11-19T21:00:00+05:30",
       durationHours: 48
     },
-    registrationLink: "https://devfolio.co/hackathons/buildwithai-india",
+    registrationLink: "https://devfolio.co/hackathons",
     description: "Build cutting-edge AI agents, multi-modal applications, and developer tooling. Free Gemini and Google Cloud API credits provided to all accepted participants.",
     tracks: ["Autonomous AI Agents", "Voice & Indic Language Tech", "AI for Education & Healthcare", "Developer Productivity"],
     eligibility: "Open to any student or self-taught developer residing in India.",
@@ -359,7 +359,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-09T18:00:00+05:30",
       durationHours: 34
     },
-    registrationLink: "https://t-hub.co/events/genai-challenge-2026",
+    registrationLink: "https://www.t-hub.co/",
     description: "Experience building inside India's largest startup innovation ecosystem at T-Hub Phase 2. Hackers get 24/7 access to state-of-the-art facilities, mentoring by seasoned founders, and direct equity-free grant opportunities.",
     tracks: ["Enterprise AI Agents", "Sovereign AI for Indian Languages", "Fintech Fraud Defense", "AI Hardware Acceleration"],
     eligibility: "College students, researchers, early-stage founders, and engineers across India.",
@@ -402,7 +402,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-03T16:00:00+05:30",
       durationHours: 36
     },
-    registrationLink: "https://ethindia.co/delhi",
+    registrationLink: "https://ethindia.co/",
     description: "Join 1,000+ passionate developers, researchers, and builders for an exhilarating 36-hour weekend sprint pushing the boundaries of decentralization, zero-knowledge proofs, and cryptographic tech.",
     tracks: ["Account Abstraction & UX", "Zero Knowledge Proofs (ZK)", "DeFi Protocols", "Decentralized Social & Identity"],
     eligibility: "Open to all developers worldwide, no prior Web3 experience required.",
@@ -444,7 +444,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-13T18:00:00+05:30",
       durationHours: 36
     },
-    registrationLink: "https://cognizance.org.in/events/hackathon",
+    registrationLink: "https://unstop.com/college-fests/cognizance-2024-indian-institute-of-technology-iit-roorkee-190629",
     description: "Solve high-impact problems at the foothills of the Himalayas. Cognizance AI Hack features challenging problem statements created in partnership with DRDO and top deep tech research labs.",
     tracks: ["Computer Vision & Edge AI", "Robotics & Swarm Drones", "Clean River Tech & Hydrology", "Quantum Computing Algorithms"],
     eligibility: "All undergraduate and postgraduate college students from recognized institutes.",
@@ -485,7 +485,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-11-30T22:00:00+05:30",
       durationHours: 48
     },
-    registrationLink: "https://reskilll.com/hack/azure-india-2026",
+    registrationLink: "https://reskilll.com/",
     description: "Harness the power of Azure OpenAI, Cosmos DB, and GitHub Copilot to architect resilient modern applications. Top 3 winning teams receive direct interview consideration for Microsoft Imagine Cup and India internships.",
     tracks: ["Azure OpenAI & Semantic Kernel", "Serverless Microservices", "Cloud Security", "Accessibility & Inclusion"],
     eligibility: "Any college student enrolled in India or self-paced learner under 26 years.",
@@ -527,7 +527,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-16T18:00:00+05:30",
       durationHours: 32
     },
-    registrationLink: "https://technozion.nitw.ac.in/events/codesprint",
+    registrationLink: "https://technozion.nitw.ac.in/",
     description: "A hybrid 32-hour marathon testing algorithmic problem solving, full-stack design, and distributed architectures. Join either physically at NIT Warangal's modern labs or virtually.",
     tracks: ["Full-Stack Distributed Systems", "AI for Public Sector", "Cyber Threat Detection", "Web3 Open Challenge"],
     eligibility: "College students pursuing technical degrees across India.",
@@ -571,7 +571,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-07T14:00:00+05:30",
       durationHours: 24
     },
-    registrationLink: "https://megathon.iiit.ac.in/register",
+    registrationLink: "https://felicity.iiit.ac.in/infinium/",
     description: "Megathon is IIIT Hyderabad's flagship hackathon with 1,200+ participants. The nominal entry fee covers overnight access to high-speed fiber internet, continuous catering, Midnight Pizza Fest, and official premium swag kits.",
     tracks: ["Generative AI & Agentic Workflows", "Fintech & UPI Infrastructure", "Hardware / IoT Embedded Systems", "GovTech & Citizen Services"],
     eligibility: "College students, fresh graduates, and startup developers. Team fee is ₹250 per participant.",
@@ -614,7 +614,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-15T18:00:00+05:30",
       durationHours: 32
     },
-    registrationLink: "https://shaastra.org/events/hackathon",
+    registrationLink: "https://shaastra.org/",
     description: "Shaastra Hackathon brings forward cutting-edge problem statements sponsored by leading multinational corporations and defense labs. Registration fee covers IIT Madras fest access pass and hospitality.",
     tracks: ["Autonomous Vehicles & LiDAR", "Healthcare AI & Diagnostics", "Defense & Cybersecurity", "Sustainable Infrastructure"],
     eligibility: "Open to engineering, science, and design students across India. Registration pass is ₹300 per participant.",
@@ -657,7 +657,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-11T22:00:00+05:30",
       durationHours: 36
     },
-    registrationLink: "https://bits-apogee.org/events/hacksprint",
+    registrationLink: "https://bits-apogee.org/",
     description: "APOGEE is BITS Pilani's legendary international technical fest. The nominal registration fee covers hostel stay inside BITS Pilani campus, food passes, and access to all celebrity tech keynotes.",
     tracks: ["Decentralized Finance (DeFi)", "Computer Vision in AgriTech", "Autonomous Systems", "SaaS & Cloud Platforms"],
     eligibility: "Undergraduate and master's students with valid college ID. ₹400 registration fee per team member.",
@@ -699,7 +699,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-05T19:00:00+05:30",
       durationHours: 34
     },
-    registrationLink: "https://bengalurutechsummit.com/hackathon-2026",
+    registrationLink: "https://bengalurutechsummit.com/",
     description: "India's premier tech event brings corporate giants, global venture funds, and brilliant engineering minds together. Paid delegate pass grants access to Bengaluru Tech Summit exhibitions and VIP lounge.",
     tracks: ["Generative AI & Foundation Models", "Aerospace & Satellite Data", "Quantum Security", "CleanTech & Smart Urbanism"],
     eligibility: "Open to professional software engineers, university students, and startup founders. Ticket: ₹500.",
@@ -742,7 +742,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-04T18:00:00+05:30",
       durationHours: 32
     },
-    registrationLink: "https://gravitas.vit.ac.in/events/hackathon",
+    registrationLink: "https://vit.ac.in/",
     description: "VIT Vellore graVITas Hackathon attracts 1,500+ builders across the nation. The ₹350 registration fee includes campus entry, breakfast, lunch, dinner, and 24/7 computer center facilities.",
     tracks: ["Edge AI & Computer Vision", "Blockchain & Decentralized Identity", "FinTech & UPI 2.0", "Assistive Health Devices"],
     eligibility: "Any bona fide student of an accredited university or college.",
@@ -784,7 +784,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-06T19:30:00+05:30",
       durationHours: 34
     },
-    registrationLink: "https://cybercityfintech.org/apply",
+    registrationLink: "https://unstop.com/hackathons",
     description: "Build the future of payments, algorithmic trading, fraud mitigation, and account aggregation. Entry ticket covers WeWork luxury workspace pass, barista coffee, dinner buffet, and hackathon infrastructure.",
     tracks: ["Real-time UPI Fraud Prevention", "Algorithmic Market Intelligence", "Account Aggregator Ecosystem", "RegTech & Compliance AI"],
     eligibility: "Tech developers, fintech enthusiasts, university students. Fee: ₹600.",
@@ -826,7 +826,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-10T15:00:00+05:30",
       durationHours: 30
     },
-    registrationLink: "https://makervillage.in/hackathons/iot-sprint-2026",
+    registrationLink: "https://startupmission.kerala.gov.in/",
     description: "Full access to Maker Village PCB fabrication units, 3D printers, laser cutters, oscilloscope benches, and microcontrollers. Registration fee of ₹200 includes hardware test kits and meals.",
     tracks: ["Drone Avionics & Surveillance", "Industrial IoT & Smart Sensors", "Wearable Medical Tech", "Smart Agriculture Hardware"],
     eligibility: "Open to hardware engineers, firmware developers, and robotics students.",
@@ -868,7 +868,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-08T18:00:00+05:30",
       durationHours: 34
     },
-    registrationLink: "https://punetechconclave.in/hackathon-2026",
+    registrationLink: "https://www.mind-spark.org/",
     description: "Experience 34 hours of intense coding at the historic COEP campus in Pune. Focus on enterprise cloud architecture, connected mobility, and LLM orchestration.",
     tracks: ["Connected Vehicles & Telematics", "Enterprise LLM Workflows", "DevOps & Cloud Reliability", "Civic Tech Pune"],
     eligibility: "Engineering students, BCA/MCA students, and IT professionals. ₹300 fee covers food and kits.",
@@ -910,7 +910,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-05T20:00:00+05:30",
       durationHours: 96
     },
-    registrationLink: "https://in.superteam.fun/hackathons/superteam-india-2026",
+    registrationLink: "https://superteam.fun/",
     description: "Build high-speed decentralized apps, consumer crypto, and DePIN projects. The ₹350 commitment fee is fully refunded upon qualifying project submission and unlocks full physical house access.",
     tracks: ["Consumer Crypto & Social", "DePIN & Physical Infrastructure", "DeFi & Trading Systems", "AI x Crypto Agents"],
     eligibility: "Open to all developers across India. Online submissions welcome, physical demo day in Bengaluru.",
@@ -952,7 +952,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-11-30T18:00:00+05:30",
       durationHours: 32
     },
-    registrationLink: "https://techgig.com/hackathon/codecon-2026",
+    registrationLink: "https://www.techgig.com/hackathons",
     description: "Test your system architecture, concurrency, and algorithm skills in a proctored 32-hour live build. Nominal registration fee of ₹199 ensures serious competitors.",
     tracks: ["High-Throughput Microservices", "Real-Time Collaborative Systems", "Autonomous Database Optimizers"],
     eligibility: "Open to students and software engineers across India.",
@@ -1036,7 +1036,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-14T18:00:00+05:30",
       durationHours: 32
     },
-    registrationLink: "https://devfolio.co/hackathons/kolkata-devhack-2026",
+    registrationLink: "https://devfolio.co/hackathons",
     description: "East India's largest collaborative hackathon bringing together students and professionals. Join physically in Salt Lake or participate online via Devfolio.",
     tracks: ["AI for Bengali & Regional Languages", "Civic Tech & Urban Planning", "Web3 Decentralized Systems", "Green Tech"],
     eligibility: "Open to all students and budding engineers.",
