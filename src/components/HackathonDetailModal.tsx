@@ -15,7 +15,8 @@ import {
   CalendarPlus, 
   Bookmark, 
   DollarSign, 
-  Download 
+  Download,
+  Search 
 } from 'lucide-react';
 import { Hackathon } from '../types';
 import { generateGoogleCalendarUrl, downloadIcsFile, shareToWhatsApp } from '../utils/calendar';
@@ -322,6 +323,18 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
           </div>
 
           <div className="flex items-center gap-2.5 w-full sm:w-auto">
+            {/* Backup Unstop Search Link */}
+            <a
+              href={hackathon.backupLink || `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold border border-slate-200 dark:border-slate-700 transition"
+              title="Search on Unstop (Backup if official portal is temporarily down)"
+            >
+              <Search className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+              <span>Backup Search</span>
+            </a>
+
             <button
               onClick={handleCopyLink}
               className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold border border-slate-200 dark:border-slate-700 transition"

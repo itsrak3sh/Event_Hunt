@@ -25,6 +25,8 @@ export interface Hackathon {
     durationHours: number;
   };
   registrationLink: string;
+  backupLink?: string;
+  isVerified?: boolean;
   description: string;
   tracks: string[];
   eligibility: string;

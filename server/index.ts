@@ -10,6 +10,12 @@ import {
   fetchUrlWithTinyFish,
   transformTinyFishResultsToHackathons,
 } from './services/tinyfish';
+import {
+  getHackathonsFromSupabase,
+  run12HourSyncWorker,
+  checkLinkHealth,
+  generateBackupLink,
+} from './services/supabase';
 
 dotenv.config();
 
@@ -38,7 +44,38 @@ app.get('/api/health', async (req: Request, res: Response) => {
     timestamp: new Date().toISOString(),
     totalHackathons: hackathonsDatabase.length,
     tinyFish: tinyFishStatus,
+    database: 'Supabase PostgreSQL connected',
   });
+});
+
+/**
+ * 12-Hour Sync Endpoint: Triggered by cron twice a day (e.g. 8 AM and 8 PM)
+ */
+app.all('/api/cron/sync', async (req: Request, res: Response) => {
+  console.log('[Cron] 12-Hour Hackathon Sync triggered...');
+  try {
+    const result = await run12HourSyncWorker();
+    res.json({
+      status: 'ok',
+      message: '12-Hour Hackathon Sync completed successfully',
+      ...result,
+    });
+  } catch (err: any) {
+    console.error('[Cron Error]', err.message);
+    res.status(500).json({ status: 'error', error: err.message });
+  }
+});
+
+/**
+ * Fast Link Health Checker Endpoint
+ */
+app.get('/api/links/check', async (req: Request, res: Response) => {
+  const { url } = req.query;
+  if (!url || typeof url !== 'string') {
+    return res.status(400).json({ error: 'Valid URL parameter required' });
+  }
+  const result = await checkLinkHealth(url);
+  res.json(result);
 });
 
 /**
@@ -49,7 +86,7 @@ app.get('/api/health', async (req: Request, res: Response) => {
  * - institution: 'IIT' | 'NIT' | 'IIIT' | 'Tech School' | 'Private / Corporate' | 'all'
  * - search: query text
  */
-app.get('/api/hackathons', (req: Request, res: Response) => {
+app.get('/api/hackathons', async (req: Request, res: Response) => {
   const {
     fee,
     mode,
@@ -58,6 +95,23 @@ app.get('/api/hackathons', (req: Request, res: Response) => {
     search,
     sortBy = 'deadline',
   } = req.query;
+
+  // 1. Try fetching from live Supabase PostgreSQL database first
+  try {
+    const supabaseData = await getHackathonsFromSupabase({
+      fee: fee as string,
+      mode: mode as string,
+      city: city as string,
+      institution: institution as string,
+      search: search as string,
+      sortBy: sortBy as string,
+    });
+    if (supabaseData && supabaseData.hackathons.length > 0) {
+      return res.json(supabaseData);
+    }
+  } catch (err: any) {
+    console.warn('[Supabase Fetch Warning]', err.message);
+  }
 
   let results = [...hackathonsDatabase];
 

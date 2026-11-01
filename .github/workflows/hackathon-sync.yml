@@ -1,0 +1,39 @@
+name: 12-Hour BharatHack Auto-Sync
+
+on:
+  schedule:
+    # Runs twice every day: 02:00 UTC (07:30 AM IST) and 14:00 UTC (07:30 PM IST)
+    - cron: '0 2,14 * * *'
+  workflow_dispatch: # Allows manual 1-click trigger anytime
+
+jobs:
+  sync-hackathons:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run 12-Hour Sync Worker with Link Health Check
+        env:
+          TINYFISH_API_KEY: ${{ secrets.TINYFISH_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: |
+          npx tsx -e "
+            import { run12HourSyncWorker } from './server/services/supabase';
+            run12HourSyncWorker().then(res => {
+              console.log('Sync Result:', JSON.stringify(res, null, 2));
+            }).catch(err => {
+              console.error('Workflow error:', err);
+              process.exit(1);
+            });
+          "
