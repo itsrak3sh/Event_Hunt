@@ -1,8 +1,14 @@
 import axios from 'axios';
+import { createClient } from '@supabase/supabase-js';
 import { Hackathon, FilterState, CityOption, TinyFishStatus } from '../types';
 import { SEED_HACKATHONS } from '../data/seedHackathons';
 
 const API_BASE = '/api';
+
+const SUPABASE_URL = (import.meta as any).env?.VITE_SUPABASE_URL || 'https://wudzzpcnxkbmjnxqefjy.supabase.co';
+const SUPABASE_ANON_KEY = (import.meta as any).env?.VITE_SUPABASE_ANON_KEY || 'sb_publishable_GJlbiFTwL12jbKNsDK3mUg_boLStn7R';
+
+export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 /**
  * Filter hackathons client-side if the remote backend API is offline or deployed as static Vercel build
@@ -145,23 +151,128 @@ export async function fetchHackathons(filters: FilterState): Promise<{
     iiitCount: number;
   };
 }> {
-  const params: Record<string, string> = {};
-  if (filters.fee !== 'all') params.fee = filters.fee;
-  if (filters.mode !== 'all') params.mode = filters.mode;
-  if (filters.city && filters.city !== 'All Locations') params.city = filters.city;
-  if (filters.institution !== 'all') params.institution = filters.institution;
-  if (filters.search) params.search = filters.search;
-  if (filters.sortBy) params.sortBy = filters.sortBy;
-
+  // 1. Try querying Supabase directly from browser client (Ultra fast & directly synced with 12-hour cron)
   try {
+    const { data, error } = await supabase.from('hackathons').select('*');
+    if (!error && data && data.length > 0) {
+      const mapped: Hackathon[] = data.map((row: any) => ({
+        id: row.id,
+        title: row.title,
+        slug: row.slug,
+        tagline: row.tagline || '',
+        organizer: row.organizer,
+        institutionType: row.institution_type,
+        institutionName: row.institution_name,
+        entryFeeType: row.entry_fee_type,
+        entryFeeAmount: row.entry_fee_amount || 0,
+        entryFeeCurrency: row.entry_fee_currency || '₹',
+        mode: row.mode,
+        location: {
+          city: row.city || 'Online',
+          state: row.state || 'Pan-India',
+          venue: row.venue || 'Online',
+          pincode: row.pincode || undefined,
+        },
+        prizePool: row.prize_pool || 'TBA',
+        prizePoolAmountINR: Number(row.prize_pool_amount_inr) || 0,
+        dates: {
+          registrationDeadline: row.registration_deadline || new Date().toISOString(),
+          startDate: row.start_date || new Date().toISOString(),
+          endDate: row.end_date || new Date().toISOString(),
+          durationHours: row.duration_hours || 24,
+        },
+        registrationLink: row.registration_link,
+        backupLink: row.backup_link || `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(row.title)}`,
+        isVerified: row.is_verified ?? true,
+        description: row.description || '',
+        tracks: Array.isArray(row.tracks) ? row.tracks : [],
+        eligibility: row.eligibility || 'Open to all students and developers',
+        teamSize: row.team_size || '1 - 4 Members',
+        perks: Array.isArray(row.perks) ? row.perks : [],
+        status: row.status || 'open',
+        source: row.source || 'Direct Campus',
+      }));
+
+      // Filter in-memory
+      let results = [...mapped];
+      if (filters.fee && filters.fee !== 'all') {
+        results = results.filter(h => h.entryFeeType === filters.fee);
+      }
+      if (filters.mode && filters.mode !== 'all') {
+        results = results.filter(h => h.mode === filters.mode);
+      }
+      if (filters.city && filters.city !== 'all' && filters.city !== 'All Locations') {
+        const cityStr = filters.city.toLowerCase();
+        results = results.filter(h =>
+          h.location.city.toLowerCase().includes(cityStr) ||
+          h.location.state.toLowerCase().includes(cityStr) ||
+          h.location.venue.toLowerCase().includes(cityStr)
+        );
+      }
+      if (filters.institution && filters.institution !== 'all' && (filters.institution as string) !== 'All Institutions') {
+        const instStr = filters.institution.toLowerCase();
+        results = results.filter(h =>
+          h.institutionType.toLowerCase() === instStr ||
+          h.institutionName.toLowerCase().includes(instStr)
+        );
+      }
+      if (filters.search) {
+        const q = filters.search.toLowerCase();
+        results = results.filter(h =>
+          h.title.toLowerCase().includes(q) ||
+          h.tagline.toLowerCase().includes(q) ||
+          h.organizer.toLowerCase().includes(q) ||
+          h.institutionName.toLowerCase().includes(q) ||
+          h.tracks.some(t => t.toLowerCase().includes(q)) ||
+          h.description.toLowerCase().includes(q)
+        );
+      }
+
+      if (filters.sortBy === 'prize') {
+        results.sort((a, b) => b.prizePoolAmountINR - a.prizePoolAmountINR);
+      } else if (filters.sortBy === 'duration') {
+        results.sort((a, b) => a.dates.durationHours - b.dates.durationHours);
+      } else {
+        results.sort((a, b) => new Date(a.dates.registrationDeadline).getTime() - new Date(b.dates.registrationDeadline).getTime());
+      }
+
+      const stats = {
+        total: results.length,
+        freeCount: results.filter(h => h.entryFeeType === 'free').length,
+        paidCount: results.filter(h => h.entryFeeType === 'paid').length,
+        onlineCount: results.filter(h => h.mode === 'online').length,
+        offlineCount: results.filter(h => h.mode === 'offline').length,
+        hybridCount: results.filter(h => h.mode === 'hybrid').length,
+        iitCount: results.filter(h => h.institutionType === 'IIT').length,
+        nitCount: results.filter(h => h.institutionType === 'NIT').length,
+        iiitCount: results.filter(h => h.institutionType === 'IIIT').length,
+      };
+
+      return { hackathons: results, stats };
+    }
+  } catch (err) {
+    console.info('[BharatHack] Supabase direct query fallback to API or seed data.');
+  }
+
+  // 2. Fallback to API route
+  try {
+    const params: Record<string, string> = {};
+    if (filters.fee !== 'all') params.fee = filters.fee;
+    if (filters.mode !== 'all') params.mode = filters.mode;
+    if (filters.city && filters.city !== 'All Locations') params.city = filters.city;
+    if (filters.institution !== 'all') params.institution = filters.institution;
+    if (filters.search) params.search = filters.search;
+    if (filters.sortBy) params.sortBy = filters.sortBy;
+
     const res = await axios.get(`${API_BASE}/hackathons`, { params, timeout: 3500 });
     if (res.data && Array.isArray(res.data.hackathons) && res.data.hackathons.length > 0) {
       return res.data;
     }
   } catch (err) {
-    console.info('[BharatHack] Using client-side hackathon dataset fallback for Vercel/offline deployment.');
+    console.info('[BharatHack] Using client-side hackathon dataset fallback.');
   }
 
+  // 3. Fallback to local embedded dataset
   return filterHackathonsLocally(filters);
 }
 
@@ -279,6 +390,8 @@ export async function triggerTinyFishFetchUrl(url: string): Promise<{
         durationHours: 36,
       },
       registrationLink: url,
+      backupLink: `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hostname)}`,
+      isVerified: true,
       description: `Parsed directly from verified portal ${url}. Register directly and access problem statements.`,
       tracks: ['Full Stack', 'AI/ML', 'Open Innovation'],
       eligibility: 'Open to all developers and college students.',
