@@ -22,18 +22,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Run 12-Hour Sync Worker with Link Health Check
+      - name: Run 12-Hour Sync Worker
         env:
           TINYFISH_API_KEY: ${{ secrets.TINYFISH_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-        run: |
-          npx tsx -e "
-            import { run12HourSyncWorker } from './server/services/supabase';
-            run12HourSyncWorker().then(res => {
-              console.log('Sync Result:', JSON.stringify(res, null, 2));
-            }).catch(err => {
-              console.error('Workflow error:', err);
-              process.exit(1);
-            });
-          "
+        run: npm run sync
