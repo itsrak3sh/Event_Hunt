@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Local Environment Secrets
+.env
+.env.local
+.env.*.local
+
+# Production Build Output (Vercel builds directly from source code)
+dist/
+
+# Cache & Editor files
+.DS_Store
+*.log
+.vite/

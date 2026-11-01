@@ -48,7 +48,7 @@ export const TinyFishDrawer: React.FC<TinyFishDrawerProps> = ({
     setDiscoveredCount(null);
     setLogs([
       `[TinyFish API] Connecting to https://api.search.tinyfish.ai...`,
-      `[TinyFish Auth] Authenticating with sk-tinyfish-LTb7...`,
+      `[TinyFish Auth] Authenticating with configured API Key...`,
       `[Query Engine] Executing: "${q}" in region: IN`,
     ]);
 
@@ -127,7 +127,7 @@ export const TinyFishDrawer: React.FC<TinyFishDrawerProps> = ({
               <div>
                 <span className="font-semibold text-slate-900 dark:text-white block">TinyFish Endpoint Online</span>
                 <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
-                  Key: sk-tinyfish-LTb7Ekp...
+                  Engine: Live Web Agent
                 </span>
               </div>
             </div>

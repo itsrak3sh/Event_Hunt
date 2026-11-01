@@ -28,7 +28,7 @@ Selecting **Offline** or **Hybrid** reveals the location selector:
 * Includes a **Full Details Modal** providing schedule, perks, eligibility criteria, and rules.
 
 ### 5. Powered by TinyFish AI Web Agent
-* **API Key Configured**: `sk-tinyfish-LTb7Ekpg9zJMlBojabDp2wKgmMzpZAM2`
+* **API Key Configured**: Configured securely via environment variables (`TINYFISH_API_KEY`)
 * **TinyFish Search API (`api.search.tinyfish.ai`)**: Live search agent querying real Indian hackathons across Devfolio, Unstop, and college portals.
 * **TinyFish Fetch API (`api.fetch.tinyfish.ai`)**: Cloud headless browser that inspects any hackathon URL, strips ads and scripts, and adds it to your radar.
 * **Live Status Badge**: Displays real-time API connectivity and latency.

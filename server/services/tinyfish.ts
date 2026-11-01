@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Hackathon } from '../data/hackathons';
 
-const TINYFISH_API_KEY = process.env.TINYFISH_API_KEY || 'sk-tinyfish-LTb7Ekpg9zJMlBojabDp2wKgmMzpZAM2';
+const TINYFISH_API_KEY = process.env.TINYFISH_API_KEY || '';
 const TINYFISH_SEARCH_URL = 'https://api.search.tinyfish.ai';
 const TINYFISH_FETCH_URL = 'https://api.fetch.tinyfish.ai';
 
