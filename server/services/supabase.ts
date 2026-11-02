@@ -7,7 +7,7 @@ import { searchHackathonsWithTinyFish, transformTinyFishResultsToHackathons } fr
 dotenv.config();
 
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://wudzzpcnxkbmjnxqefjy.supabase.co';
-const SUPABASE_KEY = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || '';
+const SUPABASE_KEY = process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_GJlbiFTwL12jbKNsDK3mUg_boLStn7R';
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 

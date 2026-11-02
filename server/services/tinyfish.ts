@@ -60,12 +60,18 @@ export async function testTinyFishConnection(): Promise<{ success: boolean; late
  * Run a live search on TinyFish Search API
  */
 export async function searchHackathonsWithTinyFish(query: string): Promise<TinyFishSearchResponse> {
+  const apiKey = TINYFISH_API_KEY || process.env.TINYFISH_API_KEY;
+  if (!apiKey) {
+    console.warn('[TinyFish] No API key configured. Skipping external search.');
+    return { query, results: [], total_results: 0 };
+  }
+
   const formattedQuery = encodeURIComponent(query);
   const response = await axios.get<TinyFishSearchResponse>(
     `${TINYFISH_SEARCH_URL}?query=${formattedQuery}&location=IN&language=en`,
     {
       headers: {
-        'X-API-Key': TINYFISH_API_KEY,
+        'X-API-Key': apiKey,
       },
       timeout: 12000,
     }
