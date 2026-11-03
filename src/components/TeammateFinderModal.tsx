@@ -22,51 +22,6 @@ export interface TeammatePost {
   createdAt: string;
 }
 
-const SEED_POSTS: TeammatePost[] = [
-  {
-    id: 'post-1',
-    hackathonId: 'hack-sih-2026',
-    hackathonTitle: 'Smart India Hackathon (SIH) 2026',
-    authorName: 'Aarav Sharma',
-    college: 'IIT Delhi',
-    roleNeeded: 'Female Full-Stack Dev (Mandatory for SIH ratio)',
-    teamSizeCurrent: 5,
-    teamSizeMax: 6,
-    description: 'We have 5 core engineers working on Ministry of Agriculture statement. Need 1 passionate female developer proficient in Python/FastAPI or React.',
-    contactMethod: 'WhatsApp',
-    contactHandle: '+91 98765 43210',
-    createdAt: '2 hours ago',
-  },
-  {
-    id: 'post-2',
-    hackathonId: 'hack-iitb-techfest-2026',
-    hackathonTitle: 'Techfest National Hackathon 2026 - IIT Bombay',
-    authorName: 'Priya Nair',
-    college: 'NIT Trichy',
-    roleNeeded: 'Computer Vision / PyTorch Engineer',
-    teamSizeCurrent: 2,
-    teamSizeMax: 4,
-    description: 'Building an autonomous drone inspection prototype for the Autonomous Robotics track. Shortlisted teams get free IIT Bombay hostel accommodation!',
-    contactMethod: 'Discord',
-    contactHandle: 'priyanair#8821',
-    createdAt: '5 hours ago',
-  },
-  {
-    id: 'post-3',
-    hackathonId: 'hack-iiith-megathon-2026',
-    hackathonTitle: "Megathon '26 - IIIT Hyderabad",
-    authorName: 'Rohan Deshmukh',
-    college: 'COEP Pune',
-    roleNeeded: 'Solidity / Rust Web3 Dev',
-    teamSizeCurrent: 3,
-    teamSizeMax: 4,
-    description: 'Heading to Hyderabad for the offline 24h sprint! Need 1 builder who knows Solana or EVM smart contracts.',
-    contactMethod: 'Telegram',
-    contactHandle: '@rohan_crypto',
-    createdAt: '1 day ago',
-  },
-];
-
 interface TeammateFinderModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -83,9 +38,16 @@ export const TeammateFinderModal: React.FC<TeammateFinderModalProps> = ({
   const [posts, setPosts] = useState<TeammatePost[]>(() => {
     try {
       const stored = localStorage.getItem('bharathack_teammate_posts');
-      return stored ? JSON.parse(stored) : SEED_POSTS;
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        // Exclude legacy dummy demo posts
+        return Array.isArray(parsed) 
+          ? parsed.filter((p: TeammatePost) => !['post-1', 'post-2', 'post-3'].includes(p.id))
+          : [];
+      }
+      return [];
     } catch {
-      return SEED_POSTS;
+      return [];
     }
   });
 
@@ -323,8 +285,25 @@ export const TeammateFinderModal: React.FC<TeammateFinderModalProps> = ({
 
           {/* Posts List */}
           {displayedPosts.length === 0 ? (
-            <div className="text-center py-12 text-slate-500 text-xs">
-              No teammate requests found for this hackathon yet. Be the first to create one!
+            <div className="text-center py-16 px-4 flex flex-col items-center justify-center space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-purple-500/10 text-purple-600 dark:text-purple-400 flex items-center justify-center border border-purple-500/20">
+                <Users className="w-6 h-6" />
+              </div>
+              <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-200">
+                No teammate requests found yet
+              </h4>
+              <p className="text-xs text-slate-500 max-w-sm">
+                Looking for teammates for this hackathon? Create the first request to connect with developers across campuses!
+              </p>
+              {!isCreating && (
+                <button
+                  onClick={() => setIsCreating(true)}
+                  className="mt-2 flex items-center gap-1.5 px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs transition shadow-sm"
+                >
+                  <Plus className="w-4 h-4" />
+                  <span>Post Looking For Teammate</span>
+                </button>
+              )}
             </div>
           ) : (
             displayedPosts.map((post) => (

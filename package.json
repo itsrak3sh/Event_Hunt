@@ -10,7 +10,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "start": "tsx server/index.ts",
-    "sync": "tsx server/scripts/sync_worker.ts"
+    "sync": "npx --yes tsx server/scripts/sync_worker.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",

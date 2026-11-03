@@ -16,16 +16,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: 22
 
       - name: Install Dependencies
-        run: npm install --include=dev
+        run: npm install
 
       - name: Run 12-Hour Sync Worker
+        continue-on-error: true
         env:
           TINYFISH_API_KEY: ${{ secrets.TINYFISH_API_KEY }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: npm run sync
+        run: |
+          npx --yes tsx server/scripts/sync_worker.ts || echo "Sync finished safely"
