@@ -188,7 +188,8 @@ export async function run12HourSyncWorker(): Promise<{
   const recordsToInsert: any[] = [];
 
   try {
-    // 1. Purge already-expired hackathons from database automatically!
+    // 1. Purge already-expired hackathons and legacy unverified items from database automatically!
+    await supabase.from('hackathons').delete().like('id', 'tinyfish-%');
     const { error: purgeErr } = await supabase
       .from('hackathons')
       .delete()

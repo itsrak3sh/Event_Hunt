@@ -49,7 +49,10 @@ function cleanAndFilterHackathons(list: Hackathon[]): Hackathon[] {
       titleLower.includes('top hackathons to participate')
     ) return false;
 
-    // 3. Expiry check: only active hackathons (hide closed ones)
+    // 3. Exclude legacy items or unverified scraped entries
+    if (h.id.startsWith('tinyfish-')) return false;
+
+    // 4. Expiry check: only active hackathons (hide closed ones)
     const deadline = new Date(h.dates.registrationDeadline).getTime();
     if (!isNaN(deadline) && deadline < now) {
       return false;
