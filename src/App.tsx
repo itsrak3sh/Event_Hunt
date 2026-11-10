@@ -18,7 +18,6 @@ import { UpperLeftControlBar } from './components/UpperLeftControlBar';
 import { SearchBar } from './components/SearchBar';
 import { StatsBar } from './components/StatsBar';
 import { TrackFilterChips, TRACK_OPTIONS } from './components/TrackFilterChips';
-import { IndiaRadarMapView } from './components/IndiaRadarMapView';
 import { TeammateFinderModal } from './components/TeammateFinderModal';
 import { SkillMatcherModal } from './components/SkillMatcherModal';
 import { WinningPlaybookModal } from './components/WinningPlaybookModal';
@@ -31,7 +30,6 @@ import {
   AlertCircle, 
   RotateCcw, 
   Filter, 
-  Map, 
   Users, 
   Target,
   BookOpen
@@ -94,7 +92,6 @@ export function App() {
   });
 
   // View toggles
-  const [showRadarMap, setShowRadarMap] = useState<boolean>(true);
   const [selectedHackathon, setSelectedHackathon] = useState<Hackathon | null>(null);
   const [isTinyFishDrawerOpen, setIsTinyFishDrawerOpen] = useState(false);
   const [isInspectorModalOpen, setIsInspectorModalOpen] = useState(false);
@@ -292,18 +289,6 @@ export function App() {
             </button>
 
             <button
-              onClick={() => setShowRadarMap(!showRadarMap)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition ${
-                showRadarMap
-                  ? 'bg-cyan-500/10 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-300 border-cyan-300 dark:border-cyan-500/40'
-                  : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <Map className="w-3.5 h-3.5" />
-              <span>{showRadarMap ? 'Hide Radar' : 'Show Radar'}</span>
-            </button>
-
-            <button
               onClick={() => handleOpenTeammateFinder()}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-300 dark:border-purple-800/40 hover:bg-purple-200 dark:hover:bg-purple-900/60 transition"
             >
@@ -313,15 +298,6 @@ export function App() {
           </div>
 
         </div>
-
-        {/* Interactive India Regional Radar Map */}
-        {showRadarMap && (
-          <IndiaRadarMapView
-            hackathons={hackathons}
-            onSelectCity={(cityName) => setFilters((prev) => ({ ...prev, city: cityName }))}
-            activeCity={filters.city}
-          />
-        )}
 
         {/* Search & Sort Bar */}
         <SearchBar
