@@ -178,24 +178,38 @@ export function App() {
   const [isSkillMatcherOpen, setIsSkillMatcherOpen] = useState(false);
   const [isPlaybookOpen, setIsPlaybookOpen] = useState(false);
 
-  // Open / Close hackathon details with URL history synchronization (Enables Back Button)
-  const handleOpenHackathonDetails = (hackathon: Hackathon | null) => {
+  // Track whether hackathon modal was pushed to history (to avoid history loops on mobile)
+  const isPushedToHistoryRef = React.useRef(false);
+
+  // Open hackathon details and push history state
+  const handleOpenHackathonDetails = (hackathon: Hackathon) => {
     setSelectedHackathon(hackathon);
     const url = new URL(window.location.href);
-    if (hackathon) {
-      url.searchParams.set('hackathon', hackathon.id);
-      window.history.pushState({ hackathonId: hackathon.id }, '', url.toString());
+    url.searchParams.set('hackathon', hackathon.id);
+    window.history.pushState({ modal: 'hackathon', hackathonId: hackathon.id }, '', url.toString());
+    isPushedToHistoryRef.current = true;
+  };
+
+  // Close hackathon details cleanly without history stacking loops
+  const handleCloseHackathonDetails = () => {
+    if (isPushedToHistoryRef.current) {
+      isPushedToHistoryRef.current = false;
+      window.history.back();
     } else {
-      url.searchParams.delete('hackathon');
-      window.history.pushState({}, '', url.toString());
+      setSelectedHackathon(null);
+      const url = new URL(window.location.href);
+      if (url.searchParams.has('hackathon')) {
+        url.searchParams.delete('hackathon');
+        window.history.replaceState({}, '', url.toString());
+      }
     }
   };
 
-  // Restore hackathon from URL parameter when data loads
+  // Restore hackathon from URL parameter when data loads or on direct link
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const targetId = params.get('hackathon');
-    if (targetId && hackathons.length > 0) {
+    if (targetId && hackathons.length > 0 && !selectedHackathon) {
       const found = hackathons.find((h) => h.id === targetId);
       if (found) {
         setSelectedHackathon(found);
@@ -211,13 +225,27 @@ export function App() {
       if (targetId && hackathons.length > 0) {
         const found = hackathons.find((h) => h.id === targetId);
         setSelectedHackathon(found || null);
+        isPushedToHistoryRef.current = !!found;
       } else {
         setSelectedHackathon(null);
+        isPushedToHistoryRef.current = false;
       }
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, [hackathons]);
+
+  // Lock background scroll on mobile and desktop when full screen view is active
+  useEffect(() => {
+    if (selectedHackathon) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedHackathon]);
 
   // Bookmarked / Saved Hackathons (Persisted in localStorage)
   const [savedIds, setSavedIds] = useState<string[]>(() => {
@@ -525,7 +553,7 @@ export function App() {
       {/* Full Screen Hackathon Details & Guidelines with Registration Link */}
       <HackathonDetailModal
         hackathon={selectedHackathon}
-        onClose={() => handleOpenHackathonDetails(null)}
+        onClose={handleCloseHackathonDetails}
         onToggleSave={handleToggleSave}
         isSaved={selectedHackathon ? savedIds.includes(selectedHackathon.id) : false}
         onFindTeammates={handleOpenTeammateFinder}
@@ -544,7 +572,7 @@ export function App() {
         isOpen={isSkillMatcherOpen}
         onClose={() => setIsSkillMatcherOpen(false)}
         hackathons={hackathons}
-        onSelectHackathon={(h) => setSelectedHackathon(h)}
+        onSelectHackathon={handleOpenHackathonDetails}
         userSkills={userSkills}
         onUpdateUserSkills={handleUpdateSkills}
       />
@@ -570,7 +598,7 @@ export function App() {
         onClose={() => setIsInspectorModalOpen(false)}
         onHackathonAdded={(newHack) => {
           handleHackathonsDiscovered([newHack]);
-          setSelectedHackathon(newHack);
+          handleOpenHackathonDetails(newHack);
         }}
       />
 

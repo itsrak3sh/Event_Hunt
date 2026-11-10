@@ -404,6 +404,12 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
             {/* Primary Action: Direct Registration (Native history preserved so browser Back always works!) */}
             <a
               href={hackathon.registrationLink}
+              onClick={(e) => {
+                e.stopPropagation();
+                const url = new URL(window.location.href);
+                url.searchParams.set('hackathon', hackathon.id);
+                window.history.replaceState({ modal: 'hackathon', hackathonId: hackathon.id }, '', url.toString());
+              }}
               className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-xs transition active:scale-95 cursor-pointer"
             >
               <span>Apply & Register Official</span>

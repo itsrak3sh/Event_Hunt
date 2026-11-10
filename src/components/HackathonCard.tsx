@@ -79,7 +79,10 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
   };
 
   return (
-    <div className="group relative flex flex-col justify-between rounded-2xl bg-white border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all duration-200 overflow-hidden">
+    <div 
+      onClick={() => onOpenDetails(hackathon)}
+      className="group relative flex flex-col justify-between rounded-2xl bg-white border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all duration-200 overflow-hidden cursor-pointer"
+    >
       
       {/* Top Banner accent on hover */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -129,11 +132,11 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             </span>
           </div>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
             {/* Calendar Reminder Button */}
             <button
               onClick={handleCalendar}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-gray-100 transition"
+              className="p-1.5 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-gray-100 transition cursor-pointer"
               title="Add to Google Calendar"
             >
               <CalendarPlus className="w-4 h-4" />
@@ -142,7 +145,7 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             {/* WhatsApp Share Button */}
             <button
               onClick={handleWhatsApp}
-              className="p-1.5 rounded-lg text-gray-400 hover:text-emerald-600 hover:bg-gray-100 transition"
+              className="p-1.5 rounded-lg text-gray-400 hover:text-emerald-600 hover:bg-gray-100 transition cursor-pointer"
               title="Share on WhatsApp"
             >
               <Share2 className="w-4 h-4" />
@@ -150,8 +153,11 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
 
             {/* Bookmark Button */}
             <button
-              onClick={() => onToggleSave(hackathon.id)}
-              className={`p-1.5 rounded-lg transition ${
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleSave(hackathon.id);
+              }}
+              className={`p-1.5 rounded-lg transition cursor-pointer ${
                 isSaved
                   ? 'text-amber-500 bg-amber-50'
                   : 'text-gray-400 hover:text-gray-700 hover:bg-gray-100'
@@ -308,14 +314,18 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
         </div>
 
         {/* Buttons Row: Registration Link CTA + Backup Search + Quick Copy + Modal Trigger */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
           
-          {/* PRIMARY DIRECT REGISTRATION LINK (Royal Blue) */}
+          {/* PRIMARY DIRECT REGISTRATION LINK (Same Tab Navigation with History State) */}
           <a
             href={hackathon.registrationLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-blue-600 hover:bg-blue-700 shadow-xs transition-all active:scale-[0.98] group/btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              const url = new URL(window.location.href);
+              url.searchParams.set('hackathon', hackathon.id);
+              window.history.replaceState({ modal: 'hackathon', hackathonId: hackathon.id }, '', url.toString());
+            }}
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-blue-600 hover:bg-blue-700 shadow-xs transition-all active:scale-[0.98] group/btn cursor-pointer"
           >
             <span>Register Now</span>
             <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
@@ -332,6 +342,7 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             )}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="p-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 transition flex items-center gap-1 text-xs font-semibold shadow-2xs"
             title="Backup Search Link (If direct link is slow or down)"
           >
@@ -341,8 +352,9 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
 
           {/* Quick Copy Registration Link Button */}
           <button
+            type="button"
             onClick={handleCopyLink}
-            className="p-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 transition shadow-2xs"
+            className="p-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 transition shadow-2xs cursor-pointer"
             title="Copy Direct Registration URL"
           >
             {copied ? (
@@ -354,10 +366,15 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
 
           {/* View Full Details Button */}
           <button
-            onClick={() => onOpenDetails(hackathon)}
-            className="p-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 transition shadow-2xs cursor-pointer"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenDetails(hackathon);
+            }}
+            className="px-2.5 sm:px-3 py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 transition shadow-2xs cursor-pointer flex items-center gap-1 text-xs font-bold shrink-0"
             title="View Full Hackathon Specs & Guidelines"
           >
+            <span className="hidden xs:inline">Details</span>
             <ChevronRight className="w-4 h-4" />
           </button>
 
