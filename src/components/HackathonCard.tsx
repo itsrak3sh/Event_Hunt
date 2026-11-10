@@ -290,6 +290,7 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             hackathon.source === 'Devfolio' ? 'bg-indigo-50 text-indigo-700 border-indigo-200' :
             hackathon.source === 'Devpost' ? 'bg-teal-50 text-teal-700 border-teal-200' :
             hackathon.source === 'HackerEarth' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+            hackathon.source === 'MLH' ? 'bg-rose-50 text-rose-700 border-rose-200' :
             'bg-gray-100 text-gray-700 border-gray-200'
           }`}>
             {hackathon.source}
@@ -316,6 +317,7 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
               hackathon.source === 'Devfolio' ? 'https://devfolio.co/discover' :
               hackathon.source === 'Devpost' ? 'https://devpost.com/hackathons' :
               hackathon.source === 'HackerEarth' ? 'https://www.hackerearth.com/challenges/' :
+              hackathon.source === 'MLH' ? 'https://mlh.io/seasons/2027/events' :
               `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`
             )}
             target="_blank"

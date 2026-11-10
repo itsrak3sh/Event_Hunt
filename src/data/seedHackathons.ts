@@ -33,7 +33,7 @@ export interface Hackathon {
   teamSize: string;
   perks: string[];
   status: 'open' | 'closing_soon' | 'upcoming';
-  source: 'TinyFish AI Live' | 'Devfolio' | 'Unstop' | 'Direct Campus' | 'Devpost' | 'HackerEarth';
+  source: 'TinyFish AI Live' | 'Devfolio' | 'Unstop' | 'Direct Campus' | 'Devpost' | 'HackerEarth' | 'MLH';
   featured?: boolean;
 }
 
@@ -59,7 +59,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 5737500,
     "dates": {
       "registrationDeadline": "2026-11-11T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-11-11T18:30:00.000Z",
       "durationHours": 48
     },
@@ -104,7 +104,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-13T18:29:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-15T18:29:00.000Z",
       "durationHours": 36
     },
@@ -176,6 +176,512 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "featured": false
   },
   {
+    "id": "mlh-emory-hacks",
+    "title": "Emory Hacks",
+    "slug": "mlh-emory-hacks",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "Emory Hacks Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Atlanta, GA, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Atlanta",
+      "state": "GA",
+      "venue": "Atlanta, GA, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-13T19:00:00.000Z",
+      "startDate": "2026-11-13T19:00:00.000Z",
+      "endDate": "2026-11-15T18:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://emoryhacks.com/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "Emory Hacks is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-unihack",
+    "title": "UniHack",
+    "slug": "mlh-unihack",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "UniHack Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Timișoara, Timiș, RO Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Timișoara",
+      "state": "Timiș",
+      "venue": "Timișoara, Timiș, RO Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-13T20:00:00.000Z",
+      "startDate": "2026-11-13T20:00:00.000Z",
+      "endDate": "2026-11-15T22:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unihack.eu/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "UniHack is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-junction",
+    "title": "Junction",
+    "slug": "mlh-junction",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "Junction Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Espoo, Uusimaa, FI Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Espoo",
+      "state": "Uusimaa",
+      "venue": "Espoo, Uusimaa, FI Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-13T21:00:00.000Z",
+      "startDate": "2026-11-13T21:00:00.000Z",
+      "endDate": "2026-11-15T21:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hackjunction.com",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "Junction is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-hackprinceton-fall-2026",
+    "title": "HackPrinceton Fall 2026",
+    "slug": "mlh-hackprinceton-fall-2026",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "HackPrinceton Fall 2026 Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Princeton, New Jersey, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Princeton",
+      "state": "New Jersey",
+      "venue": "Princeton, New Jersey, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-13T21:00:00.000Z",
+      "startDate": "2026-11-13T21:00:00.000Z",
+      "endDate": "2026-11-15T21:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://www.hackprinceton.com",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "HackPrinceton Fall 2026 is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-nasa-s-space-apps-challenge-nyc",
+    "title": "NASA's Space Apps Challenge NYC",
+    "slug": "mlh-nasa-s-space-apps-challenge-nyc",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "NASA's Space Apps Challenge NYC Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Brooklyn, New York, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Brooklyn",
+      "state": "New York",
+      "venue": "Brooklyn, New York, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-13T21:30:00.000Z",
+      "startDate": "2026-11-13T21:30:00.000Z",
+      "endDate": "2026-11-15T21:30:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://www.spaceappschallenge.org/2026/local-events/new-york/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "NASA's Space Apps Challenge NYC is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-hackumass",
+    "title": "HackUMass",
+    "slug": "mlh-hackumass",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "HackUMass Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Amherst, MA, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Amherst",
+      "state": "MA",
+      "venue": "Amherst, MA, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-13T23:30:00.000Z",
+      "startDate": "2026-11-13T23:30:00.000Z",
+      "endDate": "2026-11-15T21:30:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://www.hackumass.com/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "HackUMass is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-hackuta",
+    "title": "HackUTA",
+    "slug": "mlh-hackuta",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "HackUTA Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Arlington, Texas, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Arlington",
+      "state": "Texas",
+      "venue": "Arlington, Texas, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-14T14:00:00.000Z",
+      "startDate": "2026-11-14T14:00:00.000Z",
+      "endDate": "2026-11-15T22:30:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hackuta.com/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "HackUTA is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-sand-hacks",
+    "title": "SanD Hacks",
+    "slug": "mlh-sand-hacks",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "SanD Hacks Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "La Jolla, CA, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "La Jolla",
+      "state": "CA",
+      "venue": "La Jolla, CA, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-14T14:00:00.000Z",
+      "startDate": "2026-11-14T14:00:00.000Z",
+      "endDate": "2026-11-15T20:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hackathon.csesatucsd.com/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "SanD Hacks is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-hack-the-nest",
+    "title": "Hack The Nest",
+    "slug": "mlh-hack-the-nest",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "Hack The Nest Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Ypsilanti, Michigan, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Ypsilanti",
+      "state": "Michigan",
+      "venue": "Ypsilanti, Michigan, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-14T14:00:00.000Z",
+      "startDate": "2026-11-14T14:00:00.000Z",
+      "endDate": "2026-11-15T21:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hackthenest.tech/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "Hack The Nest is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-durhack",
+    "title": "DurHack",
+    "slug": "mlh-durhack",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "DurHack Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Durham, County Durham, GB Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Durham",
+      "state": "County Durham",
+      "venue": "Durham, County Durham, GB Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-14T14:30:00.000Z",
+      "startDate": "2026-11-14T14:30:00.000Z",
+      "endDate": "2026-11-15T23:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://durhack.com",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "DurHack is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-sunhacks",
+    "title": "sunhacks",
+    "slug": "mlh-sunhacks",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "sunhacks Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Tempe, Arizona, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Tempe",
+      "state": "Arizona",
+      "venue": "Tempe, Arizona, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-14T15:00:00.000Z",
+      "startDate": "2026-11-14T15:00:00.000Z",
+      "endDate": "2026-11-15T20:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://2026.sunhacks.io/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "sunhacks is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
     "id": "devpost-30500",
     "title": "DSH Hacks V2 ($100k+ in prizes!)",
     "slug": "devpost-30500-dsh-hacks-v2-100k-in-prizes-",
@@ -196,7 +702,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 0,
     "dates": {
       "registrationDeadline": "2026-11-14T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-11-14T18:30:00.000Z",
       "durationHours": 48
     },
@@ -241,7 +747,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-14T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-11-14T18:30:00.000Z",
       "durationHours": 36
     },
@@ -286,7 +792,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-15T18:29:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-17T18:29:00.000Z",
       "durationHours": 36
     },
@@ -378,7 +884,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-15T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-17T18:30:00.000Z",
       "durationHours": 36
     },
@@ -424,7 +930,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 3910000,
     "dates": {
       "registrationDeadline": "2026-11-15T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-11-15T18:30:00.000Z",
       "durationHours": 48
     },
@@ -469,7 +975,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-17T06:20:48.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-19T06:20:48.000Z",
       "durationHours": 36
     },
@@ -515,7 +1021,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-17T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-19T18:30:00.000Z",
       "durationHours": 36
     },
@@ -561,7 +1067,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 85000000,
     "dates": {
       "registrationDeadline": "2026-11-17T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-11-17T18:30:00.000Z",
       "durationHours": 48
     },
@@ -606,7 +1112,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-17T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-11-17T18:30:00.000Z",
       "durationHours": 36
     },
@@ -743,7 +1249,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-20T18:29:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-22T18:29:00.000Z",
       "durationHours": 36
     },
@@ -789,7 +1295,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-20T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-22T18:30:00.000Z",
       "durationHours": 36
     },
@@ -835,7 +1341,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-20T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-22T18:30:00.000Z",
       "durationHours": 36
     },
@@ -881,7 +1387,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-20T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-22T18:30:00.000Z",
       "durationHours": 36
     },
@@ -907,6 +1413,97 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "featured": false
   },
   {
+    "id": "devpost-31789",
+    "title": "STEM2Connect AI Hackathon",
+    "slug": "devpost-31789-stem2connect-ai-hackathon",
+    "tagline": "Global Hackathon hosted on Devpost by STEM2Connect",
+    "organizer": "STEM2Connect",
+    "institutionType": "Corporate / Private",
+    "institutionName": "STEM2Connect",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Global / Pan-India",
+      "venue": "Virtual (Devpost Global Platform)"
+    },
+    "prizePool": "$0 (~₹0.0L)",
+    "prizePoolAmountINR": 0,
+    "dates": {
+      "registrationDeadline": "2026-11-20T18:30:00.000Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
+      "endDate": "2026-11-20T18:30:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://stem2connect-online-hackathon.devpost.com/",
+    "backupLink": "https://devpost.com/hackathons",
+    "isVerified": true,
+    "description": "STEM2Connect AI Hackathon is a verified global hackathon hosted on Devpost. Submission period: Oct 17 - Nov 21, 2026. Open to engineers and students worldwide.",
+    "tracks": [
+      "Beginner Friendly",
+      "Education",
+      "Web"
+    ],
+    "eligibility": "Open to developers, engineers, and students worldwide.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Global recognition & resume showcase",
+      "Direct submission on Devpost",
+      "Cash prizes and cloud sponsor credits"
+    ],
+    "status": "open",
+    "source": "Devpost",
+    "featured": false
+  },
+  {
+    "id": "mlh-hack-western-13",
+    "title": "Hack Western 13",
+    "slug": "mlh-hack-western-13",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "Hack Western 13 Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "London, Ontario, CA Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "London",
+      "state": "Ontario",
+      "venue": "London, Ontario, CA Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-20T23:00:00.000Z",
+      "startDate": "2026-11-20T23:00:00.000Z",
+      "endDate": "2026-11-22T20:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hackwestern.com",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "Hack Western 13 is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
     "id": "unstop-1800891",
     "title": "NextGen AI Hackathon",
     "slug": "unstop-1800891-nextgen-ai-hackathon",
@@ -927,7 +1524,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-21T05:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-23T05:30:00.000Z",
       "durationHours": 36
     },
@@ -953,6 +1550,144 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "featured": false
   },
   {
+    "id": "mlh-tech-for-community-2026",
+    "title": "Tech For Community 2026",
+    "slug": "mlh-tech-for-community-2026",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "Tech For Community 2026 Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "St. John's, Newfoundland and Labrador / Avalon Peninsula, CA Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "St. John's",
+      "state": "Newfoundland and Labrador / Avalon Peninsula",
+      "venue": "St. John's, Newfoundland and Labrador / Avalon Peninsula, CA Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-21T14:00:00.000Z",
+      "startDate": "2026-11-21T14:00:00.000Z",
+      "endDate": "2026-11-22T18:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://tecnurtur.org/hackathon",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "Tech For Community 2026 is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-whack-wellesley-hackathon-",
+    "title": "WHACK (Wellesley Hackathon)",
+    "slug": "mlh-whack-wellesley-hackathon-",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "WHACK (Wellesley Hackathon) Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Wellesley , Massachesetts, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Wellesley",
+      "state": "Massachesetts",
+      "venue": "Wellesley , Massachesetts, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-21T14:00:00.000Z",
+      "startDate": "2026-11-21T14:00:00.000Z",
+      "endDate": "2026-11-22T20:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://www.wellesleyhacks.org/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "WHACK (Wellesley Hackathon) is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-bostonhacks",
+    "title": "BostonHacks",
+    "slug": "mlh-bostonhacks",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "BostonHacks Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Boston, MA, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Boston",
+      "state": "MA",
+      "venue": "Boston, MA, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-21T15:00:00.000Z",
+      "startDate": "2026-11-21T15:00:00.000Z",
+      "endDate": "2026-11-22T17:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://bostonhacks.org/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "BostonHacks is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
     "id": "unstop-1800924",
     "title": "ELUCode - 8",
     "slug": "unstop-1800924-elucode-8",
@@ -973,7 +1708,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-21T15:30:51.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-23T15:30:51.000Z",
       "durationHours": 36
     },
@@ -999,6 +1734,51 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "featured": false
   },
   {
+    "id": "devpost-31796",
+    "title": "SafeSpace Hacks",
+    "slug": "devpost-31796-safespace-hacks",
+    "tagline": "Global Hackathon hosted on Devpost by SafeSpace",
+    "organizer": "SafeSpace",
+    "institutionType": "Corporate / Private",
+    "institutionName": "SafeSpace",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Global / Pan-India",
+      "venue": "Virtual (Devpost Global Platform)"
+    },
+    "prizePool": "$280 (~₹0.2L)",
+    "prizePoolAmountINR": 23800,
+    "dates": {
+      "registrationDeadline": "2026-11-21T18:30:00.000Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
+      "endDate": "2026-11-21T18:30:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://safespace-hacks.devpost.com/",
+    "backupLink": "https://devpost.com/hackathons",
+    "isVerified": true,
+    "description": "SafeSpace Hacks is a verified global hackathon hosted on Devpost. Submission period: Oct 17 - Nov 22, 2026. Open to engineers and students worldwide.",
+    "tracks": [
+      "Beginner Friendly",
+      "Cybersecurity",
+      "Social Good"
+    ],
+    "eligibility": "Open to developers, engineers, and students worldwide.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Global recognition & resume showcase",
+      "Direct submission on Devpost",
+      "Cash prizes and cloud sponsor credits"
+    ],
+    "status": "open",
+    "source": "Devpost",
+    "featured": false
+  },
+  {
     "id": "unstop-1802169",
     "title": "Housing Fintech Challenge",
     "slug": "unstop-1802169-housing-fintech-challenge",
@@ -1019,7 +1799,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-22T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-24T18:30:00.000Z",
       "durationHours": 36
     },
@@ -1065,7 +1845,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-23T18:29:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-25T18:29:00.000Z",
       "durationHours": 36
     },
@@ -1111,7 +1891,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-24T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-26T18:30:00.000Z",
       "durationHours": 36
     },
@@ -1183,6 +1963,96 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "featured": false
   },
   {
+    "id": "devpost-31495",
+    "title": "IceHacks",
+    "slug": "devpost-31495-icehacks",
+    "tagline": "Global Hackathon hosted on Devpost by CodeStarters",
+    "organizer": "CodeStarters",
+    "institutionType": "Corporate / Private",
+    "institutionName": "CodeStarters",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Global / Pan-India",
+      "venue": "Virtual (Devpost Global Platform)"
+    },
+    "prizePool": "$17,150 (~₹14.6L)",
+    "prizePoolAmountINR": 1457750,
+    "dates": {
+      "registrationDeadline": "2026-11-24T19:32:51.445Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
+      "endDate": "2026-11-24T19:32:51.445Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://icehacks.devpost.com/",
+    "backupLink": "https://devpost.com/hackathons",
+    "isVerified": true,
+    "description": "IceHacks is a verified global hackathon hosted on Devpost. Submission period: Nov 08 - 15, 2026. Open to engineers and students worldwide.",
+    "tracks": [
+      "Beginner Friendly",
+      "Low/No Code",
+      "Open Ended"
+    ],
+    "eligibility": "Open to developers, engineers, and students worldwide.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Global recognition & resume showcase",
+      "Direct submission on Devpost",
+      "Cash prizes and cloud sponsor credits"
+    ],
+    "status": "open",
+    "source": "Devpost",
+    "featured": false
+  },
+  {
+    "id": "devpost-31907",
+    "title": "Build Your First AI App",
+    "slug": "devpost-31907-build-your-first-ai-app",
+    "tagline": "Global Hackathon hosted on Devpost by Yasir Insights",
+    "organizer": "Yasir Insights",
+    "institutionType": "Corporate / Private",
+    "institutionName": "Yasir Insights",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Global / Pan-India",
+      "venue": "Virtual (Devpost Global Platform)"
+    },
+    "prizePool": "$0 (~₹0.0L)",
+    "prizePoolAmountINR": 0,
+    "dates": {
+      "registrationDeadline": "2026-11-26T18:30:00.000Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
+      "endDate": "2026-11-26T18:30:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://build-your-first-ai-app.devpost.com/",
+    "backupLink": "https://devpost.com/hackathons",
+    "isVerified": true,
+    "description": "Build Your First AI App is a verified global hackathon hosted on Devpost. Submission period: Oct 27 - Nov 27, 2026. Open to engineers and students worldwide.",
+    "tracks": [
+      "Education",
+      "Machine Learning/AI",
+      "Web"
+    ],
+    "eligibility": "Open to developers, engineers, and students worldwide.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Global recognition & resume showcase",
+      "Direct submission on Devpost",
+      "Cash prizes and cloud sponsor credits"
+    ],
+    "status": "open",
+    "source": "Devpost",
+    "featured": false
+  },
+  {
     "id": "unstop-1787722",
     "title": "The Forge",
     "slug": "unstop-1787722-the-forge",
@@ -1203,7 +2073,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-11-27T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-11-29T18:30:00.000Z",
       "durationHours": 36
     },
@@ -1227,6 +2097,98 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "status": "open",
     "source": "Unstop",
     "featured": true
+  },
+  {
+    "id": "mlh-hackeps",
+    "title": "HackEPS",
+    "slug": "mlh-hackeps",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "HackEPS Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Lleida, Lleida, Spain, ES Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Lleida",
+      "state": "Lleida",
+      "venue": "Lleida, Lleida, Spain, ES Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-28T01:11:11.000Z",
+      "startDate": "2026-11-28T01:11:11.000Z",
+      "endDate": "2026-11-29T23:59:59.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hackeps.dev/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "HackEPS is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-hacksheffield11",
+    "title": "HackSheffield11",
+    "slug": "mlh-hacksheffield11",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "HackSheffield11 Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Sheffield, South Yorkshire, GB Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Sheffield",
+      "state": "South Yorkshire",
+      "venue": "Sheffield, South Yorkshire, GB Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-11-28T14:00:00.000Z",
+      "startDate": "2026-11-28T14:00:00.000Z",
+      "endDate": "2026-11-29T22:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hacksheffield.uk",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "HackSheffield11 is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
   },
   {
     "id": "devfolio-health-hackathon",
@@ -1341,7 +2303,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-12-03T13:00:48.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-12-05T13:00:48.000Z",
       "durationHours": 36
     },
@@ -1387,7 +2349,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 8500000,
     "dates": {
       "registrationDeadline": "2026-12-03T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-12-03T18:30:00.000Z",
       "durationHours": 48
     },
@@ -1398,6 +2360,50 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "tracks": [
       "Beginner Friendly",
       "Machine Learning/AI",
+      "Open Ended"
+    ],
+    "eligibility": "Open to developers, engineers, and students worldwide.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Global recognition & resume showcase",
+      "Direct submission on Devpost",
+      "Cash prizes and cloud sponsor credits"
+    ],
+    "status": "open",
+    "source": "Devpost",
+    "featured": false
+  },
+  {
+    "id": "devpost-31773",
+    "title": "LaunchPad Hacks (Judges + Sponsors Needed)",
+    "slug": "devpost-31773-launchpad-hacks-judges-sponsors-needed-",
+    "tagline": "Global Hackathon hosted on Devpost by Hack4TodayOrg",
+    "organizer": "Hack4TodayOrg",
+    "institutionType": "Corporate / Private",
+    "institutionName": "Hack4TodayOrg",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Global / Pan-India",
+      "venue": "Virtual (Devpost Global Platform)"
+    },
+    "prizePool": "$300 (~₹0.3L)",
+    "prizePoolAmountINR": 25500,
+    "dates": {
+      "registrationDeadline": "2026-12-03T18:30:00.000Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
+      "endDate": "2026-12-03T18:30:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://launchpad-hacks.devpost.com/",
+    "backupLink": "https://devpost.com/hackathons",
+    "isVerified": true,
+    "description": "LaunchPad Hacks (Judges + Sponsors Needed) is a verified global hackathon hosted on Devpost. Submission period: Oct 16 - Dec 04, 2026. Open to engineers and students worldwide.",
+    "tracks": [
+      "Beginner Friendly",
       "Open Ended"
     ],
     "eligibility": "Open to developers, engineers, and students worldwide.",
@@ -1432,7 +2438,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-12-04T08:00:42.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-12-06T08:00:42.000Z",
       "durationHours": 36
     },
@@ -1458,6 +2464,52 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "featured": false
   },
   {
+    "id": "mlh-hack-cats",
+    "title": "Hack Cats",
+    "slug": "mlh-hack-cats",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "Hack Cats Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Manhattan, Kansas, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Manhattan",
+      "state": "Kansas",
+      "venue": "Manhattan, Kansas, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-12-04T22:00:00.000Z",
+      "startDate": "2026-12-04T22:00:00.000Z",
+      "endDate": "2026-12-06T17:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hackkstate.tech/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "Hack Cats is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
     "id": "hackerearth-cepheid-intern-hiring-challenge-2026",
     "title": "Cepheid Intern Hiring Challenge 2026",
     "slug": "hackerearth-cepheid-intern-hiring-challenge-2026",
@@ -1478,7 +2530,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-12-05T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-12-05T18:30:00.000Z",
       "durationHours": 36
     },
@@ -1523,7 +2575,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-12-06T18:29:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-12-08T18:29:00.000Z",
       "durationHours": 36
     },
@@ -1546,6 +2598,51 @@ export const SEED_HACKATHONS: Hackathon[] = [
     ],
     "status": "open",
     "source": "Unstop",
+    "featured": false
+  },
+  {
+    "id": "devpost-31973",
+    "title": "Deck the Pixels",
+    "slug": "devpost-31973-deck-the-pixels",
+    "tagline": "Global Hackathon hosted on Devpost by Google",
+    "organizer": "Google",
+    "institutionType": "Corporate / Private",
+    "institutionName": "Google",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Global / Pan-India",
+      "venue": "Virtual (Devpost Global Platform)"
+    },
+    "prizePool": "$25,000 (~₹21.3L)",
+    "prizePoolAmountINR": 2125000,
+    "dates": {
+      "registrationDeadline": "2026-12-06T18:30:00.000Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
+      "endDate": "2026-12-06T18:30:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://deckthepixels.devpost.com/",
+    "backupLink": "https://devpost.com/hackathons",
+    "isVerified": true,
+    "description": "Deck the Pixels is a verified global hackathon hosted on Devpost. Submission period: Nov 10 - Dec 07, 2026. Open to engineers and students worldwide.",
+    "tracks": [
+      "Design",
+      "Machine Learning/AI",
+      "Low/No Code"
+    ],
+    "eligibility": "Open to developers, engineers, and students worldwide.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Global recognition & resume showcase",
+      "Direct submission on Devpost",
+      "Cash prizes and cloud sponsor credits"
+    ],
+    "status": "open",
+    "source": "Devpost",
     "featured": false
   },
   {
@@ -1641,6 +2738,51 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "featured": false
   },
   {
+    "id": "devpost-31642",
+    "title": "AWS MSP AI Hackathon",
+    "slug": "devpost-31642-aws-msp-ai-hackathon",
+    "tagline": "Global Hackathon hosted on Devpost by AWS",
+    "organizer": "AWS",
+    "institutionType": "Corporate / Private",
+    "institutionName": "AWS",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Global / Pan-India",
+      "venue": "Virtual (Devpost Global Platform)"
+    },
+    "prizePool": "$64,000 (~₹54.4L)",
+    "prizePoolAmountINR": 5440000,
+    "dates": {
+      "registrationDeadline": "2026-12-10T18:30:00.000Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
+      "endDate": "2026-12-10T18:30:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://aws-agentic-msp.devpost.com/",
+    "backupLink": "https://devpost.com/hackathons",
+    "isVerified": true,
+    "description": "AWS MSP AI Hackathon is a verified global hackathon hosted on Devpost. Submission period: Nov 02 - Dec 11, 2026. Open to engineers and students worldwide.",
+    "tracks": [
+      "Machine Learning/AI",
+      "Productivity",
+      "Web"
+    ],
+    "eligibility": "Open to developers, engineers, and students worldwide.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Global recognition & resume showcase",
+      "Direct submission on Devpost",
+      "Cash prizes and cloud sponsor credits"
+    ],
+    "status": "open",
+    "source": "Devpost",
+    "featured": false
+  },
+  {
     "id": "devpost-31083",
     "title": "QNX Global Hackathon",
     "slug": "devpost-31083-qnx-global-hackathon",
@@ -1661,7 +2803,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 4250000,
     "dates": {
       "registrationDeadline": "2026-12-14T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-12-14T18:30:00.000Z",
       "durationHours": 48
     },
@@ -1706,7 +2848,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-12-14T19:19:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-12-16T19:19:00.000Z",
       "durationHours": 36
     },
@@ -1752,7 +2894,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-12-15T18:29:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-12-17T18:29:00.000Z",
       "durationHours": 36
     },
@@ -1844,7 +2986,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-12-15T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-12-17T18:30:00.000Z",
       "durationHours": 36
     },
@@ -1890,7 +3032,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 663000,
     "dates": {
       "registrationDeadline": "2026-12-20T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-12-20T18:30:00.000Z",
       "durationHours": 48
     },
@@ -1935,7 +3077,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 10200000,
     "dates": {
       "registrationDeadline": "2026-12-21T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2026-12-21T18:30:00.000Z",
       "durationHours": 48
     },
@@ -1980,7 +3122,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2026-12-24T18:29:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2026-12-26T18:29:00.000Z",
       "durationHours": 36
     },
@@ -2236,6 +3378,142 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "featured": false
   },
   {
+    "id": "devpost-31108",
+    "title": "InnovArt 2027: Art and Technology Hack Day",
+    "slug": "devpost-31108-innovart-2027-art-and-technology-hack-day",
+    "tagline": "Global Hackathon hosted on Devpost by Binnovative",
+    "organizer": "Binnovative",
+    "institutionType": "Corporate / Private",
+    "institutionName": "Binnovative",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Global / Pan-India",
+      "venue": "Virtual (Devpost Global Platform)"
+    },
+    "prizePool": "$0 (~₹0.0L)",
+    "prizePoolAmountINR": 0,
+    "dates": {
+      "registrationDeadline": "2027-01-01T18:30:00.000Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
+      "endDate": "2027-01-01T18:30:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://innovart2027.devpost.com/",
+    "backupLink": "https://devpost.com/hackathons",
+    "isVerified": true,
+    "description": "InnovArt 2027: Art and Technology Hack Day is a verified global hackathon hosted on Devpost. Submission period: Aug 23, 2026 - Jan 02, 2027. Open to engineers and students worldwide.",
+    "tracks": [
+      "Music/Art",
+      "Beginner Friendly",
+      "Open Ended"
+    ],
+    "eligibility": "Open to developers, engineers, and students worldwide.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Global recognition & resume showcase",
+      "Direct submission on Devpost",
+      "Cash prizes and cloud sponsor credits"
+    ],
+    "status": "open",
+    "source": "Devpost",
+    "featured": false
+  },
+  {
+    "id": "mlh-deltahacks",
+    "title": "DeltaHacks",
+    "slug": "mlh-deltahacks",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "DeltaHacks Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Hamilton, Ontario, CA Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Hamilton",
+      "state": "Ontario",
+      "venue": "Hamilton, Ontario, CA Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2027-01-09T13:00:00.000Z",
+      "startDate": "2027-01-09T13:00:00.000Z",
+      "endDate": "2027-01-10T22:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://www.deltahacks.com/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "DeltaHacks is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "devpost-30764",
+    "title": "Syntax Summit",
+    "slug": "devpost-30764-syntax-summit",
+    "tagline": "Global Hackathon hosted on Devpost by Student Organization",
+    "organizer": "Student Organization",
+    "institutionType": "Corporate / Private",
+    "institutionName": "Student Organization",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Global / Pan-India",
+      "venue": "Virtual (Devpost Global Platform)"
+    },
+    "prizePool": "$0 (~₹0.0L)",
+    "prizePoolAmountINR": 0,
+    "dates": {
+      "registrationDeadline": "2027-01-13T18:30:00.000Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
+      "endDate": "2027-01-13T18:30:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://syntax-summit.devpost.com/",
+    "backupLink": "https://devpost.com/hackathons",
+    "isVerified": true,
+    "description": "Syntax Summit is a verified global hackathon hosted on Devpost. Submission period: Jul 18, 2026 - Jan 14, 2027. Open to engineers and students worldwide.",
+    "tracks": [
+      "DevOps",
+      "Machine Learning/AI",
+      "Robotic Process Automation"
+    ],
+    "eligibility": "Open to developers, engineers, and students worldwide.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Global recognition & resume showcase",
+      "Direct submission on Devpost",
+      "Cash prizes and cloud sponsor credits"
+    ],
+    "status": "open",
+    "source": "Devpost",
+    "featured": false
+  },
+  {
     "id": "devpost-30740",
     "title": "Code for Humanity",
     "slug": "devpost-30740-code-for-humanity",
@@ -2256,7 +3534,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 0,
     "dates": {
       "registrationDeadline": "2027-01-14T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2027-01-14T18:30:00.000Z",
       "durationHours": 48
     },
@@ -2281,6 +3559,236 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "featured": false
   },
   {
+    "id": "mlh-uofthacks",
+    "title": "UofTHacks",
+    "slug": "mlh-uofthacks",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "UofTHacks Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Toronto, Ontario, CA Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Toronto",
+      "state": "Ontario",
+      "venue": "Toronto, Ontario, CA Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2027-01-15T01:11:11.000Z",
+      "startDate": "2027-01-15T01:11:11.000Z",
+      "endDate": "2027-01-17T23:59:59.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://uofthacks.com/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "UofTHacks is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-uottahack-9",
+    "title": "uOttaHack 9",
+    "slug": "mlh-uottahack-9",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "uOttaHack 9 Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Ottawa, Ontario , CA Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Ottawa",
+      "state": "Ontario",
+      "venue": "Ottawa, Ontario , CA Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2027-01-15T01:11:11.000Z",
+      "startDate": "2027-01-15T01:11:11.000Z",
+      "endDate": "2027-01-17T23:59:59.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://2027.uottahack.ca/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "uOttaHack 9 is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-qwer-hacks",
+    "title": "QWER Hacks",
+    "slug": "mlh-qwer-hacks",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "QWER Hacks Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Los Angeles, CA, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Los Angeles",
+      "state": "CA",
+      "venue": "Los Angeles, CA, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2027-01-16T01:11:11.000Z",
+      "startDate": "2027-01-16T01:11:11.000Z",
+      "endDate": "2027-01-17T23:59:59.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://www.qwerhacks.com/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "QWER Hacks is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-nwhacks",
+    "title": "nwHacks",
+    "slug": "mlh-nwhacks",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "nwHacks Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Vancouver, British Columbia, CA Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Vancouver",
+      "state": "British Columbia",
+      "venue": "Vancouver, British Columbia, CA Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2027-01-16T14:00:00.000Z",
+      "startDate": "2027-01-16T14:00:00.000Z",
+      "endDate": "2027-01-17T23:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://nwhacks.io/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "nwHacks is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
+    "id": "mlh-hackbi-x",
+    "title": "HackBI X",
+    "slug": "mlh-hackbi-x",
+    "tagline": "Official Major League Hacking (MLH) Global Event",
+    "organizer": "HackBI X Team & MLH",
+    "institutionType": "Tech School",
+    "institutionName": "Alexandria, Virginia, US Student Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Alexandria",
+      "state": "Virginia",
+      "venue": "Alexandria, Virginia, US Campus"
+    },
+    "prizePool": "₹3,00,000+ (Swag & Bounties)",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2027-01-16T14:00:00.000Z",
+      "startDate": "2027-01-16T14:00:00.000Z",
+      "endDate": "2027-01-17T16:30:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hackbi.org/",
+    "backupLink": "https://mlh.io/seasons/2027/events",
+    "isVerified": true,
+    "description": "HackBI X is an official member event of Major League Hacking (MLH). Open to all student developers and hackathon enthusiasts worldwide.",
+    "tracks": [
+      "AI & Machine Learning",
+      "Web & Mobile",
+      "Open Hardware & IoT",
+      "Social Good"
+    ],
+    "eligibility": "Open to university and college students globally.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Official MLH Swag & Stickers",
+      "GitHub Global Student Pack Perks",
+      "Direct Sponsor Mentorship & Bounties"
+    ],
+    "status": "open",
+    "source": "MLH",
+    "featured": false
+  },
+  {
     "id": "hackerearth-contextcon-remember-everything",
     "title": "ContextCon: Remember Everything",
     "slug": "hackerearth-contextcon-remember-everything",
@@ -2301,7 +3809,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2027-01-16T18:30:00.000Z",
-      "startDate": "2026-11-10T19:20:58.578Z",
+      "startDate": "2026-11-10T19:32:51.445Z",
       "endDate": "2027-01-16T18:30:00.000Z",
       "durationHours": 36
     },
@@ -2346,7 +3854,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2027-02-28T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2027-03-02T18:30:00.000Z",
       "durationHours": 36
     },
@@ -2392,7 +3900,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2027-02-28T18:30:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2027-03-02T18:30:00.000Z",
       "durationHours": 36
     },
@@ -2438,7 +3946,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
     "prizePoolAmountINR": 150000,
     "dates": {
       "registrationDeadline": "2027-03-01T06:20:00.000Z",
-      "startDate": "2026-11-20T19:20:58.578Z",
+      "startDate": "2026-11-20T19:32:51.445Z",
       "endDate": "2027-03-03T06:20:00.000Z",
       "durationHours": 36
     },

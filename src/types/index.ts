@@ -33,7 +33,7 @@ export interface Hackathon {
   teamSize: string;
   perks: string[];
   status: 'open' | 'closing_soon' | 'upcoming';
-  source: 'TinyFish AI Live' | 'Devfolio' | 'Unstop' | 'Direct Campus' | 'Devpost' | 'HackerEarth';
+  source: 'TinyFish AI Live' | 'Devfolio' | 'Unstop' | 'Direct Campus' | 'Devpost' | 'HackerEarth' | 'MLH';
   featured?: boolean;
 }
 

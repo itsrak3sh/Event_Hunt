@@ -202,7 +202,10 @@ export async function fetchHackathons(filters: FilterState): Promise<{
 }> {
   // 1. Try querying Supabase directly from browser client (Ultra fast & directly synced with 12-hour cron)
   try {
-    const { data, error } = await supabase.from('hackathons').select('*');
+    const { data, error } = await supabase
+      .from('hackathons')
+      .select('*')
+      .gte('registration_deadline', new Date().toISOString());
     if (!error && data && data.length > 0) {
       const mapped: Hackathon[] = data.map((row: any) => ({
         id: row.id,

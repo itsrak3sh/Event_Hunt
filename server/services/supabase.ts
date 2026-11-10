@@ -100,7 +100,10 @@ export async function getHackathonsFromSupabase(filters: {
   search?: string;
   sortBy?: string;
 }) {
-  let query = supabase.from('hackathons').select('*');
+  let query = supabase
+    .from('hackathons')
+    .select('*')
+    .gte('registration_deadline', new Date().toISOString());
 
   if (filters.fee && filters.fee !== 'all') {
     query = query.eq('entry_fee_type', filters.fee);
@@ -350,76 +353,78 @@ export async function run12HourSyncWorker(): Promise<{
       logs.push(`⚠️ Devfolio live ingestion note: ${devErr.message}`);
     }
 
-    // 4. Fetch from Devpost Official Live API (online open hackathons)
+    // 4. Fetch from Devpost Official Live API (Pages 1 & 2)
     try {
-      logs.push(`🔍 Ingesting live open hackathons from Devpost...`);
-      const devpostRes = await axios.get(
-        'https://devpost.com/api/hackathons?challenge_type[]=online&sort_by=Recently+added',
-        {
-          timeout: 10000,
-          headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' },
+      logs.push(`🔍 Ingesting live open hackathons from Devpost (Pages 1 & 2)...`);
+      for (const page of [1, 2]) {
+        const devpostRes = await axios.get(
+          `https://devpost.com/api/hackathons?page=${page}&sort_by=Recently+added`,
+          {
+            timeout: 10000,
+            headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' },
+          }
+        );
+        const devpostItems = devpostRes.data?.hackathons || [];
+
+        for (const item of devpostItems) {
+          if (item.open_state !== 'open') continue;
+          const title = (item.title || '').trim();
+          const dateStr = item.submission_period_dates || '';
+          const endPart = dateStr.includes('-') ? dateStr.split('-')[1]?.trim() : dateStr;
+          let deadline = endPart ? new Date(endPart) : new Date(now.getTime() + 14 * 86400000);
+          if (isNaN(deadline.getTime()) || deadline.getTime() < now.getTime()) {
+            deadline = new Date(now.getTime() + 14 * 86400000);
+          }
+
+          // Clean prize
+          const prizeRaw = (item.prize_amount || '$50,000').replace(/<[^>]*>?/gm, '').trim();
+          let prizeINR = 500000;
+          const numMatch = prizeRaw.replace(/[^0-9]/g, '');
+          if (numMatch) {
+            const val = parseInt(numMatch, 10);
+            prizeINR = prizeRaw.includes('$') ? val * 85 : val;
+          }
+
+          const orgName = item.organization_name || 'Global Dev Community';
+          const tracks = Array.isArray(item.themes) && item.themes.length > 0
+            ? item.themes.map((t: any) => t.name).slice(0, 4)
+            : ['AI & Machine Learning', 'Web Development', 'Cloud Innovation'];
+
+          recordsToInsert.push({
+            id: `devpost-${item.id}`,
+            title,
+            slug: `devpost-${item.id}-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`.slice(0, 80),
+            tagline: `Global Hackathon hosted on Devpost by ${orgName}`,
+            organizer: orgName,
+            institution_type: 'Corporate / Private',
+            institution_name: orgName,
+            entry_fee_type: 'free',
+            entry_fee_amount: 0,
+            entry_fee_currency: '₹',
+            mode: 'online',
+            city: 'Online',
+            state: 'Global / Pan-India',
+            venue: 'Virtual (Devpost Global Platform)',
+            pincode: null,
+            prize_pool: `${prizeRaw} (Approx ₹${(prizeINR / 100000).toFixed(1)}L)`,
+            prize_pool_amount_inr: prizeINR,
+            registration_deadline: deadline.toISOString(),
+            start_date: now.toISOString(),
+            end_date: deadline.toISOString(),
+            duration_hours: 48,
+            registration_link: item.url,
+            backup_link: 'https://devpost.com/hackathons',
+            is_verified: true,
+            description: `${title} is a verified global hackathon hosted on Devpost. Submission period: ${dateStr}. Open to engineers worldwide.`,
+            tracks,
+            eligibility: 'Open to developers, engineers, and students worldwide.',
+            team_size: '1 - 4 Members',
+            perks: ['Global recognition & resume showcase', 'Direct submission on Devpost', 'Cash prizes and cloud sponsor credits'],
+            status: 'open',
+            source: 'Devpost',
+            updated_at: now.toISOString(),
+          });
         }
-      );
-      const devpostItems = devpostRes.data?.hackathons || [];
-
-      for (const item of devpostItems) {
-        if (item.open_state !== 'open') continue;
-        const title = (item.title || '').trim();
-        const dateStr = item.submission_period_dates || '';
-        const endPart = dateStr.includes('-') ? dateStr.split('-')[1]?.trim() : dateStr;
-        let deadline = endPart ? new Date(endPart) : new Date(now.getTime() + 14 * 86400000);
-        if (isNaN(deadline.getTime()) || deadline.getTime() < now.getTime()) {
-          deadline = new Date(now.getTime() + 14 * 86400000);
-        }
-
-        // Clean prize
-        const prizeRaw = (item.prize_amount || '$50,000').replace(/<[^>]*>?/gm, '').trim();
-        let prizeINR = 500000;
-        const numMatch = prizeRaw.replace(/[^0-9]/g, '');
-        if (numMatch) {
-          const val = parseInt(numMatch, 10);
-          prizeINR = prizeRaw.includes('$') ? val * 85 : val;
-        }
-
-        const orgName = item.organization_name || 'Global Dev Community';
-        const tracks = Array.isArray(item.themes) && item.themes.length > 0
-          ? item.themes.map((t: any) => t.name).slice(0, 4)
-          : ['AI & Machine Learning', 'Web Development', 'Cloud Innovation'];
-
-        recordsToInsert.push({
-          id: `devpost-${item.id}`,
-          title,
-          slug: `devpost-${item.id}-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`.slice(0, 80),
-          tagline: `Global Hackathon hosted on Devpost by ${orgName}`,
-          organizer: orgName,
-          institution_type: 'Corporate / Private',
-          institution_name: orgName,
-          entry_fee_type: 'free',
-          entry_fee_amount: 0,
-          entry_fee_currency: '₹',
-          mode: 'online',
-          city: 'Online',
-          state: 'Global / Pan-India',
-          venue: 'Virtual (Devpost Global Platform)',
-          pincode: null,
-          prize_pool: `${prizeRaw} (Approx ₹${(prizeINR / 100000).toFixed(1)}L)`,
-          prize_pool_amount_inr: prizeINR,
-          registration_deadline: deadline.toISOString(),
-          start_date: now.toISOString(),
-          end_date: deadline.toISOString(),
-          duration_hours: 48,
-          registration_link: item.url,
-          backup_link: 'https://devpost.com/hackathons',
-          is_verified: true,
-          description: `${title} is a verified global hackathon hosted on Devpost. Submission period: ${dateStr}. Open to engineers worldwide.`,
-          tracks,
-          eligibility: 'Open to developers, engineers, and students worldwide.',
-          team_size: '1 - 4 Members',
-          perks: ['Global recognition & resume showcase', 'Direct submission on Devpost', 'Cash prizes and cloud sponsor credits'],
-          status: 'open',
-          source: 'Devpost',
-          updated_at: now.toISOString(),
-        });
       }
       logs.push(`✅ Devpost ingestion completed. Total items: ${recordsToInsert.length}`);
     } catch (dpErr: any) {
@@ -495,6 +500,74 @@ export async function run12HourSyncWorker(): Promise<{
       logs.push(`✅ HackerEarth ingestion completed. Total items: ${recordsToInsert.length}`);
     } catch (heErr: any) {
       logs.push(`⚠️ HackerEarth live ingestion note: ${heErr.message}`);
+    }
+
+    // 6. Fetch from MLH (Major League Hacking - Official Global Season)
+    try {
+      logs.push(`🔍 Ingesting upcoming official hackathons from MLH...`);
+      const mlhRes = await axios.get('https://mlh.io/seasons/2027/events', {
+        headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)' },
+        timeout: 10000
+      });
+      const eventBlocks = (mlhRes.data || '').split('itemType="https://schema.org/Event"').slice(1);
+
+      for (const b of eventBlocks) {
+        const urlMatch = b.match(/<meta itemProp="url" content="([^"]+)"/);
+        const startMatch = b.match(/<meta itemProp="startDate" content="([^"]+)"/);
+        const endMatch = b.match(/<meta itemProp="endDate" content="([^"]+)"/);
+        const nameMatch = b.match(/<h4[^>]*>([^<]+)<\/h4>/);
+        const locMatch = b.match(/<span class="text-sm truncate">([^<]+)<\/span><\/div><\/div><\/div><\/div><div class="mt-auto">/);
+        const isOnline = b.includes('title="Digital"') || b.includes('title="Virtual"') || (locMatch && locMatch[1].toLowerCase().includes('everywhere'));
+        const isHybrid = b.includes('title="Hybrid"');
+
+        if (nameMatch && urlMatch && startMatch) {
+          const rawTitle = nameMatch[1].replace(/&#x27;/g, "'").replace(/&amp;/g, '&').trim();
+          const url = urlMatch[1].trim();
+          const startDate = new Date(startMatch[1]);
+          if (startDate.getTime() < now.getTime()) continue;
+
+          const endDate = endMatch ? new Date(endMatch[1]) : new Date(startDate.getTime() + 48 * 3600000);
+          const loc = locMatch ? locMatch[1].replace(/&#x27;/g, "'").trim() : 'Online';
+
+          recordsToInsert.push({
+            id: `mlh-${rawTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 50)}`,
+            title: rawTitle,
+            slug: `mlh-${rawTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 60)}`,
+            tagline: `Official Major League Hacking (MLH) Global Event`,
+            organizer: `${rawTitle} Team & MLH`,
+            institution_type: 'Tech School',
+            institution_name: loc !== 'Online' ? `${loc} Student Chapter` : 'MLH Global Network',
+            entry_fee_type: 'free',
+            entry_fee_amount: 0,
+            entry_fee_currency: '₹',
+            mode: isOnline ? 'online' : (isHybrid ? 'hybrid' : 'offline'),
+            city: isOnline ? 'Online' : loc.split(',')[0]?.trim() || loc,
+            state: isOnline ? 'Global / Pan-India' : loc.split(',')[1]?.trim() || 'Global',
+            venue: isOnline ? 'Virtual (MLH Discord & Platform)' : `${loc} Campus`,
+            pincode: null,
+            prize_pool: '₹3,00,000+ (Swag & Bounties)',
+            prize_pool_amount_inr: 300000,
+            registration_deadline: startDate.toISOString(),
+            start_date: startDate.toISOString(),
+            end_date: endDate.toISOString(),
+            duration_hours: 36,
+            registration_link: url,
+            backup_link: 'https://mlh.io/seasons/2027/events',
+            is_verified: true,
+            description: `${rawTitle} is an official member event of Major League Hacking (MLH). Open to all student developers worldwide.`,
+            tracks: ['AI & Machine Learning', 'Web & Mobile', 'Open Hardware & IoT', 'Social Good'],
+            eligibility: 'Open to university and college students globally.',
+            team_size: '1 - 4 Members',
+            perks: ['Official MLH Swag & Stickers', 'GitHub Global Student Pack Perks', 'Direct Sponsor Mentorship & Bounties'],
+            status: 'open',
+            source: 'MLH',
+            updated_at: now.toISOString(),
+          });
+        }
+      }
+      logs.push(`✅ MLH ingestion completed. Total items: ${recordsToInsert.length}`);
+    } catch (mlhErr: any) {
+      logs.push(`⚠️ MLH live ingestion note: ${mlhErr.message}`);
     }
 
     // 4. Upsert into Supabase
