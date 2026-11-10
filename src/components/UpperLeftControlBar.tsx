@@ -37,7 +37,7 @@ export const UpperLeftControlBar: React.FC<UpperLeftControlBarProps> = ({
   paidCount,
 }) => {
   return (
-    <div className="w-full bg-slate-100/90 dark:bg-[#0d121f]/95 border-b border-slate-200 dark:border-slate-800/80 px-4 sm:px-6 lg:px-8 py-4 sm:py-5 shadow-inner transition-colors">
+    <div className="w-full bg-white border-b border-gray-200 px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
       <div className="max-w-7xl mx-auto flex flex-col gap-4">
         
         {/* Top Control Level: Upper Left Primary Fee Toggle & Dependent Mode Toggle */}
@@ -45,13 +45,13 @@ export const UpperLeftControlBar: React.FC<UpperLeftControlBarProps> = ({
           
           {/* ================= UPPER LEFT CORNER: FREE vs PAID ================= */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <div className="flex items-center gap-1.5 text-xs font-bold tracking-wider text-slate-600 dark:text-slate-400 uppercase font-mono">
+            <div className="flex items-center gap-1.5 text-xs font-bold tracking-wider text-gray-700 uppercase font-mono">
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
               <span>1. Entry Type:</span>
             </div>
 
             {/* Segmented Button for Upper Left */}
-            <div className="inline-flex p-1 bg-white dark:bg-slate-900/90 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <div className="inline-flex p-1 bg-gray-50 rounded-xl border border-gray-200 shadow-xs">
               
               {/* Free Entry Button */}
               <button
@@ -59,14 +59,14 @@ export const UpperLeftControlBar: React.FC<UpperLeftControlBarProps> = ({
                 onClick={() => onFeeChange('free')}
                 className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 ${
                   fee === 'free'
-                    ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25 ring-1 ring-emerald-400/50'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                    ? 'bg-emerald-600 text-white shadow-xs'
+                    : 'text-gray-700 hover:text-gray-900 hover:bg-white'
                 }`}
               >
-                <span className="flex h-2 w-2 rounded-full bg-emerald-300"></span>
+                <span className="flex h-2 w-2 rounded-full bg-emerald-200"></span>
                 <span>🟢 Free Entry</span>
                 <span className={`text-[11px] px-1.5 py-0.5 rounded-full font-mono font-bold ${
-                  fee === 'free' ? 'bg-emerald-700/60 text-emerald-100' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-400'
+                  fee === 'free' ? 'bg-emerald-800 text-emerald-100' : 'bg-gray-200 text-gray-700'
                 }`}>
                   {freeCount}
                 </span>
@@ -78,14 +78,14 @@ export const UpperLeftControlBar: React.FC<UpperLeftControlBarProps> = ({
                 onClick={() => onFeeChange('paid')}
                 className={`relative flex items-center gap-2 px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-200 ${
                   fee === 'paid'
-                    ? 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-md shadow-amber-500/25 ring-1 ring-amber-400/50'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                    ? 'bg-amber-600 text-white shadow-xs'
+                    : 'text-gray-700 hover:text-gray-900 hover:bg-white'
                 }`}
               >
-                <span className="flex h-2 w-2 rounded-full bg-amber-300"></span>
+                <span className="flex h-2 w-2 rounded-full bg-amber-200"></span>
                 <span>💎 Paid Entry</span>
                 <span className={`text-[11px] px-1.5 py-0.5 rounded-full font-mono font-bold ${
-                  fee === 'paid' ? 'bg-amber-700/60 text-amber-100' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-400'
+                  fee === 'paid' ? 'bg-amber-800 text-amber-100' : 'bg-gray-200 text-gray-700'
                 }`}>
                   {paidCount}
                 </span>
@@ -97,8 +97,8 @@ export const UpperLeftControlBar: React.FC<UpperLeftControlBarProps> = ({
                 onClick={() => onFeeChange('all')}
                 className={`flex items-center px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                   fee === 'all'
-                    ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm'
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                    ? 'bg-gray-900 text-white shadow-xs font-semibold'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-white'
                 }`}
                 title="View Both Free and Paid"
               >
@@ -109,12 +109,12 @@ export const UpperLeftControlBar: React.FC<UpperLeftControlBarProps> = ({
 
           {/* ================= 2. AFTER SELECTING FREE OR PAID: MODE (ONLINE / OFFLINE / HYBRID) ================= */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <div className="flex items-center gap-1.5 text-xs font-bold tracking-wider text-slate-600 dark:text-slate-400 uppercase font-mono">
-              <span className="w-2 h-2 rounded-full bg-cyan-500"></span>
+            <div className="flex items-center gap-1.5 text-xs font-bold tracking-wider text-gray-700 uppercase font-mono">
+              <span className="w-2 h-2 rounded-full bg-blue-600"></span>
               <span>2. Mode:</span>
             </div>
 
-            <div className="inline-flex p-1 bg-white dark:bg-slate-900/90 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex-wrap">
+            <div className="inline-flex p-1 bg-gray-50 rounded-xl border border-gray-200 shadow-xs flex-wrap">
               
               {/* Online Option */}
               <button
@@ -122,11 +122,11 @@ export const UpperLeftControlBar: React.FC<UpperLeftControlBarProps> = ({
                 onClick={() => onModeChange('online')}
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
                   mode === 'online'
-                    ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/30'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                    ? 'bg-blue-600 text-white shadow-xs font-semibold'
+                    : 'text-gray-700 hover:text-gray-900 hover:bg-white'
                 }`}
               >
-                <Globe className="w-3.5 h-3.5 text-cyan-200" />
+                <Globe className="w-3.5 h-3.5 text-blue-200" />
                 <span>🌐 Online</span>
               </button>
 
@@ -136,13 +136,13 @@ export const UpperLeftControlBar: React.FC<UpperLeftControlBarProps> = ({
                 onClick={() => onModeChange('offline')}
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
                   mode === 'offline'
-                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                    ? 'bg-blue-600 text-white shadow-xs font-semibold'
+                    : 'text-gray-700 hover:text-gray-900 hover:bg-white'
                 }`}
               >
                 <MapPin className="w-3.5 h-3.5 text-blue-200" />
                 <span>📍 Offline</span>
-                <span className="text-[10px] bg-blue-700/60 text-blue-100 px-1.5 py-0.2 rounded-full ml-1">
+                <span className="text-[10px] bg-blue-800 text-blue-100 px-1.5 py-0.2 rounded-full ml-1">
                   Campuses
                 </span>
               </button>
@@ -153,11 +153,11 @@ export const UpperLeftControlBar: React.FC<UpperLeftControlBarProps> = ({
                 onClick={() => onModeChange('hybrid')}
                 className={`flex items-center gap-1.5 px-3.5 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-medium transition-all ${
                   mode === 'hybrid'
-                    ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                    ? 'bg-blue-600 text-white shadow-xs font-semibold'
+                    : 'text-gray-700 hover:text-gray-900 hover:bg-white'
                 }`}
               >
-                <Layers className="w-3.5 h-3.5 text-purple-200" />
+                <Layers className="w-3.5 h-3.5 text-blue-200" />
                 <span>⚡ Hybrid</span>
               </button>
 
@@ -167,8 +167,8 @@ export const UpperLeftControlBar: React.FC<UpperLeftControlBarProps> = ({
                 onClick={() => onModeChange('all')}
                 className={`px-3 py-1.5 sm:py-2 rounded-lg text-xs font-medium transition-all ${
                   mode === 'all'
-                    ? 'bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white'
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
+                    ? 'bg-gray-900 text-white font-semibold'
+                    : 'text-gray-600 hover:text-gray-900 hover:bg-white'
                 }`}
               >
                 All Modes

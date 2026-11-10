@@ -68,47 +68,47 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
   });
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/70 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
       
       {/* Modal Container */}
       <div 
-        className="relative w-full max-w-3xl max-h-[92vh] flex flex-col rounded-2xl bg-white dark:bg-[#0d121f] border border-slate-200 dark:border-slate-700/80 shadow-2xl overflow-hidden text-slate-800 dark:text-slate-200 transition-colors"
+        className="relative w-full max-w-3xl max-h-[92vh] flex flex-col rounded-2xl bg-white border border-gray-200 shadow-2xl overflow-hidden text-gray-900 transition-colors"
         onClick={(e) => e.stopPropagation()}
       >
         
         {/* Modal Header */}
-        <div className="flex items-start justify-between p-6 border-b border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-slate-900/60">
+        <div className="flex items-start justify-between p-6 border-b border-gray-200 bg-white">
           <div>
             <div className="flex items-center gap-2 mb-2 flex-wrap">
               {/* Fee Badge */}
               <span className={`px-2.5 py-1 rounded-full text-xs font-bold border ${
                 hackathon.entryFeeType === 'free'
-                  ? 'bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-500/30'
-                  : 'bg-amber-500/10 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-500/30'
+                  ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                  : 'bg-amber-50 text-amber-700 border-amber-200'
               }`}>
                 {hackathon.entryFeeType === 'free' ? '🟢 FREE ENTRY (₹0)' : `💎 PAID ENTRY (${hackathon.entryFeeCurrency}${hackathon.entryFeeAmount})`}
               </span>
 
               {/* Mode Badge */}
-              <span className="px-2 py-0.5 rounded text-xs font-semibold bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-500/30">
+              <span className="px-2 py-0.5 rounded text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
                 {hackathon.mode === 'online' ? '🌐 100% Online' : hackathon.mode === 'offline' ? '📍 In-Person Offline' : '⚡ Hybrid'}
               </span>
 
               {/* Institution */}
-              <span className="px-2 py-0.5 rounded text-xs font-semibold bg-indigo-500/10 dark:bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-500/30">
+              <span className="px-2 py-0.5 rounded text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">
                 {hackathon.institutionType}
               </span>
             </div>
 
-            <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white font-['Plus_Jakarta_Sans'] leading-tight">
+            <h2 className="text-xl sm:text-2xl font-black text-gray-950 font-['Plus_Jakarta_Sans'] leading-tight">
               {hackathon.title}
             </h2>
 
-            <div className="flex items-center gap-2 mt-1.5 text-xs text-slate-500 dark:text-slate-400">
-              <Building className="w-3.5 h-3.5 text-slate-400" />
-              <span>{hackathon.organizer}</span>
+            <div className="flex items-center gap-2 mt-1.5 text-xs text-gray-500">
+              <Building className="w-3.5 h-3.5 text-gray-400" />
+              <span className="font-medium text-gray-700">{hackathon.organizer}</span>
               <span>•</span>
-              <span className="text-cyan-600 dark:text-cyan-400">{hackathon.institutionName}</span>
+              <span className="text-blue-600 font-semibold">{hackathon.institutionName}</span>
             </div>
           </div>
 
@@ -117,8 +117,8 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
               onClick={() => onToggleSave(hackathon.id)}
               className={`p-2 rounded-xl border transition ${
                 isSaved
-                  ? 'bg-amber-500/20 border-amber-500/40 text-amber-600 dark:text-amber-300'
-                  : 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                  ? 'bg-amber-50 border-amber-300 text-amber-600'
+                  : 'bg-white hover:bg-gray-50 border-gray-200 text-gray-500 hover:text-gray-900'
               }`}
               title={isSaved ? 'Saved to Bookmarks' : 'Bookmark Hackathon'}
             >
@@ -127,7 +127,7 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
 
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
+              className="p-2 rounded-xl text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition"
             >
               <X className="w-5 h-5" />
             </button>
@@ -310,14 +310,14 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
         {/* =========================================================================
             BOTTOM REGISTRATION LINK BAR (CLEARLY POSITIONED BELOW DETAILS)
         ========================================================================= */}
-        <div className="p-5 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#0a0e18] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="p-5 border-t border-gray-200 bg-gray-50 flex flex-col sm:flex-row items-center justify-between gap-4">
           
           <div className="w-full sm:w-auto">
-            <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1.5 font-mono">
-              <ShieldCheck className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+            <div className="text-[11px] text-gray-500 flex items-center gap-1.5 font-mono">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
               <span>Official Registration Link Verified</span>
             </div>
-            <div className="text-xs text-cyan-600 dark:text-cyan-300 truncate max-w-sm mt-0.5 underline">
+            <div className="text-xs text-blue-600 truncate max-w-sm mt-0.5 underline">
               {hackathon.registrationLink}
             </div>
           </div>
@@ -328,18 +328,18 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
               href={hackathon.backupLink || `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold border border-slate-200 dark:border-slate-700 transition"
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 text-xs font-semibold border border-gray-200 transition"
               title="Search on Unstop (Backup if official portal is temporarily down)"
             >
-              <Search className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+              <Search className="w-3.5 h-3.5 text-blue-600" />
               <span>Backup Search</span>
             </a>
 
             <button
               onClick={handleCopyLink}
-              className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold border border-slate-200 dark:border-slate-700 transition"
+              className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 text-xs font-semibold border border-gray-200 transition"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-4 h-4" />}
+              {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
               <span>{copied ? 'Copied Link' : 'Copy Link'}</span>
             </button>
 
@@ -347,7 +347,7 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
               href={hackathon.registrationLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-cyan-600/30 transition active:scale-95"
+              className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-xs transition active:scale-95"
             >
               <span>Apply & Register Official</span>
               <ExternalLink className="w-4 h-4" />

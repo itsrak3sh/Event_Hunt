@@ -64,23 +64,23 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
   const getInstBadgeStyle = () => {
     switch (hackathon.institutionType) {
       case 'IIT':
-        return 'bg-purple-500/10 dark:bg-purple-500/15 text-purple-700 dark:text-purple-300 border-purple-300 dark:border-purple-500/30';
+        return 'bg-purple-50 text-purple-700 border-purple-200';
       case 'NIT':
-        return 'bg-blue-500/10 dark:bg-blue-500/15 text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-500/30';
+        return 'bg-blue-50 text-blue-700 border-blue-200';
       case 'IIIT':
-        return 'bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-500/30';
+        return 'bg-teal-50 text-teal-700 border-teal-200';
       case 'Tech School':
-        return 'bg-amber-500/10 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300 border-amber-300 dark:border-amber-500/30';
+        return 'bg-amber-50 text-amber-700 border-amber-200';
       default:
-        return 'bg-slate-100 dark:bg-slate-700/40 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-slate-600/40';
+        return 'bg-gray-100 text-gray-700 border-gray-200';
     }
   };
 
   return (
-    <div className="group relative flex flex-col justify-between rounded-2xl bg-white dark:bg-[#0f1523] border border-slate-200 dark:border-slate-800/90 hover:border-cyan-500/40 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/5 overflow-hidden">
+    <div className="group relative flex flex-col justify-between rounded-2xl bg-white border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all duration-200 overflow-hidden">
       
-      {/* Top Banner / Ambient glow on hover */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      {/* Top Banner accent on hover */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
 
       {/* Main Content Area */}
       <div className="p-5 sm:p-6 flex-1 flex flex-col">
@@ -91,13 +91,13 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
           <div className="flex items-center gap-1.5 flex-wrap">
             {/* Entry Fee Badge */}
             {hackathon.entryFeeType === 'free' ? (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-500/10 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-500/30 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400"></span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
                 FREE ENTRY (₹0)
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-500/10 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-500/30 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400"></span>
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
                 PAID ENTRY ({hackathon.entryFeeCurrency}{hackathon.entryFeeAmount})
               </span>
             )}
@@ -105,10 +105,10 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             {/* Mode Badge */}
             <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-semibold border ${
               hackathon.mode === 'online'
-                ? 'bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-300 dark:border-cyan-500/30'
+                ? 'bg-blue-50 text-blue-700 border-blue-200'
                 : hackathon.mode === 'offline'
-                ? 'bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-500/30'
-                : 'bg-purple-500/10 text-purple-700 dark:text-purple-300 border-purple-300 dark:border-purple-500/30'
+                ? 'bg-gray-100 text-gray-800 border-gray-200'
+                : 'bg-purple-50 text-purple-700 border-purple-200'
             }`}>
               {hackathon.mode === 'online' ? '🌐 Online' : hackathon.mode === 'offline' ? '📍 Offline' : '⚡ Hybrid'}
             </span>
@@ -123,7 +123,7 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             {/* Calendar Reminder Button */}
             <button
               onClick={handleCalendar}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              className="p-1.5 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-gray-100 transition"
               title="Add to Google Calendar"
             >
               <CalendarPlus className="w-4 h-4" />
@@ -132,7 +132,7 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             {/* WhatsApp Share Button */}
             <button
               onClick={handleWhatsApp}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              className="p-1.5 rounded-lg text-gray-400 hover:text-emerald-600 hover:bg-gray-100 transition"
               title="Share on WhatsApp"
             >
               <Share2 className="w-4 h-4" />
@@ -143,8 +143,8 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
               onClick={() => onToggleSave(hackathon.id)}
               className={`p-1.5 rounded-lg transition ${
                 isSaved
-                  ? 'text-amber-500 bg-amber-400/10'
-                  : 'text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800'
+                  ? 'text-amber-500 bg-amber-50'
+                  : 'text-gray-400 hover:text-gray-700 hover:bg-gray-100'
               }`}
               title={isSaved ? 'Remove from bookmarks' : 'Bookmark this hackathon'}
             >
@@ -155,81 +155,89 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
 
         {/* Row 2: Title and Organizer */}
         <div className="mb-3">
-          <div className="text-xs font-medium text-slate-500 dark:text-slate-400 mb-1 flex items-center gap-1.5">
-            <Building className="w-3.5 h-3.5 text-slate-400" />
+          <div className="text-xs font-medium text-gray-500 mb-1 flex items-center gap-1.5">
+            <Building className="w-3.5 h-3.5 text-gray-400" />
             <span className="truncate max-w-[280px]">{hackathon.organizer}</span>
-            <span className="text-slate-400 dark:text-slate-600">•</span>
-            <span className="text-cyan-600 dark:text-cyan-400 font-mono text-[11px]">{hackathon.institutionName}</span>
+            <span className="text-gray-400">•</span>
+            <span className="text-blue-600 font-mono text-[11px] font-semibold">{hackathon.institutionName}</span>
           </div>
 
           <h3 
             onClick={() => onOpenDetails(hackathon)}
-            className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition cursor-pointer line-clamp-1"
+            className="text-lg sm:text-xl font-bold text-gray-950 hover:text-blue-600 transition cursor-pointer line-clamp-1"
           >
             {hackathon.title}
           </h3>
 
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+          <p className="text-xs sm:text-sm text-gray-600 mt-1 line-clamp-2 leading-relaxed">
             {hackathon.tagline}
           </p>
         </div>
 
-        {/* Row 3: Key Hackathon Details Box */}
-        <div className="my-3 p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800/80 grid grid-cols-2 gap-3 text-xs">
+        {/* Row 3: Key Hackathon Details Box (Light Gray Background) */}
+        <div className="my-3 p-3.5 rounded-xl bg-gray-50 border border-gray-100 grid grid-cols-2 gap-3 text-xs">
           
           {/* Prize Pool */}
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+            <div className="p-2 rounded-lg bg-emerald-100 text-emerald-700">
               <Trophy className="w-4 h-4" />
             </div>
             <div>
-              <span className="text-[10px] text-slate-500 dark:text-slate-400 block uppercase font-mono">Prize Pool</span>
-              <span className="font-extrabold text-sm text-emerald-600 dark:text-emerald-400 font-mono">
+              <span className="text-[10px] text-gray-500 block uppercase font-mono font-medium">Prize Pool</span>
+              <span className="font-extrabold text-sm text-emerald-700 font-mono">
                 {hackathon.prizePool}
               </span>
             </div>
           </div>
 
-          {/* Registration Deadline / Countdown */}
+          {/* Registration Deadline / Countdown with Red Highlights */}
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">
+            <div className="p-2 rounded-lg bg-blue-100 text-blue-700">
               <Clock className="w-4 h-4" />
             </div>
             <div>
-              <span className="text-[10px] text-slate-500 dark:text-slate-400 block uppercase font-mono">Deadline</span>
-              <span className="font-bold text-xs text-slate-800 dark:text-slate-200">
+              <span className="text-[10px] text-gray-500 block uppercase font-mono font-medium">Deadline</span>
+              <span className="font-bold text-xs">
                 {isExpired ? (
-                  <span className="text-rose-500 dark:text-rose-400">Closed</span>
+                  <span className="text-red-600 bg-red-50 border border-red-200 px-1.5 py-0.5 rounded">Closed</span>
                 ) : diffDays === 0 ? (
-                  <span className="text-amber-500 dark:text-amber-400">Ends Today!</span>
+                  <span className="text-red-600 font-bold flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping"></span>
+                    Ends Today!
+                  </span>
+                ) : diffDays <= 3 ? (
+                  <span className="text-red-600 font-bold flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-red-600"></span>
+                    {diffDays} days left
+                  </span>
                 ) : (
-                  <span>{diffDays} days left</span>
+                  <span className="text-gray-900">{diffDays} days left</span>
                 )}
               </span>
             </div>
           </div>
 
           {/* Location & Venue */}
-          <div className="flex items-center gap-2 col-span-2 pt-1 border-t border-slate-200 dark:border-slate-800/60">
-            <div className="p-1.5 rounded-md bg-blue-500/10 text-blue-600 dark:text-blue-400 flex-shrink-0">
+          <div className="flex items-center gap-2 col-span-2 pt-1 border-t border-gray-200">
+            <div className="p-1.5 rounded-md bg-blue-50 text-blue-600 flex-shrink-0">
               <MapPin className="w-3.5 h-3.5" />
             </div>
             <div className="truncate">
-              <span className="font-medium text-slate-800 dark:text-slate-200">
+              <span className="font-medium text-gray-900">
                 {hackathon.location.city}, {hackathon.location.state}
               </span>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 ml-1.5 truncate">
+              <span className="text-[11px] text-gray-500 ml-1.5 truncate">
                 • {hackathon.location.venue}
               </span>
             </div>
           </div>
 
           {/* Team Size & Teammate Finder Link */}
-          <div className="flex items-center justify-between col-span-2 text-slate-500 dark:text-slate-400 pt-1">
+          <div className="flex items-center justify-between col-span-2 text-gray-500 pt-1">
             <div className="flex items-center gap-1.5 text-[11px]">
-              <Users className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
-              <span>Team: <strong className="text-slate-700 dark:text-slate-300 font-medium">{hackathon.teamSize}</strong></span>
-              <span className="text-slate-300 dark:text-slate-600">•</span>
+              <Users className="w-3.5 h-3.5 text-gray-400" />
+              <span>Team: <strong className="text-gray-800 font-medium">{hackathon.teamSize}</strong></span>
+              <span className="text-gray-300">•</span>
               <span>{hackathon.dates.durationHours}h Sprint</span>
             </div>
 
@@ -238,7 +246,7 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
                 e.stopPropagation();
                 onFindTeammates(hackathon.id);
               }}
-              className="text-[11px] text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 font-medium hover:underline flex items-center gap-1"
+              className="text-[11px] text-blue-600 hover:text-blue-800 font-medium hover:underline flex items-center gap-1"
             >
               <span>Squad Match</span>
               <Users className="w-3 h-3" />
@@ -252,13 +260,13 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
           {hackathon.tracks.slice(0, 3).map((track, i) => (
             <span
               key={i}
-              className="text-[11px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60"
+              className="text-[11px] px-2 py-0.5 rounded bg-white text-gray-700 border border-gray-200 shadow-2xs"
             >
               {track}
             </span>
           ))}
           {hackathon.tracks.length > 3 && (
-            <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">
+            <span className="text-[10px] text-gray-400 font-mono">
               +{hackathon.tracks.length - 3} more
             </span>
           )}
@@ -268,17 +276,16 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
 
       {/* =========================================================================
           REGISTRATION LINK SECTION (BELOW DETAILS AS EXPLICITLY REQUESTED)
-          "also give registration link below details of that hackthon"
       ========================================================================= */}
-      <div className="px-5 pb-5 pt-3 bg-slate-50/80 dark:bg-gradient-to-t dark:from-slate-900/90 dark:to-transparent border-t border-slate-200 dark:border-slate-800/60 flex flex-col gap-2.5">
+      <div className="px-5 pb-5 pt-3.5 bg-gray-50 border-t border-gray-100 flex flex-col gap-2.5">
         
         {/* Label indicating registration link placement with Verification Shield */}
-        <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
-          <span className="font-mono flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-semibold">
+        <div className="flex items-center justify-between text-[11px] text-gray-500">
+          <span className="font-mono flex items-center gap-1.5 text-emerald-700 font-semibold">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Verified Official Link</span>
           </span>
-          <span className="text-slate-400 dark:text-slate-500 font-mono text-[10px]">
+          <span className="text-gray-400 font-mono text-[10px]">
             {hackathon.source}
           </span>
         </div>
@@ -286,23 +293,23 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
         {/* Buttons Row: Registration Link CTA + Backup Search + Quick Copy + Modal Trigger */}
         <div className="flex items-center gap-2">
           
-          {/* PRIMARY DIRECT REGISTRATION LINK (Opens external registration portal) */}
+          {/* PRIMARY DIRECT REGISTRATION LINK (Royal Blue) */}
           <a
             href={hackathon.registrationLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 shadow-md shadow-cyan-900/20 transition-all active:scale-[0.98] group/btn"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-blue-600 hover:bg-blue-700 shadow-xs transition-all active:scale-[0.98] group/btn"
           >
             <span>Register Now</span>
             <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
           </a>
 
-          {/* BACKUP SEARCH LINK (Guaranteed to work even if college link is temporary down) */}
+          {/* BACKUP SEARCH LINK */}
           <a
             href={hackathon.backupLink || `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/90 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 border border-slate-200 dark:border-slate-700 transition flex items-center gap-1 text-xs font-semibold"
+            className="p-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 transition flex items-center gap-1 text-xs font-semibold shadow-2xs"
             title="Backup Search Link (If direct link is slow or down)"
           >
             <Search className="w-3.5 h-3.5" />
@@ -312,20 +319,20 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
           {/* Quick Copy Registration Link Button */}
           <button
             onClick={handleCopyLink}
-            className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/90 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-700 transition"
+            className="p-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 transition shadow-2xs"
             title="Copy Direct Registration URL"
           >
             {copied ? (
-              <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <Check className="w-4 h-4 text-emerald-600" />
             ) : (
-              <Copy className="w-4 h-4 text-slate-400" />
+              <Copy className="w-4 h-4 text-gray-400" />
             )}
           </button>
 
           {/* View Full Details Button */}
           <button
             onClick={() => onOpenDetails(hackathon)}
-            className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/90 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-300 border border-slate-200 dark:border-slate-700 transition"
+            className="p-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 transition shadow-2xs"
             title="View Full Hackathon Specs & Guidelines"
           >
             <ChevronRight className="w-4 h-4" />

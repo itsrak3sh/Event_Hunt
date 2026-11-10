@@ -36,13 +36,13 @@ import {
 } from 'lucide-react';
 
 export function App() {
-  // Theme state: default dark, persists in localStorage
+  // Theme state: defaults to pure clean white theme, persists in localStorage
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     try {
       const stored = localStorage.getItem('bharathack_theme');
-      return stored ? stored === 'dark' : true;
+      return stored === 'dark';
     } catch {
-      return true;
+      return false;
     }
   });
 
@@ -217,9 +217,9 @@ export function App() {
   }, [hackathons, isBookmarksOnly, savedIds, selectedTrack]);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#07090e] text-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-white transition-colors duration-200">
+    <div className="min-h-screen bg-white text-gray-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
       
-      {/* 1. Header with TinyFish status and live triggers */}
+      {/* 1. Header with live status and triggers */}
       <Header
         tinyFishStatus={tinyFishHealth}
         onOpenTinyFishDrawer={() => setIsTinyFishDrawerOpen(true)}
@@ -274,7 +274,7 @@ export function App() {
           <div className="flex items-center gap-2 mb-6 flex-wrap">
             <button
               onClick={() => setIsSkillMatcherOpen(true)}
-              className="lg:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-cyan-100 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-800/40 hover:bg-cyan-200 dark:hover:bg-cyan-900/60 transition"
+              className="lg:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition"
             >
               <Target className="w-3.5 h-3.5" />
               <span>Skill Match</span>
@@ -282,7 +282,7 @@ export function App() {
 
             <button
               onClick={() => setIsPlaybookOpen(true)}
-              className="md:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-800/40 hover:bg-amber-200 dark:hover:bg-amber-900/60 transition"
+              className="md:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100 transition"
             >
               <BookOpen className="w-3.5 h-3.5" />
               <span>Playbook</span>
@@ -290,7 +290,7 @@ export function App() {
 
             <button
               onClick={() => handleOpenTeammateFinder()}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border border-purple-300 dark:border-purple-800/40 hover:bg-purple-200 dark:hover:bg-purple-900/60 transition"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition"
             >
               <Users className="w-3.5 h-3.5" />
               <span>Squad Match</span>
@@ -413,18 +413,18 @@ export function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-16 border-t border-slate-200 dark:border-slate-800/80 bg-slate-100 dark:bg-[#0a0e18] py-8 text-xs text-slate-500 text-center font-mono transition-colors">
+      <footer className="mt-16 border-t border-gray-200 bg-gray-50 py-8 text-xs text-gray-500 text-center font-mono">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-slate-800 dark:text-white font-bold">BharatHack</span>
+            <span className="text-gray-900 font-bold">BharatHack</span>
             <span>•</span>
             <span>All-India Hackathon Hunting Engine</span>
           </div>
           <div>
-            Powered by <a href="https://tinyfish.ai" target="_blank" rel="noreferrer" className="text-cyan-600 dark:text-cyan-400 hover:underline">TinyFish.ai</a> Agent Web Infrastructure
+            Official Verified Feeds from <span className="font-semibold text-gray-800">Unstop</span> & <span className="font-semibold text-gray-800">Devfolio</span>
           </div>
           <div>
-            IIT • NIT • IIIT • BITS • VIT • Tech Universities
+            IIT • NIT • IIIT • Tech Universities • Pan-India
           </div>
         </div>
       </footer>
