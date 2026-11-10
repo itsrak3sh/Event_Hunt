@@ -13,6 +13,52 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 /**
  * Filter hackathons client-side if the remote backend API is offline or deployed as static Vercel build
  */
+/**
+ * Production Link Sanitizer & Active Deadline Verifier
+ * Filters out expired hackathons, blogs, social media posts, and generic catalog links
+ */
+function cleanAndFilterHackathons(list: Hackathon[]): Hackathon[] {
+  const now = Date.now();
+  const JUNK_DOMAINS = ['instagram.com', 'facebook.com', 'thita.ai', 'insiderone.in', 'internshala.com'];
+  const GENERIC_URLS = [
+    'https://unstop.com/hackathons',
+    'https://devfolio.co/hackathons',
+    'https://devfolio.co/',
+    'https://devfolio.co',
+    'https://reskilll.com/',
+    'https://reskilll.com',
+    'https://unstop.com/conferences',
+    'https://techfest.org/competitions',
+  ];
+
+  return list.filter(h => {
+    // 1. Sanitize links
+    const link = (h.registrationLink || '').toLowerCase().trim();
+    if (JUNK_DOMAINS.some(d => link.includes(d))) return false;
+    if (link.includes('/blogs/') || link.includes('/blog/') || link.includes('/interview/')) return false;
+    if (GENERIC_URLS.includes(link.replace(/\/$/, '')) || GENERIC_URLS.includes(link)) return false;
+
+    // 2. Reject listicle titles
+    const titleLower = (h.title || '').toLowerCase();
+    if (
+      titleLower.includes('hackathons in india:') ||
+      titleLower.includes('upcoming hackathons') ||
+      titleLower.includes('find & join online') ||
+      titleLower.includes('competitions, quizzes, hackathons') ||
+      titleLower.includes('2540+ hackathons') ||
+      titleLower.includes('top hackathons to participate')
+    ) return false;
+
+    // 3. Expiry check: only active hackathons (hide closed ones)
+    const deadline = new Date(h.dates.registrationDeadline).getTime();
+    if (!isNaN(deadline) && deadline < now) {
+      return false;
+    }
+
+    return true;
+  });
+}
+
 function filterHackathonsLocally(filters: FilterState): {
   hackathons: Hackathon[];
   stats: {
@@ -27,7 +73,7 @@ function filterHackathonsLocally(filters: FilterState): {
     iiitCount: number;
   };
 } {
-  let results = [...SEED_HACKATHONS];
+  let results = cleanAndFilterHackathons([...SEED_HACKATHONS]);
 
   // 1. Fee filter: 'free' vs 'paid'
   if (filters.fee && filters.fee !== 'all') {
@@ -193,8 +239,8 @@ export async function fetchHackathons(filters: FilterState): Promise<{
         source: row.source || 'Direct Campus',
       }));
 
-      // Filter in-memory
-      let results = [...mapped];
+      // Sanitize out broken links & filter expired hackathons
+      let results = cleanAndFilterHackathons([...mapped]);
       if (filters.fee && filters.fee !== 'all') {
         results = results.filter(h => h.entryFeeType === filters.fee);
       }

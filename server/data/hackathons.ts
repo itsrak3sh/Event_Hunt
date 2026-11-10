@@ -64,7 +64,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-06T21:00:00+05:30",
       durationHours: 36
     },
-    registrationLink: "https://techfest.org/competitions",
+    registrationLink: "https://unstop.com/hackathons/perceptron-hackathon-2026-iit-bombay-1761822",
     description: "IIT Bombay Techfest invites innovators, developers, and designers across India to solve critical national and industrial challenges. Free lodging and food inside IIT Bombay campus provided for shortlisted teams.",
     tracks: ["Generative AI & LLMs", "Smart Mobility & EV", "Autonomous Robotics", "FinTech & Open Banking", "Green Energy"],
     eligibility: "Open to all enrolled undergraduate, postgraduate, and PhD students in India. Valid college ID required.",
@@ -87,8 +87,8 @@ export const SEED_HACKATHONS: Hackathon[] = [
     slug: "smart-india-hackathon-2026",
     tagline: "World's biggest open innovation model for nation-building problems",
     organizer: "Ministry of Education Innovation Cell & AICTE",
-    institutionType: "IIT",
-    institutionName: "Multiple Nodal Centers (IIT Delhi, IIT Roorkee, NIT Trichy)",
+    institutionType: "Tech School",
+    institutionName: "Ministry of Education & AICTE",
     entryFeeType: "free",
     entryFeeAmount: 0,
     entryFeeCurrency: "₹",
@@ -317,7 +317,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-11-19T21:00:00+05:30",
       durationHours: 48
     },
-    registrationLink: "https://devfolio.co/hackathons",
+    registrationLink: "https://unstop.com/hackathons/multimodal-ai-hackathon-2026-iit-mandi-1755408",
     description: "Build cutting-edge AI agents, multi-modal applications, and developer tooling. Free Gemini and Google Cloud API credits provided to all accepted participants.",
     tracks: ["Autonomous AI Agents", "Voice & Indic Language Tech", "AI for Education & Healthcare", "Developer Productivity"],
     eligibility: "Open to any student or self-taught developer residing in India.",
@@ -1036,7 +1036,7 @@ export const SEED_HACKATHONS: Hackathon[] = [
       endDate: "2026-12-14T18:00:00+05:30",
       durationHours: 32
     },
-    registrationLink: "https://devfolio.co/hackathons",
+    registrationLink: "https://unstop.com/hackathons/multimodal-ai-hackathon-2026-iit-mandi-1755408",
     description: "East India's largest collaborative hackathon bringing together students and professionals. Join physically in Salt Lake or participate online via Devfolio.",
     tracks: ["AI for Bengali & Regional Languages", "Civic Tech & Urban Planning", "Web3 Decentralized Systems", "Green Tech"],
     eligibility: "Open to all students and budding engineers.",

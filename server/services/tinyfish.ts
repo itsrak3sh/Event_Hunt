@@ -105,39 +105,119 @@ export async function fetchUrlWithTinyFish(targetUrl: string): Promise<TinyFishF
  * Transform TinyFish search results into rich Hackathon cards with accurate Indian location and mode heuristics
  */
 export function transformTinyFishResultsToHackathons(results: TinyFishSearchResult[], baseQuery: string): Hackathon[] {
+  const JUNK_DOMAINS = [
+    'instagram.com',
+    'facebook.com',
+    'youtube.com',
+    'twitter.com',
+    'x.com',
+    'linkedin.com',
+    'insiderone.in',
+    'thita.ai',
+    'internshala.com',
+  ];
+
+  const GENERIC_DIRECTORIES = [
+    'https://unstop.com/hackathons',
+    'https://unstop.com/hackathons/',
+    'https://devfolio.co/hackathons',
+    'https://devfolio.co/hackathons/',
+    'https://devfolio.co',
+    'https://devfolio.co/',
+    'https://reskilll.com',
+    'https://reskilll.com/',
+    'https://techfest.org/competitions',
+    'https://unstop.com/conferences',
+  ];
+
   return results
     .filter(item => {
-      // Exclude simple aggregator list pages or general social media posts that don't look like hackathons
+      const url = (item.url || '').toLowerCase();
       const titleLower = item.title.toLowerCase();
       const snippetLower = item.snippet.toLowerCase();
       const text = `${titleLower} ${snippetLower}`;
-      return text.includes('hackathon') || text.includes('challenge') || text.includes('sprint') || text.includes('hacks');
+
+      // 1. Must relate to hackathons
+      const hasHackathonKeyword = text.includes('hackathon') || text.includes('challenge') || text.includes('sprint') || text.includes('hacks');
+      if (!hasHackathonKeyword) return false;
+
+      // 2. Reject social media, blogs & generic scrapers
+      if (JUNK_DOMAINS.some(domain => url.includes(domain))) return false;
+      if (url.includes('/blogs/') || url.includes('/blog/') || url.includes('/interview/')) return false;
+
+      // 3. Reject generic catalog landing pages (require specific event URL)
+      if (GENERIC_DIRECTORIES.includes(url.replace(/\/$/, '')) || GENERIC_DIRECTORIES.includes(url)) return false;
+
+      // 4. Reject listicle article titles
+      if (
+        titleLower.includes('hackathons in india:') ||
+        titleLower.includes('upcoming hackathons') ||
+        titleLower.includes('find & join online') ||
+        titleLower.includes('2540+ hackathons') ||
+        titleLower.includes('devfolio - your one application')
+      ) return false;
+
+      return true;
     })
     .map((item, index) => {
       const text = `${item.title} ${item.snippet}`.toLowerCase();
 
-      // Detect Institution Type
+      // Detect Mode: Online vs Offline vs Hybrid first
+      let mode: 'online' | 'offline' | 'hybrid' = 'online';
+      if (text.includes('hybrid') || (text.includes('online') && text.includes('offline'))) {
+        mode = 'hybrid';
+      } else if (text.includes('offline') || text.includes('in-person') || text.includes('on-campus') || text.includes('venue:') || text.includes('auditorium')) {
+        mode = 'offline';
+      } else if (text.includes('online') || text.includes('virtual') || text.includes('remote') || text.includes('zoom') || text.includes('discord')) {
+        mode = 'online';
+      }
+
+      // Detect Institution Type accurately
       let institutionType: Hackathon['institutionType'] = 'Tech School';
       let institutionName = 'Indian Engineering & Tech Institute';
 
-      if (text.includes('iit ') || text.includes('iit-') || text.includes('indian institute of technology')) {
-        institutionType = 'IIT';
-        if (text.includes('bombay') || text.includes('powai')) institutionName = 'IIT Bombay';
-        else if (text.includes('delhi')) institutionName = 'IIT Delhi';
-        else if (text.includes('madras')) institutionName = 'IIT Madras';
-        else if (text.includes('kharagpur')) institutionName = 'IIT Kharagpur';
-        else if (text.includes('roorkee')) institutionName = 'IIT Roorkee';
-        else if (text.includes('kanpur')) institutionName = 'IIT Kanpur';
-        else if (text.includes('bhu') || text.includes('varanasi')) institutionName = 'IIT (BHU) Varanasi';
-        else institutionName = 'Indian Institute of Technology (IIT)';
-      } else if (text.includes('iiit') || text.includes('iiit-')) {
+      const isActualIIT = text.includes('iit ') || text.includes('iit-') || text.includes('indian institute of technology');
+      const isActualNIT = text.includes('nit ') || text.includes('national institute of technology');
+      const isActualIIIT = text.includes('iiit') || text.includes('iiit-');
+
+      if (isActualIIT) {
+        // Only classify as IIT campus if it is genuinely hosted by an IIT
+        if (text.includes('bombay') || text.includes('powai')) {
+          institutionType = 'IIT';
+          institutionName = 'IIT Bombay';
+        } else if (text.includes('delhi')) {
+          institutionType = 'IIT';
+          institutionName = 'IIT Delhi';
+        } else if (text.includes('madras')) {
+          institutionType = 'IIT';
+          institutionName = 'IIT Madras';
+        } else if (text.includes('kharagpur')) {
+          institutionType = 'IIT';
+          institutionName = 'IIT Kharagpur';
+        } else if (text.includes('roorkee')) {
+          institutionType = 'IIT';
+          institutionName = 'IIT Roorkee';
+        } else if (text.includes('kanpur')) {
+          institutionType = 'IIT';
+          institutionName = 'IIT Kanpur';
+        } else if (text.includes('mandi')) {
+          institutionType = 'IIT';
+          institutionName = 'IIT Mandi';
+        } else if (text.includes('hyderabad')) {
+          institutionType = 'IIT';
+          institutionName = 'IIT Hyderabad';
+        } else {
+          institutionType = 'IIT';
+          institutionName = 'Indian Institute of Technology (IIT)';
+        }
+      } else if (isActualIIIT) {
         institutionType = 'IIIT';
         if (text.includes('hyderabad')) institutionName = 'IIIT Hyderabad';
         else if (text.includes('bangalore') || text.includes('bengaluru')) institutionName = 'IIIT Bangalore';
         else if (text.includes('delhi')) institutionName = 'IIIT Delhi';
         else if (text.includes('allahabad')) institutionName = 'IIIT Allahabad';
         else institutionName = 'IIIT Campus India';
-      } else if (text.includes('nit ') || text.includes('national institute of technology')) {
+      } else if (isActualNIT) {
         institutionType = 'NIT';
         if (text.includes('trichy')) institutionName = 'NIT Trichy';
         else if (text.includes('surathkal') || text.includes('karnataka')) institutionName = 'NIT Surathkal';
@@ -152,16 +232,6 @@ export function transformTinyFishResultsToHackathons(results: TinyFishSearchResu
         else if (text.includes('vit') || text.includes('vellore')) institutionName = 'VIT Vellore';
         else if (text.includes('coep')) institutionName = 'COEP Tech University';
         else institutionName = item.site_name ? `${item.site_name} Tech Hub` : 'Premier Indian Tech Campus';
-      }
-
-      // Detect Mode: Online vs Offline vs Hybrid
-      let mode: 'online' | 'offline' | 'hybrid' = 'online';
-      if (text.includes('hybrid') || (text.includes('online') && text.includes('offline'))) {
-        mode = 'hybrid';
-      } else if (text.includes('offline') || text.includes('in-person') || text.includes('on-campus') || text.includes('campus') || text.includes('auditorium') || institutionType === 'IIT' || institutionType === 'NIT') {
-        mode = 'offline';
-      } else if (text.includes('online') || text.includes('virtual') || text.includes('remote')) {
-        mode = 'online';
       }
 
       // Detect Location
