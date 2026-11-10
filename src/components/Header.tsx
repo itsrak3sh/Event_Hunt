@@ -10,7 +10,8 @@ import {
   FileCode,
   ChevronDown,
   Sun,
-  Moon
+  Moon,
+  Plus
 } from 'lucide-react';
 import { TinyFishStatus, Hackathon } from '../types';
 import { exportHackathonsToCSV, exportHackathonsToJSON } from '../utils/export';
@@ -128,46 +129,24 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </div>
 
-            {/* TinyFish Active Badge */}
-            <div 
-              onClick={onOpenTinyFishDrawer}
-              className="cursor-pointer group flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-50 border border-gray-200 hover:border-blue-300 transition-all shadow-xs"
-              title="Powered by TinyFish AI Web Search & Headless Engine"
-            >
-              <div className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
-              </div>
-              
-              <div className="flex items-center gap-1.5 text-xs">
-                <span className="font-semibold text-gray-800 flex items-center gap-1">
-                  🐟 TinyFish AI
-                </span>
-                {tinyFishStatus?.latencyMs ? (
-                  <span className="text-[10px] font-mono text-emerald-600 hidden sm:inline">
-                    {tinyFishStatus.latencyMs}ms
-                  </span>
-                ) : null}
-              </div>
-            </div>
-
-            {/* Inspect URL Button */}
+            {/* Add Hackathon by Link Button */}
             <button
               onClick={onOpenFetchModal}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-700 bg-gray-50 hover:bg-gray-100 border border-gray-200 transition"
-              title="Scrape and inspect any hackathon URL via TinyFish Fetch API"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-700 bg-white hover:bg-gray-50 border border-gray-200 transition shadow-xs"
+              title="Add any hackathon by pasting its website URL"
             >
-              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>Inspect URL</span>
+              <Plus className="w-3.5 h-3.5 text-blue-600" />
+              <span>+ Add by Link</span>
             </button>
 
-            {/* Live Hunter Trigger */}
+            {/* AI Search Assistant Trigger */}
             <button
               onClick={onOpenTinyFishDrawer}
               className="flex items-center gap-1.5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-xs transition-all active:scale-95"
+              title="Search hackathons using AI prompts"
             >
-              <Radio className="w-3.5 h-3.5 animate-pulse text-blue-100" />
-              <span className="hidden sm:inline">TinyFish AI</span> Hunter
+              <Sparkles className="w-3.5 h-3.5 text-blue-100" />
+              <span>AI Search</span>
             </button>
 
             {/* Saved Bookmarks */}

@@ -86,32 +86,32 @@ export const TinyFishDrawer: React.FC<TinyFishDrawerProps> = ({
       
       {/* Sliding Drawer */}
       <div 
-        className="w-full max-w-xl h-full bg-white dark:bg-[#0b0f1a] border-l border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-300 text-slate-800 dark:text-slate-200 transition-colors"
+        className="w-full max-w-xl h-full bg-white border-l border-gray-200 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-300 text-gray-900 transition-colors"
         onClick={(e) => e.stopPropagation()}
       >
         
         {/* Drawer Header */}
-        <div className="p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 flex items-center justify-between">
+        <div className="p-5 border-b border-gray-200 bg-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">
-              <Radio className="w-5 h-5 animate-pulse" />
+            <div className="p-2 rounded-xl bg-blue-50 text-blue-600 border border-blue-200">
+              <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-1.5 font-['Plus_Jakarta_Sans']">
-                <span>TinyFish AI Live Radar</span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-100 dark:bg-cyan-900/60 text-cyan-700 dark:text-cyan-300 border border-cyan-300 dark:border-cyan-700/60 font-mono">
-                  v1.0 API
+              <h3 className="text-base font-bold text-gray-950 flex items-center gap-1.5 font-['Plus_Jakarta_Sans']">
+                <span>AI Hackathon Finder</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-mono font-bold">
+                  AI Agent
                 </span>
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Live web agent discovering hackathons across India
+              <p className="text-xs text-gray-500">
+                Ask AI to discover niche hackathons across India live
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
+            className="p-2 rounded-lg text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition"
           >
             <X className="w-4 h-4" />
           </button>

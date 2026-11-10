@@ -69,24 +69,24 @@ export const TinyFishInspectorModal: React.FC<TinyFishInspectorModalProps> = ({
       >
         
         {/* Header */}
-        <div className="p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 flex items-center justify-between">
+        <div className="p-5 border-b border-gray-200 bg-white flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">
+            <div className="p-2 rounded-xl bg-blue-50 text-blue-600 border border-blue-200">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-slate-900 dark:text-white font-['Plus_Jakarta_Sans']">
-                TinyFish Headless URL Inspector
+              <h3 className="text-base font-bold text-gray-950 font-['Plus_Jakarta_Sans']">
+                Add Hackathon via Link
               </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Render and parse any Indian hackathon page via TinyFish Fetch API
+              <p className="text-xs text-gray-500">
+                Paste any hackathon webpage to auto-extract details and add it to BharatHack
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition"
+            className="p-1.5 rounded-lg text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition"
           >
             <X className="w-4 h-4" />
           </button>
@@ -96,7 +96,7 @@ export const TinyFishInspectorModal: React.FC<TinyFishInspectorModalProps> = ({
         <div className="p-6 space-y-4">
           
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider font-mono">
+            <label className="text-xs font-bold text-gray-700 uppercase tracking-wider font-mono">
               Paste Hackathon Website URL
             </label>
             <div className="relative">
@@ -104,25 +104,25 @@ export const TinyFishInspectorModal: React.FC<TinyFishInspectorModalProps> = ({
                 type="url"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                placeholder="https://devfolio.co/hackathons/xyz or college techfest URL..."
-                className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:border-cyan-500 rounded-xl px-4 py-3 pl-10 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                placeholder="https://devfolio.co/... or https://unstop.com/... or college techfest URL"
+                className="w-full bg-white border border-gray-300 focus:border-blue-600 rounded-xl px-4 py-3 pl-10 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-100"
               />
-              <Globe className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Globe className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             </div>
           </div>
 
-          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-mono">
+          <div className="flex items-center gap-2 text-xs text-gray-500 font-mono">
             <span>Try sample:</span>
             <button
               onClick={() => setUrl('https://reskilll.com')}
-              className="text-cyan-600 dark:text-cyan-400 hover:underline"
+              className="text-blue-600 hover:underline"
             >
               reskilll.com
             </button>
             <span>•</span>
             <button
               onClick={() => setUrl('https://devfolio.co/hackathons')}
-              className="text-cyan-600 dark:text-cyan-400 hover:underline"
+              className="text-blue-600 hover:underline"
             >
               devfolio.co/hackathons
             </button>
@@ -131,17 +131,17 @@ export const TinyFishInspectorModal: React.FC<TinyFishInspectorModalProps> = ({
           <button
             onClick={handleFetchUrl}
             disabled={isLoading || !url}
-            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold text-sm shadow-md transition disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-xs transition disabled:opacity-50"
           >
             {isLoading ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin text-cyan-200" />
-                <span>TinyFish Headless Browser Rendering...</span>
+                <Loader2 className="w-4 h-4 animate-spin text-white" />
+                <span>Reading page & extracting details...</span>
               </>
             ) : (
               <>
                 <Sparkles className="w-4 h-4" />
-                <span>Inspect & Add with TinyFish</span>
+                <span>Import & Add Hackathon</span>
               </>
             )}
           </button>
