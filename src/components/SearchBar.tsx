@@ -63,13 +63,13 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         </div>
 
         {/* Action Controls: Filter Button + Sort By */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 w-full sm:w-auto">
           
           {/* Main Unified Filter Button */}
           <button
             type="button"
             onClick={onOpenFilterModal}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border transition shadow-xs ${
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold border transition shadow-xs cursor-pointer ${
               activeFilterCount > 0
                 ? 'bg-blue-50 text-blue-700 border-blue-300 hover:bg-blue-100'
                 : 'bg-white hover:bg-gray-50 text-gray-700 border-gray-300 hover:border-gray-400'
@@ -85,17 +85,17 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           </button>
 
           {/* Sort By Dropdown */}
-          <div className="flex items-center gap-1.5 bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs shadow-xs">
-            <ArrowUpDown className="w-3.5 h-3.5 text-gray-400" />
-            <span className="text-gray-500 font-medium hidden sm:inline">Sort:</span>
+          <div className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs shadow-xs">
+            <ArrowUpDown className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+            <span className="text-gray-500 font-medium hidden md:inline">Sort:</span>
             <select
               value={sortBy}
               onChange={(e) => onSortByChange(e.target.value as any)}
-              className="bg-transparent text-gray-800 font-medium focus:outline-none cursor-pointer"
+              className="bg-transparent text-gray-800 font-medium focus:outline-none cursor-pointer w-full sm:w-auto text-xs"
             >
-              <option value="deadline">Registration Deadline</option>
-              <option value="prize">Highest Prize Pool</option>
-              <option value="duration">Shortest Duration</option>
+              <option value="deadline">Deadline</option>
+              <option value="prize">Highest Prize</option>
+              <option value="duration">Duration</option>
             </select>
           </div>
 

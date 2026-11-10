@@ -178,6 +178,47 @@ export function App() {
   const [isSkillMatcherOpen, setIsSkillMatcherOpen] = useState(false);
   const [isPlaybookOpen, setIsPlaybookOpen] = useState(false);
 
+  // Open / Close hackathon details with URL history synchronization (Enables Back Button)
+  const handleOpenHackathonDetails = (hackathon: Hackathon | null) => {
+    setSelectedHackathon(hackathon);
+    const url = new URL(window.location.href);
+    if (hackathon) {
+      url.searchParams.set('hackathon', hackathon.id);
+      window.history.pushState({ hackathonId: hackathon.id }, '', url.toString());
+    } else {
+      url.searchParams.delete('hackathon');
+      window.history.pushState({}, '', url.toString());
+    }
+  };
+
+  // Restore hackathon from URL parameter when data loads
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const targetId = params.get('hackathon');
+    if (targetId && hackathons.length > 0) {
+      const found = hackathons.find((h) => h.id === targetId);
+      if (found) {
+        setSelectedHackathon(found);
+      }
+    }
+  }, [hackathons]);
+
+  // Support mobile swipe gestures & native browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const targetId = params.get('hackathon');
+      if (targetId && hackathons.length > 0) {
+        const found = hackathons.find((h) => h.id === targetId);
+        setSelectedHackathon(found || null);
+      } else {
+        setSelectedHackathon(null);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [hackathons]);
+
   // Bookmarked / Saved Hackathons (Persisted in localStorage)
   const [savedIds, setSavedIds] = useState<string[]>(() => {
     try {
@@ -455,7 +496,7 @@ export function App() {
                 hackathon={hackathon}
                 isSaved={savedIds.includes(hackathon.id)}
                 onToggleSave={handleToggleSave}
-                onOpenDetails={(h) => setSelectedHackathon(h)}
+                onOpenDetails={handleOpenHackathonDetails}
                 onFindTeammates={handleOpenTeammateFinder}
               />
             ))}
@@ -481,10 +522,10 @@ export function App() {
         </div>
       </footer>
 
-      {/* Modal: Full Hackathon Details & Guidelines with Registration Link */}
+      {/* Full Screen Hackathon Details & Guidelines with Registration Link */}
       <HackathonDetailModal
         hackathon={selectedHackathon}
-        onClose={() => setSelectedHackathon(null)}
+        onClose={() => handleOpenHackathonDetails(null)}
         onToggleSave={handleToggleSave}
         isSaved={selectedHackathon ? savedIds.includes(selectedHackathon.id) : false}
         onFindTeammates={handleOpenTeammateFinder}

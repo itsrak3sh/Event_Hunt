@@ -355,18 +355,13 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
           {/* View Full Details Button */}
           <button
             onClick={() => onOpenDetails(hackathon)}
-            className="p-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 transition shadow-2xs"
+            className="p-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 transition shadow-2xs cursor-pointer"
             title="View Full Hackathon Specs & Guidelines"
           >
             <ChevronRight className="w-4 h-4" />
           </button>
 
         </div>
-
-        {/* Browser Guidance Note */}
-        <p className="text-[10px] text-gray-500 text-center font-mono mt-1">
-          ↗ Opens {hackathon.source} in new tab • BharatHack stays open here
-        </p>
 
       </div>
 

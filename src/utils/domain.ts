@@ -69,3 +69,4 @@ export function getTechDomain(hackathon: {
     description: 'AI/ML, Web, App Development & Cloud Systems',
   };
 }
+
