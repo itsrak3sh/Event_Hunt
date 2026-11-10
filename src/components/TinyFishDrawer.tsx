@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { 
   X, 
   Search, 
-  Radio, 
   Sparkles, 
   Loader2, 
-  Cpu
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 import { triggerTinyFishDiscovery } from '../services/api';
 import { Hackathon } from '../types';
@@ -27,30 +27,26 @@ export const TinyFishDrawer: React.FC<TinyFishDrawerProps> = ({
 }) => {
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [logs, setLogs] = useState<string[]>([]);
   const [discoveredCount, setDiscoveredCount] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [statusMessage, setStatusMessage] = useState<string>('');
 
   if (!isOpen) return null;
 
   const quickPrompts = [
-    'IIT and NIT offline hackathons 2026',
-    'Free online student hackathons India Devfolio',
-    'Bengaluru AI & Web3 hackathons Unstop',
-    'High prize paid engineering challenges India',
-    'Smart India Hackathon and campus techfests',
+    { label: '🎓 IIT & NIT Hackathons', query: 'IIT and NIT hackathons 2026' },
+    { label: '💻 Free Online Hackathons', query: 'Free online hackathons India' },
+    { label: '📍 Bengaluru & Pune Tech', query: 'Bengaluru Pune engineering hackathons' },
+    { label: '🏆 High Cash Prize Challenges', query: 'High prize hackathons India' },
+    { label: '🚀 AI & GenAI Hackathons', query: 'Artificial intelligence GenAI hackathons' },
   ];
 
   const handleRunDiscovery = async (searchPrompt?: string) => {
-    const q = searchPrompt || query || 'hackathons in india iit nit iiit devfolio unstop';
+    const q = searchPrompt || query || 'hackathons in india iit nit devfolio unstop';
     setIsLoading(true);
     setError(null);
     setDiscoveredCount(null);
-    setLogs([
-      `[TinyFish API] Connecting to https://api.search.tinyfish.ai...`,
-      `[TinyFish Auth] Authenticating with configured API Key...`,
-      `[Query Engine] Executing: "${q}" in region: IN`,
-    ]);
+    setStatusMessage('Searching across Indian university techfests & platforms...');
 
     try {
       const res = await triggerTinyFishDiscovery({
@@ -59,87 +55,64 @@ export const TinyFishDrawer: React.FC<TinyFishDrawerProps> = ({
         fee: activeFee,
       });
 
-      if (res.success) {
-        setLogs((prev) => [
-          ...prev,
-          `[TinyFish Response] Received ${res.rawResultsCount} clean search nodes`,
-          `[Parser] Extracted and verified ${res.hackathons.length} hackathon opportunities`,
-          `[Sync] Integrated ${res.newHackathonsDiscovered} new listings into BharatHack database`,
-        ]);
-        setDiscoveredCount(res.newHackathonsDiscovered);
-        if (res.hackathons.length > 0) {
-          onHackathonsDiscovered(res.hackathons);
-        }
+      if (res.success && res.hackathons) {
+        onHackathonsDiscovered(res.hackathons);
+        setDiscoveredCount(res.hackathons.length);
+        setStatusMessage(
+          res.hackathons.length > 0
+            ? `Found ${res.hackathons.length} active hackathons! They have been added to your list.`
+            : 'No new events found for this specific query. Try another search.'
+        );
       } else {
-        throw new Error(res.error || 'Failed to complete TinyFish search');
+        throw new Error(res.error || 'Could not complete search');
       }
     } catch (err: any) {
-      setError(err.message || 'Error executing TinyFish AI agent search');
-      setLogs((prev) => [...prev, `[Error] ${err.message}`]);
+      setError(err.message || 'Search request failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-black/70 backdrop-blur-sm animate-in fade-in">
+    <div className="fixed inset-0 z-50 flex justify-end bg-black/50 backdrop-blur-xs animate-in fade-in duration-200">
       
       {/* Sliding Drawer */}
       <div 
-        className="w-full max-w-xl h-full bg-white border-l border-gray-200 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-300 text-gray-900 transition-colors"
+        className="w-full max-w-lg h-full bg-white border-l border-gray-200 shadow-2xl flex flex-col justify-between overflow-hidden animate-in slide-in-from-right duration-300 text-gray-900"
         onClick={(e) => e.stopPropagation()}
       >
         
         {/* Drawer Header */}
-        <div className="p-5 border-b border-gray-200 bg-white flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-blue-50 text-blue-600 border border-blue-200">
+        <div className="p-5 sm:p-6 border-b border-gray-200 bg-white flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600 border border-blue-200">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-gray-950 flex items-center gap-1.5 font-['Plus_Jakarta_Sans']">
-                <span>AI Hackathon Finder</span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 font-mono font-bold">
-                  AI Agent
-                </span>
+              <h3 className="text-lg font-bold text-gray-950 font-['Plus_Jakarta_Sans']">
+                AI Search Assistant
               </h3>
               <p className="text-xs text-gray-500">
-                Ask AI to discover niche hackathons across India live
+                Type what you are looking for to find live hackathons
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-lg text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition"
+            className="p-2 rounded-xl text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Drawer Body */}
-        <div className="p-5 flex-1 overflow-y-auto space-y-5">
+        <div className="p-6 flex-1 overflow-y-auto space-y-6">
           
-          {/* Active TinyFish Credentials Banner */}
-          <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/90 border border-cyan-300 dark:border-cyan-500/30 flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-              <div>
-                <span className="font-semibold text-slate-900 dark:text-white block">TinyFish Endpoint Online</span>
-                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">
-                  Engine: Live Web Agent
-                </span>
-              </div>
-            </div>
-            <span className="px-2 py-1 rounded bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 font-mono text-[10px] font-bold border border-emerald-300 dark:border-emerald-500/30">
-              READY
-            </span>
-          </div>
-
-          {/* Search Box */}
+          {/* Simple Search Input */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider font-mono">
-              Live Indian Hackathon Discovery Query
+            <label className="text-xs font-bold text-gray-800 uppercase tracking-wider font-mono">
+              What kind of hackathon do you want?
             </label>
             <div className="relative">
               <input
@@ -147,91 +120,83 @@ export const TinyFishDrawer: React.FC<TinyFishDrawerProps> = ({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleRunDiscovery()}
-                placeholder="e.g. Free offline hackathon in IIT or NIT..."
-                className="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:border-cyan-500 rounded-xl px-4 py-3 pl-10 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
+                placeholder="e.g. Free offline hackathon in Bangalore or AI challenge..."
+                className="w-full bg-white border border-gray-300 focus:border-blue-600 rounded-xl px-4 py-3 pl-10 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-100 shadow-xs"
               />
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             </div>
           </div>
 
-          {/* Preset 1-Click Prompt Chips */}
-          <div className="space-y-2">
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Quick Discovery Targets:</span>
+          {/* Quick Click Prompts */}
+          <div className="space-y-2.5">
+            <span className="text-xs text-gray-500 font-medium">Popular quick searches:</span>
             <div className="flex flex-wrap gap-2">
-              {quickPrompts.map((prompt, i) => (
+              {quickPrompts.map((item, i) => (
                 <button
                   key={i}
+                  type="button"
                   onClick={() => {
-                    setQuery(prompt);
-                    handleRunDiscovery(prompt);
+                    setQuery(item.query);
+                    handleRunDiscovery(item.query);
                   }}
-                  className="text-xs px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-cyan-700 dark:hover:text-cyan-300 border border-slate-200 dark:border-slate-800 hover:border-cyan-400 dark:hover:border-cyan-500/40 transition text-left"
+                  className="text-xs px-3 py-2 rounded-xl bg-gray-50 hover:bg-gray-100 text-gray-700 hover:text-gray-900 border border-gray-200 transition font-medium text-left"
                 >
-                  ⚡ {prompt}
+                  {item.label}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Execute CTA */}
+          {/* Search Button */}
           <button
+            type="button"
             onClick={() => handleRunDiscovery()}
             disabled={isLoading}
-            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-cyan-900/20 transition disabled:opacity-50"
+            className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-xs transition active:scale-[0.99] disabled:opacity-50"
           >
             {isLoading ? (
               <>
-                <Loader2 className="w-4 h-4 animate-spin text-cyan-200" />
-                <span>Running TinyFish Agent...</span>
+                <Loader2 className="w-4 h-4 animate-spin text-white" />
+                <span>Searching live hackathons...</span>
               </>
             ) : (
               <>
-                <Sparkles className="w-4 h-4 text-cyan-300" />
-                <span>Hunt Hackathons with TinyFish AI</span>
+                <Sparkles className="w-4 h-4" />
+                <span>Find Hackathons with AI</span>
               </>
             )}
           </button>
 
-          {/* Live Activity & Log Terminal */}
-          <div className="rounded-xl bg-slate-950 dark:bg-black/90 border border-slate-800 p-4 font-mono text-xs space-y-1.5 min-h-[140px] text-cyan-300">
-            <div className="flex items-center justify-between text-[10px] text-slate-400 border-b border-slate-800 pb-1 mb-2">
-              <span>TINYFISH LIVE CONSOLE</span>
-              <span className="flex items-center gap-1 text-emerald-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                ACTIVE
-              </span>
+          {/* Clean User Status Box (Replaced the ugly dark terminal) */}
+          {isLoading && (
+            <div className="p-4 rounded-xl bg-blue-50 border border-blue-200 flex items-center gap-3 text-xs text-blue-800 animate-in fade-in">
+              <Loader2 className="w-4 h-4 animate-spin text-blue-600 flex-shrink-0" />
+              <span>{statusMessage}</span>
             </div>
+          )}
 
-            {logs.length === 0 ? (
-              <p className="text-slate-500 italic">
-                Press "Hunt Hackathons with TinyFish AI" to trigger live API querying across IIT/NIT tech fests and platforms.
-              </p>
-            ) : (
-              logs.map((log, index) => (
-                <div key={index} className="text-cyan-300/90 leading-tight">
-                  {log}
-                </div>
-              ))
-            )}
+          {error && (
+            <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2.5 animate-in fade-in">
+              <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0" />
+              <span>{error}</span>
+            </div>
+          )}
 
-            {error && (
-              <div className="text-rose-400 font-bold mt-2">
-                [Error] {error}
+          {discoveredCount !== null && (
+            <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs flex items-center gap-2.5 animate-in fade-in">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+              <div>
+                <span className="font-bold block">Search Completed!</span>
+                <span>{statusMessage}</span>
               </div>
-            )}
-
-            {discoveredCount !== null && (
-              <div className="text-emerald-400 font-bold pt-2 border-t border-slate-800">
-                ✨ Successfully discovered & loaded {discoveredCount} new hackathons!
-              </div>
-            )}
-          </div>
+            </div>
+          )}
 
         </div>
 
         {/* Drawer Footer */}
-        <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 text-center text-xs text-slate-500 dark:text-slate-400 font-mono">
-          Powered by TinyFish.ai Cloud Browser & Search Engine
+        <div className="p-4 border-t border-gray-200 bg-gray-50 text-center text-xs text-gray-500">
+          Searches official platforms like Unstop, Devfolio & campus websites
         </div>
 
       </div>
