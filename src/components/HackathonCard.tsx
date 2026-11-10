@@ -285,7 +285,13 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Verified Official Link</span>
           </span>
-          <span className="text-gray-400 font-mono text-[10px]">
+          <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide border ${
+            hackathon.source === 'Unstop' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+            hackathon.source === 'Devfolio' ? 'bg-indigo-50 text-indigo-700 border-indigo-200' :
+            hackathon.source === 'Devpost' ? 'bg-teal-50 text-teal-700 border-teal-200' :
+            hackathon.source === 'HackerEarth' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+            'bg-gray-100 text-gray-700 border-gray-200'
+          }`}>
             {hackathon.source}
           </span>
         </div>
@@ -306,7 +312,12 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
 
           {/* BACKUP SEARCH LINK */}
           <a
-            href={hackathon.backupLink || `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`}
+            href={hackathon.backupLink || (
+              hackathon.source === 'Devfolio' ? 'https://devfolio.co/discover' :
+              hackathon.source === 'Devpost' ? 'https://devpost.com/hackathons' :
+              hackathon.source === 'HackerEarth' ? 'https://www.hackerearth.com/challenges/' :
+              `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`
+            )}
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 border border-gray-200 transition flex items-center gap-1 text-xs font-semibold shadow-2xs"

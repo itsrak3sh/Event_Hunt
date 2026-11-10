@@ -98,6 +98,17 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
               <span className="px-2 py-0.5 rounded text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">
                 {hackathon.institutionType}
               </span>
+
+              {/* Source Platform Badge */}
+              <span className={`px-2 py-0.5 rounded text-xs font-semibold border ${
+                hackathon.source === 'Unstop' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                hackathon.source === 'Devfolio' ? 'bg-indigo-50 text-indigo-700 border-indigo-200' :
+                hackathon.source === 'Devpost' ? 'bg-teal-50 text-teal-700 border-teal-200' :
+                hackathon.source === 'HackerEarth' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+                'bg-gray-100 text-gray-700 border-gray-200'
+              }`}>
+                {hackathon.source}
+              </span>
             </div>
 
             <h2 className="text-xl sm:text-2xl font-black text-gray-950 font-['Plus_Jakarta_Sans'] leading-tight">
@@ -323,13 +334,18 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
           </div>
 
           <div className="flex items-center gap-2.5 w-full sm:w-auto">
-            {/* Backup Unstop Search Link */}
+            {/* Backup Official Portal Search Link */}
             <a
-              href={hackathon.backupLink || `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`}
+              href={hackathon.backupLink || (
+                hackathon.source === 'Devfolio' ? 'https://devfolio.co/discover' :
+                hackathon.source === 'Devpost' ? 'https://devpost.com/hackathons' :
+                hackathon.source === 'HackerEarth' ? 'https://www.hackerearth.com/challenges/' :
+                `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`
+              )}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 text-xs font-semibold border border-gray-200 transition"
-              title="Search on Unstop (Backup if official portal is temporarily down)"
+              title={`Search on ${hackathon.source} portal (Backup if official portal is temporarily down)`}
             >
               <Search className="w-3.5 h-3.5 text-blue-600" />
               <span>Backup Search</span>
