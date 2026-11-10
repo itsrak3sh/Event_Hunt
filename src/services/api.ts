@@ -62,10 +62,76 @@ function cleanAndFilterHackathons(list: Hackathon[]): Hackathon[] {
   });
 }
 
+function computeFacetedStats(allClean: Hackathon[], filters: FilterState, results: Hackathon[]) {
+  // 1. Pool for Fee options: evaluates available free/paid given the active mode
+  let poolForFee = allClean;
+  if (filters.mode && filters.mode !== 'all') {
+    poolForFee = poolForFee.filter(h => h.mode === filters.mode);
+  }
+  if (filters.city && filters.city !== 'all' && filters.city !== 'All Locations') {
+    const cityStr = filters.city.toLowerCase();
+    poolForFee = poolForFee.filter(h =>
+      h.location.city.toLowerCase().includes(cityStr) ||
+      h.location.state.toLowerCase().includes(cityStr) ||
+      h.location.venue.toLowerCase().includes(cityStr)
+    );
+  }
+  if (filters.search) {
+    const q = filters.search.toLowerCase();
+    poolForFee = poolForFee.filter(h =>
+      h.title.toLowerCase().includes(q) ||
+      h.tagline.toLowerCase().includes(q) ||
+      h.organizer.toLowerCase().includes(q) ||
+      h.institutionName.toLowerCase().includes(q) ||
+      h.tracks.some(t => t.toLowerCase().includes(q)) ||
+      h.description.toLowerCase().includes(q)
+    );
+  }
+
+  // 2. Pool for Mode options: evaluates available online/offline/hybrid given the active fee
+  let poolForMode = allClean;
+  if (filters.fee && filters.fee !== 'all') {
+    poolForMode = poolForMode.filter(h => h.entryFeeType === filters.fee);
+  }
+  if (filters.city && filters.city !== 'all' && filters.city !== 'All Locations') {
+    const cityStr = filters.city.toLowerCase();
+    poolForMode = poolForMode.filter(h =>
+      h.location.city.toLowerCase().includes(cityStr) ||
+      h.location.state.toLowerCase().includes(cityStr) ||
+      h.location.venue.toLowerCase().includes(cityStr)
+    );
+  }
+  if (filters.search) {
+    const q = filters.search.toLowerCase();
+    poolForMode = poolForMode.filter(h =>
+      h.title.toLowerCase().includes(q) ||
+      h.tagline.toLowerCase().includes(q) ||
+      h.organizer.toLowerCase().includes(q) ||
+      h.institutionName.toLowerCase().includes(q) ||
+      h.tracks.some(t => t.toLowerCase().includes(q)) ||
+      h.description.toLowerCase().includes(q)
+    );
+  }
+
+  return {
+    total: results.length,
+    totalAll: allClean.length,
+    freeCount: poolForFee.filter(h => h.entryFeeType === 'free').length,
+    paidCount: poolForFee.filter(h => h.entryFeeType === 'paid').length,
+    onlineCount: poolForMode.filter(h => h.mode === 'online').length,
+    offlineCount: poolForMode.filter(h => h.mode === 'offline').length,
+    hybridCount: poolForMode.filter(h => h.mode === 'hybrid').length,
+    iitCount: results.filter(h => h.institutionType === 'IIT').length,
+    nitCount: results.filter(h => h.institutionType === 'NIT').length,
+    iiitCount: results.filter(h => h.institutionType === 'IIIT').length,
+  };
+}
+
 function filterHackathonsLocally(filters: FilterState): {
   hackathons: Hackathon[];
   stats: {
     total: number;
+    totalAll?: number;
     freeCount: number;
     paidCount: number;
     onlineCount: number;
@@ -135,17 +201,7 @@ function filterHackathonsLocally(filters: FilterState): {
     results.sort((a, b) => new Date(a.dates.registrationDeadline).getTime() - new Date(b.dates.registrationDeadline).getTime());
   }
 
-  const stats = {
-    total: allClean.length,
-    freeCount: allClean.filter(h => h.entryFeeType === 'free').length,
-    paidCount: allClean.filter(h => h.entryFeeType === 'paid').length,
-    onlineCount: results.filter(h => h.mode === 'online').length,
-    offlineCount: results.filter(h => h.mode === 'offline').length,
-    hybridCount: results.filter(h => h.mode === 'hybrid').length,
-    iitCount: allClean.filter(h => h.institutionType === 'IIT').length,
-    nitCount: allClean.filter(h => h.institutionType === 'NIT').length,
-    iiitCount: allClean.filter(h => h.institutionType === 'IIIT').length,
-  };
+  const stats = computeFacetedStats(allClean, filters, results);
 
   return { hackathons: results, stats };
 }
@@ -298,17 +354,7 @@ export async function fetchHackathons(filters: FilterState): Promise<{
         results.sort((a, b) => new Date(a.dates.registrationDeadline).getTime() - new Date(b.dates.registrationDeadline).getTime());
       }
 
-      const stats = {
-        total: allClean.length,
-        freeCount: allClean.filter(h => h.entryFeeType === 'free').length,
-        paidCount: allClean.filter(h => h.entryFeeType === 'paid').length,
-        onlineCount: results.filter(h => h.mode === 'online').length,
-        offlineCount: results.filter(h => h.mode === 'offline').length,
-        hybridCount: results.filter(h => h.mode === 'hybrid').length,
-        iitCount: allClean.filter(h => h.institutionType === 'IIT').length,
-        nitCount: allClean.filter(h => h.institutionType === 'NIT').length,
-        iiitCount: allClean.filter(h => h.institutionType === 'IIIT').length,
-      };
+      const stats = computeFacetedStats(allClean, filters, results);
 
       return { hackathons: results, stats };
     }
