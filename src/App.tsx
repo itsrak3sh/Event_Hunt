@@ -14,10 +14,10 @@ import {
   InstitutionFilter 
 } from './types';
 import { Header } from './components/Header';
-import { UpperLeftControlBar } from './components/UpperLeftControlBar';
 import { SearchBar } from './components/SearchBar';
 import { StatsBar } from './components/StatsBar';
-import { TrackFilterChips, TRACK_OPTIONS } from './components/TrackFilterChips';
+import { FilterModal } from './components/FilterModal';
+import { TRACK_OPTIONS } from './components/TrackFilterChips';
 import { TeammateFinderModal } from './components/TeammateFinderModal';
 import { SkillMatcherModal } from './components/SkillMatcherModal';
 import { WinningPlaybookModal } from './components/WinningPlaybookModal';
@@ -68,9 +68,9 @@ export function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Filters State: Defaults to Free Entry (as prominently requested in upper-left corner)
+  // Filters State
   const [filters, setFilters] = useState<FilterState>({
-    fee: 'free', // 'free' | 'paid' | 'all'
+    fee: 'all', // 'all' | 'free' | 'paid'
     mode: 'all',  // 'online' | 'offline' | 'hybrid' | 'all'
     city: 'All Locations',
     institution: 'all',
@@ -80,6 +80,72 @@ export function App() {
 
   // Track Filter state
   const [selectedTrack, setSelectedTrack] = useState<string>('all');
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
+
+  // Active filter count
+  const activeFilterCount = useMemo(() => {
+    let count = 0;
+    if (filters.fee !== 'all') count++;
+    if (filters.mode !== 'all') count++;
+    if (filters.city !== 'All Locations' && filters.city !== 'all') count++;
+    if (filters.institution !== 'all') count++;
+    if (selectedTrack !== 'all') count++;
+    return count;
+  }, [filters, selectedTrack]);
+
+  // Active filter tags for quick removal
+  const activeTags = useMemo(() => {
+    const tags: { id: string; label: string; onRemove: () => void }[] = [];
+    if (filters.fee !== 'all') {
+      tags.push({
+        id: 'fee',
+        label: filters.fee === 'free' ? '🟢 Free Entry' : '💎 Paid Entry',
+        onRemove: () => setFilters((prev) => ({ ...prev, fee: 'all' })),
+      });
+    }
+    if (filters.mode !== 'all') {
+      tags.push({
+        id: 'mode',
+        label: filters.mode === 'online' ? '🌐 Online' : filters.mode === 'offline' ? '📍 Offline' : '⚡ Hybrid',
+        onRemove: () => setFilters((prev) => ({ ...prev, mode: 'all' })),
+      });
+    }
+    if (filters.city !== 'All Locations' && filters.city !== 'all') {
+      tags.push({
+        id: 'city',
+        label: `📍 ${filters.city}`,
+        onRemove: () => setFilters((prev) => ({ ...prev, city: 'All Locations' })),
+      });
+    }
+    if (filters.institution !== 'all') {
+      tags.push({
+        id: 'inst',
+        label: `🎓 ${filters.institution}`,
+        onRemove: () => setFilters((prev) => ({ ...prev, institution: 'all' })),
+      });
+    }
+    if (selectedTrack !== 'all') {
+      const option = TRACK_OPTIONS.find((t) => t.id === selectedTrack);
+      tags.push({
+        id: 'track',
+        label: `⚡ ${option?.label || selectedTrack}`,
+        onRemove: () => setSelectedTrack('all'),
+      });
+    }
+    return tags;
+  }, [filters, selectedTrack]);
+
+  const handleResetFilters = () => {
+    setFilters({
+      fee: 'all',
+      mode: 'all',
+      city: 'All Locations',
+      institution: 'all',
+      search: '',
+      sortBy: 'deadline',
+    });
+    setSelectedTrack('all');
+  };
 
   // User Skills for matching
   const [userSkills, setUserSkills] = useState<string[]>(() => {
@@ -234,78 +300,23 @@ export function App() {
         onToggleDarkMode={handleToggleDarkMode}
       />
 
-      {/* 2. UPPER LEFT CORNER CONTROLS:
-             - Fee: Free vs Paid
-             - Dependent Mode: Online vs Offline vs Hybrid
-             - Conditional Location Selector: When Offline is selected
-      */}
-      <UpperLeftControlBar
-        fee={filters.fee}
-        onFeeChange={(newFee: FeeFilter) => setFilters((prev) => ({ ...prev, fee: newFee }))}
-        mode={filters.mode}
-        onModeChange={(newMode: ModeFilter) => setFilters((prev) => ({ ...prev, mode: newMode }))}
-        city={filters.city}
-        onCityChange={(newCity: string) => setFilters((prev) => ({ ...prev, city: newCity }))}
-        institution={filters.institution}
-        onInstitutionChange={(newInst: InstitutionFilter) => setFilters((prev) => ({ ...prev, institution: newInst }))}
-        cities={cities}
-        freeCount={stats.freeCount}
-        paidCount={stats.paidCount}
-      />
-
       {/* Main Page Body */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         
         {/* Stats Summary Bar */}
         <StatsBar stats={stats} />
 
-        {/* View Switcher / Sub-Nav Strip */}
-        <div className="flex items-center justify-between gap-3 mb-4 flex-wrap">
-          
-          {/* Track Filter Chips */}
-          <div className="flex-1 min-w-[280px]">
-            <TrackFilterChips
-              selectedTrack={selectedTrack}
-              onSelectTrack={setSelectedTrack}
-            />
-          </div>
-
-          {/* Quick Action Buttons */}
-          <div className="flex items-center gap-2 mb-6 flex-wrap">
-            <button
-              onClick={() => setIsSkillMatcherOpen(true)}
-              className="lg:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 hover:bg-blue-100 transition"
-            >
-              <Target className="w-3.5 h-3.5" />
-              <span>Skill Match</span>
-            </button>
-
-            <button
-              onClick={() => setIsPlaybookOpen(true)}
-              className="md:hidden flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100 transition"
-            >
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Playbook</span>
-            </button>
-
-            <button
-              onClick={() => handleOpenTeammateFinder()}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200 hover:bg-indigo-100 transition"
-            >
-              <Users className="w-3.5 h-3.5" />
-              <span>Squad Match</span>
-            </button>
-          </div>
-
-        </div>
-
-        {/* Search & Sort Bar */}
+        {/* Unified Search, Single Filter Trigger Button & Sort Bar */}
         <SearchBar
           search={filters.search}
           onSearchChange={(searchVal) => setFilters((prev) => ({ ...prev, search: searchVal }))}
           sortBy={filters.sortBy}
           onSortByChange={(sortVal) => setFilters((prev) => ({ ...prev, sortBy: sortVal }))}
           totalCount={displayedHackathons.length}
+          activeFilterCount={activeFilterCount}
+          onOpenFilterModal={() => setIsFilterModalOpen(true)}
+          activeTags={activeTags}
+          onResetAllFilters={handleResetFilters}
         />
 
         {/* Bookmarks view notice */}
@@ -479,6 +490,19 @@ export function App() {
           handleHackathonsDiscovered([newHack]);
           setSelectedHackathon(newHack);
         }}
+      />
+
+      {/* Modal: Unified All-in-One Filter Options */}
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        filters={filters}
+        onFiltersChange={setFilters}
+        selectedTrack={selectedTrack}
+        onSelectTrack={setSelectedTrack}
+        cities={cities}
+        totalMatches={displayedHackathons.length}
+        onResetFilters={handleResetFilters}
       />
 
     </div>
