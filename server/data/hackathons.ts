@@ -7,7 +7,7 @@ export interface Hackathon {
   institutionType: 'IIT' | 'NIT' | 'IIIT' | 'Tech School' | 'Private / Corporate' | 'Corporate / Private';
   institutionName: string;
   entryFeeType: 'free' | 'paid';
-  entryFeeAmount: number; // in INR
+  entryFeeAmount: number;
   entryFeeCurrency: string;
   mode: 'online' | 'offline' | 'hybrid';
   location: {
@@ -25,6 +25,8 @@ export interface Hackathon {
     durationHours: number;
   };
   registrationLink: string;
+  backupLink?: string;
+  isVerified?: boolean;
   description: string;
   tracks: string[];
   eligibility: string;
@@ -36,1018 +38,2524 @@ export interface Hackathon {
 }
 
 export const SEED_HACKATHONS: Hackathon[] = [
-  // ==================== FREE ENTRY HACKATHONS ====================
-  // 1. IIT Bombay - Free, Offline
   {
-    id: "hack-iitb-techfest-2026",
-    title: "Techfest National Hackathon 2026",
-    slug: "techfest-national-hackathon-iit-bombay",
-    tagline: "Asia's Largest Science & Tech Festival's Flagship 36-Hour Hackathon",
-    organizer: "IIT Bombay Techfest",
-    institutionType: "IIT",
-    institutionName: "Indian Institute of Technology Bombay",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Mumbai",
-      state: "Maharashtra",
-      venue: "Student Activity Centre (SAC), IIT Bombay Campus, Powai",
-      pincode: "400076"
+    "id": "tinyfish-1793995826577-7-630",
+    "title": "Prompts to Profit Hackathon - 2026",
+    "slug": "prompts-to-profit-hackathon-2026",
+    "tagline": "Prompts to Profits is a three-round game-building hackathon where participants turn their ideas into working g...",
+    "organizer": "unstop.com",
+    "institutionType": "Tech School",
+    "institutionName": "unstop.com Tech Hub",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop / Devfolio / Zoom)"
     },
-    prizePool: "₹7,50,000",
-    prizePoolAmountINR: 750000,
-    dates: {
-      registrationDeadline: "2026-11-20T23:59:59+05:30",
-      startDate: "2026-12-05T09:00:00+05:30",
-      endDate: "2026-12-06T21:00:00+05:30",
-      durationHours: 36
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-21T20:10:26.577+00:00",
+      "startDate": "2026-12-01T20:10:26.577+00:00",
+      "endDate": "2026-12-03T20:10:26.577+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://unstop.com/hackathons/perceptron-hackathon-2026-iit-bombay-1761822",
-    description: "IIT Bombay Techfest invites innovators, developers, and designers across India to solve critical national and industrial challenges. Free lodging and food inside IIT Bombay campus provided for shortlisted teams.",
-    tracks: ["Generative AI & LLMs", "Smart Mobility & EV", "Autonomous Robotics", "FinTech & Open Banking", "Green Energy"],
-    eligibility: "Open to all enrolled undergraduate, postgraduate, and PhD students in India. Valid college ID required.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Free 2-day on-campus accommodation at IIT Bombay hostels",
-      "All meals & midnight snacks covered",
-      "Direct interview fast-tracks with sponsoring tech unicorns",
-      "Official IIT Bombay Techfest certificate & swags"
+    "registrationLink": "https://unstop.com/hackathons/prompts-to-profit-hackathon-amalthea-2026-iit-gandhinagar-1774722",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Prompts%20to%20Profit%20Hackathon%20%20%202026",
+    "isVerified": true,
+    "description": "Prompts to Profits is a three-round game-building hackathon where participants turn their ideas into working games using AI-powered vibe coding.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus",
-    featured: true
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 2. Smart India Hackathon (SIH) 2026 - Free, Hybrid/Offline
   {
-    id: "hack-sih-2026",
-    title: "Smart India Hackathon (SIH) 2026 - Hardware & Software",
-    slug: "smart-india-hackathon-2026",
-    tagline: "World's biggest open innovation model for nation-building problems",
-    organizer: "Ministry of Education Innovation Cell & AICTE",
-    institutionType: "Tech School",
-    institutionName: "Ministry of Education & AICTE",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "hybrid",
-    location: {
-      city: "New Delhi",
-      state: "Delhi NCR",
-      venue: "Nodal Centers across IIT Delhi, IIT Roorkee, NIT Calicut & AICTE Auditorium",
-      pincode: "110016"
+    "id": "tinyfish-1794301101641-3-449",
+    "title": "Open Source Hackathon - 2026",
+    "slug": "open-source-hackathon-2026",
+    "tagline": "Open Source Hackathon. Indian Institute of Technology (IIT), Bombay. Team Size Individual Participation. Regis...",
+    "organizer": "unstop.com",
+    "institutionType": "IIT",
+    "institutionName": "IIT Bombay",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "venue": "IIT Bombay Main Campus"
     },
-    prizePool: "₹1,00,00,000",
-    prizePoolAmountINR: 10000000,
-    dates: {
-      registrationDeadline: "2026-11-15T18:00:00+05:30",
-      startDate: "2026-12-18T08:00:00+05:30",
-      endDate: "2026-12-20T20:00:00+05:30",
-      durationHours: 48
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-25T08:58:21.641+00:00",
+      "startDate": "2026-12-05T08:58:21.641+00:00",
+      "endDate": "2026-12-07T08:58:21.641+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://www.sih.gov.in/",
-    description: "Smart India Hackathon 2026 is an initiative by MoE's Innovation Cell. Tackle complex problem statements released by central ministries, state departments, and top industries across India.",
-    tracks: ["Agriculture & Rural Development", "Disaster Management", "Heritage & Culture", "MedTech & Biotech", "Smart Automation", "Defense & Space Tech"],
-    eligibility: "Regular students of HEI's recognized by UGC/AICTE. Each team must have 6 members with at least 1 female teammate.",
-    teamSize: "6 Members (Mandatory 1+ Female)",
-    perks: [
-      "₹1,00,000 cash prize per winning problem statement",
-      "Travel allowance (AC 3-Tier train fare) reimbursed by AICTE",
-      "Free boarding & lodging at prestigious host IITs/NITs",
-      "Direct incubation funding and angel investor demos"
+    "registrationLink": "https://unstop.com/hackathons/open-source-hackathon-iit-bombay-1702266",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Open%20Source%20Hackathon%20%20%202026",
+    "isVerified": true,
+    "description": "Open Source Hackathon. Indian Institute of Technology (IIT), Bombay. Team Size Individual Participation. Registration Deadline 04 Jul 26, 06:30 PM CUT. Software ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "closing_soon",
-    source: "Direct Campus",
-    featured: true
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 3. IIT Delhi - Free, Offline
   {
-    id: "hack-iitd-tryst-2026",
-    title: "Tryst Hacks 2026 - IIT Delhi",
-    slug: "tryst-hacks-iit-delhi-2026",
-    tagline: "North India's premier 24-hour campus hackathon at IIT Delhi",
-    organizer: "IIT Delhi Tryst & CAIC",
-    institutionType: "IIT",
-    institutionName: "Indian Institute of Technology Delhi",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "New Delhi",
-      state: "Delhi NCR",
-      venue: "Bharti School of Telecommunication & Dogra Hall, IIT Delhi, Hauz Khas",
-      pincode: "110016"
+    "id": "tinyfish-1794214346966-7-911",
+    "title": "INNOVATE - Hackathon 2026",
+    "slug": "innovate-hackathon-2026",
+    "tagline": "Dates: 3 NOV– 6 DEC 2026 ; Mode: Online ; Team Size: 1 member ; Eligibility: Students and tech enthusiasts ; R...",
+    "organizer": "unstop.com",
+    "institutionType": "Tech School",
+    "institutionName": "unstop.com Tech Hub",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop / Devfolio / Zoom)"
     },
-    prizePool: "₹5,00,000",
-    prizePoolAmountINR: 500000,
-    dates: {
-      registrationDeadline: "2026-11-25T23:59:00+05:30",
-      startDate: "2026-12-12T10:00:00+05:30",
-      endDate: "2026-12-13T16:00:00+05:30",
-      durationHours: 30
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-24T08:52:26.966+00:00",
+      "startDate": "2026-12-04T08:52:26.966+00:00",
+      "endDate": "2026-12-06T08:52:26.966+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://www.tryst-iitd.org/",
-    description: "Compete with the sharpest minds at IIT Delhi campus in an intense overnight sprint. Mentors from top venture capital firms and leading tech labs will guide finalist teams.",
-    tracks: ["AI Systems & Agents", "Web3 Infrastructures", "Health Informatics", "Cyber Defense"],
-    eligibility: "College students from all disciplines with a valid student identification card.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "No registration fees",
-      "Hostel stay during hackathon hours",
-      "Custom IIT Delhi Tryst swags and mechanical keyboards for track winners",
-      "Cloud credits from AWS and Google Cloud"
+    "registrationLink": "https://unstop.com/hackathons/innovate-hackathon-2026-devharbour-1792025",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=INNOVATE%20%20%20Hackathon%202026",
+    "isVerified": true,
+    "description": "Dates: 3 NOV– 6 DEC 2026 ; Mode: Online ; Team Size: 1 member ; Eligibility: Students and tech enthusiasts ; Registration: FREE.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus"
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 4. IIIT Bangalore - Free, Offline
   {
-    id: "hack-iiitb-innovatex",
-    title: "InnovateX '26 - IIIT Bangalore",
-    slug: "innovatex-iiit-bangalore-2026",
-    tagline: "Silicon Valley of India's DeepTech & AI Innovation Sprint",
-    organizer: "IIIT Bangalore ACM Student Chapter",
-    institutionType: "IIIT",
-    institutionName: "International Institute of Information Technology Bangalore",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Bengaluru",
-      state: "Karnataka",
-      venue: "IIITB Main Auditorium, Electronic City Phase 1",
-      pincode: "560100"
+    "id": "tinyfish-1794301101641-1-344",
+    "title": "Perceptron Hackathon 2026",
+    "slug": "perceptron-hackathon-2026",
+    "tagline": "Perceptron Hackathon 2026 is presented by the IITB-Optiver AI Innovation Lab and invites builders to tackle te...",
+    "organizer": "unstop.com",
+    "institutionType": "Tech School",
+    "institutionName": "VIT Vellore",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop / Devfolio / Zoom)"
     },
-    prizePool: "₹6,00,000",
-    prizePoolAmountINR: 600000,
-    dates: {
-      registrationDeadline: "2026-11-18T23:59:00+05:30",
-      startDate: "2026-12-02T09:00:00+05:30",
-      endDate: "2026-12-03T18:00:00+05:30",
-      durationHours: 32
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-25T08:58:21.641+00:00",
+      "startDate": "2026-12-05T08:58:21.641+00:00",
+      "endDate": "2026-12-07T08:58:21.641+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://www.iiitb.ac.in/",
-    description: "Located right in the heart of Electronic City Bangalore, InnovateX brings together 400+ top hackers. Judges include engineering directors from Bengaluru's leading tech headquarters.",
-    tracks: ["Large Multimodal Models", "Zero Knowledge & Blockchain", "Edge Computing & IoT", "B2B SaaS"],
-    eligibility: "Open to students across India. Round 1 online pitch followed by offline hackathon at IIIT Bangalore campus.",
-    teamSize: "3 - 4 Members",
-    perks: [
-      "Access to high-compute GPU clusters during the hackathon",
-      "Direct incubation interview with IIITB Innovation Centre",
-      "Dinner and midnight energy drinks included",
-      "Official certificate and partner bounties"
+    "registrationLink": "https://unstop.com/hackathons/perceptron-hackathon-2026-iit-bombay-1761822",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Perceptron%20Hackathon%202026",
+    "isVerified": true,
+    "description": "Perceptron Hackathon 2026 is presented by the IITB-Optiver AI Innovation Lab and invites builders to tackle ten concrete, technically demanding ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Devfolio"
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 5. NIT Trichy Pragyan - Free, Offline
   {
-    id: "hack-nitt-pragyan",
-    title: "Pragyan Hackathon 2026 - NIT Trichy",
-    slug: "pragyan-hackathon-nit-trichy-2026",
-    tagline: "South India's premier ISO certified techno-managerial fest hackathon",
-    organizer: "NIT Tiruchirappalli Pragyan",
-    institutionType: "NIT",
-    institutionName: "National Institute of Technology Tiruchirappalli",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Tiruchirappalli",
-      state: "Tamil Nadu",
-      venue: "Orion Lecture Hall Complex, NIT Trichy Campus",
-      pincode: "620015"
+    "id": "tinyfish-1793609107835-1-351",
+    "title": "Scratch That Code (8-Hour Hackathon) - 2026",
+    "slug": "scratch-that-code-8-hour-hackathon-2026",
+    "tagline": "Find out the best Scratch That Code (8-Hour Hackathon ) that match your interests. Prove your mettle and win e...",
+    "organizer": "unstop.com",
+    "institutionType": "Tech School",
+    "institutionName": "unstop.com Tech Hub",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop / Devfolio / Zoom)"
     },
-    prizePool: "₹4,50,000",
-    prizePoolAmountINR: 450000,
-    dates: {
-      registrationDeadline: "2026-11-28T23:59:59+05:30",
-      startDate: "2026-12-19T08:00:00+05:30",
-      endDate: "2026-12-20T17:00:00+05:30",
-      durationHours: 36
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-17T08:45:07.835+00:00",
+      "startDate": "2026-11-27T08:45:07.835+00:00",
+      "endDate": "2026-11-29T08:45:07.835+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://pragyan.org/",
-    description: "Pragyan Hackathon is NIT Trichy's signature flagship coding challenge. Teams develop real-world tech prototypes evaluated by industry veterans and academia.",
-    tracks: ["Smart City & Traffic AI", "FinTech Inclusion", "Healthcare Assistive Tech", "Open Innovation"],
-    eligibility: "Undergraduate and postgraduate students from recognized technical colleges across India.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Campus stay in NIT Trichy hostels for shortlisted teams",
-      "Exclusive Pragyan merch, backpacks, and certificates",
-      "Total prize pool of 4.5 Lakhs INR with separate freshers track",
-      "Free gourmet food throughout the 36 hours"
+    "registrationLink": "https://unstop.com/hackathons/scratch-that-code-8-hour-hackathon-noesis-vedam-school-of-technology-1635489",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Scratch%20That%20Code%20%208%20Hour%20Hackathon%20%20%20%202026",
+    "isVerified": true,
+    "description": "Find out the best Scratch That Code (8-Hour Hackathon ) that match your interests. Prove your mettle and win exciting prizes like job opportunities and cash ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus"
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 6. Flipkart GRiD 6.0 - Free, Online
   {
-    id: "hack-flipkart-grid",
-    title: "Flipkart GRiD 6.0 - All India Engineering Challenge",
-    slug: "flipkart-grid-engineering-hackathon-2026",
-    tagline: "India's biggest e-commerce tech hackathon with full-time PPI opportunities",
-    organizer: "Flipkart",
-    institutionType: "Corporate / Private",
-    institutionName: "Pan-India Online (Open to IITs, NITs, IIITs & all Engineering Colleges)",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "online",
-    location: {
-      city: "Online",
-      state: "Pan-India",
-      venue: "Virtual via Unstop & Flipkart Tech Platform"
+    "id": "tinyfish-1793609107835-5-257",
+    "title": "Prompt Coding - 2026",
+    "slug": "prompt-coding-2026",
+    "tagline": "29 Mar 2026 — This is a 24-hour, offline, high-intensity hackathon focused on problem-solving, system thinking...",
+    "organizer": "unstop.com",
+    "institutionType": "Tech School",
+    "institutionName": "unstop.com Tech Hub",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "venue": "unstop.com Tech Hub Main Campus"
     },
-    prizePool: "₹15,00,000",
-    prizePoolAmountINR: 1500000,
-    dates: {
-      registrationDeadline: "2026-11-12T23:59:59+05:30",
-      startDate: "2026-11-20T10:00:00+05:30",
-      endDate: "2026-11-24T23:59:00+05:30",
-      durationHours: 96
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-17T08:45:07.835+00:00",
+      "startDate": "2026-11-27T08:45:07.835+00:00",
+      "endDate": "2026-11-29T08:45:07.835+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://unstop.com/hackathons/flipkart-grid-engineering-challenge",
-    description: "Flipkart GRiD provides students the opportunity to solve real-world problems in e-commerce, logistics, and next-gen retail. Top performers receive Pre-Placement Interviews (PPI) for SDE-1 roles with packages up to 32 LPA.",
-    tracks: ["GenAI for Personalized E-Commerce", "Supply Chain & Route Optimization", "Smart Robotics in Warehouses", "Information Security & Fraud Detection"],
-    eligibility: "B.Tech/B.E./M.Tech students graduating in 2026, 2027, or 2028 across any recognized university in India.",
-    teamSize: "2 - 3 Members",
-    perks: [
-      "Pre-Placement Interviews (PPIs) for high-paying Software Development roles at Flipkart",
-      "₹15,00,000 total prize pool with cash awards for top 10 finalists",
-      "Digital certificates signed by Flipkart CTO",
-      "Mentorship from Flipkart Principal Engineers"
+    "registrationLink": "https://unstop.com/hackathons/prompt-coding-technovate-70-international-institute-of-information-technology-iiit-naya-raipur-1635793",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Prompt%20Coding%20%20%202026",
+    "isVerified": true,
+    "description": "29 Mar 2026 — This is a 24-hour, offline, high-intensity hackathon focused on problem-solving, system thinking, and engineering judgment. The event is ... Read more",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Unstop",
-    featured: true
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 7. Devfolio BuildWithAI National Sprint - Free, Online
   {
-    id: "hack-devfolio-buildwithai",
-    title: "BuildWithAI India National Sprint 2026",
-    slug: "buildwithai-india-national-sprint-2026",
-    tagline: "India's largest community-driven open-source AI sprint",
-    organizer: "Devfolio & Google Cloud Community India",
-    institutionType: "Tech School",
-    institutionName: "All India Virtual Campus Network",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "online",
-    location: {
-      city: "Online",
-      state: "Pan-India",
-      venue: "Devfolio Discord & Web Platform"
+    "id": "devfolio-hackodisha-6a",
+    "title": "hackodisha-6.0",
+    "slug": "devfolio-hackodisha-6a",
+    "tagline": "Eastern India's one of the largest hackathon organized by Webwiz, NIT Rourkela.",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "NIT",
+    "institutionName": "Devfolio India Network",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Devfolio Discord & Platform)"
     },
-    prizePool: "₹8,00,000",
-    prizePoolAmountINR: 800000,
-    dates: {
-      registrationDeadline: "2026-11-14T23:59:59+05:30",
-      startDate: "2026-11-17T18:00:00+05:30",
-      endDate: "2026-11-19T21:00:00+05:30",
-      durationHours: 48
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-12-10T18:29:00+00:00",
+      "startDate": "2026-09-08T18:30:00+00:00",
+      "endDate": "2026-12-10T18:29:00+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://unstop.com/hackathons/multimodal-ai-hackathon-2026-iit-mandi-1755408",
-    description: "Build cutting-edge AI agents, multi-modal applications, and developer tooling. Free Gemini and Google Cloud API credits provided to all accepted participants.",
-    tracks: ["Autonomous AI Agents", "Voice & Indic Language Tech", "AI for Education & Healthcare", "Developer Productivity"],
-    eligibility: "Open to any student or self-taught developer residing in India.",
-    teamSize: "1 - 4 Members",
-    perks: [
-      "$500 Google Cloud & Gemini credits per approved team",
-      "Exclusive Devfolio swag pack delivered to winners' doorsteps",
-      "₹8 Lakhs total pool split across track winners",
-      "Job board access to 100+ hiring tech startups"
+    "registrationLink": "https://hackodisha-6a.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "Welcome to HackOdisha 6.0\nA 36-hour online hackathon organized by Webwiz, the official tech club of NIT Rourkela\n\nAfter five successful seasons, HackOdisha returns bigger and better uniting developers and creatives from across the globe to ...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Devfolio"
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "1 - 5 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
   },
-
-  // 8. T-Hub GenAI Innovators Challenge - Free, Offline
   {
-    id: "hack-thub-hyderabad",
-    title: "T-Hub GenAI Innovation Challenge 2026",
-    slug: "thub-genai-innovation-challenge-hyderabad",
-    tagline: "T-Hub Hyderabad's premier hackathon for next-generation generative AI products",
-    organizer: "T-Hub Hyderabad & Telangana AI Mission (T-AIM)",
-    institutionType: "Private / Corporate",
-    institutionName: "T-Hub Incubation Center",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Hyderabad",
-      state: "Telangana",
-      venue: "T-Hub Phase 2, Raidurg, Knowledge City, Hyderabad",
-      pincode: "500081"
+    "id": "tinyfish-1794162938749-6-138",
+    "title": "Perceptron Hackathon",
+    "slug": "perceptron-hackathon",
+    "tagline": "Registration closes - 15th October 2026. Round 1 submission deadline - 31st October 2026. Shortlist announceme...",
+    "organizer": "techfest.org",
+    "institutionType": "Tech School",
+    "institutionName": "techfest.org Tech Hub",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop / Devfolio / Zoom)"
     },
-    prizePool: "₹12,00,000",
-    prizePoolAmountINR: 1200000,
-    dates: {
-      registrationDeadline: "2026-11-22T23:59:00+05:30",
-      startDate: "2026-12-08T09:00:00+05:30",
-      endDate: "2026-12-09T18:00:00+05:30",
-      durationHours: 34
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-23T18:35:38.749+00:00",
+      "startDate": "2026-12-03T18:35:38.749+00:00",
+      "endDate": "2026-12-05T18:35:38.749+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://www.t-hub.co/",
-    description: "Experience building inside India's largest startup innovation ecosystem at T-Hub Phase 2. Hackers get 24/7 access to state-of-the-art facilities, mentoring by seasoned founders, and direct equity-free grant opportunities.",
-    tracks: ["Enterprise AI Agents", "Sovereign AI for Indian Languages", "Fintech Fraud Defense", "AI Hardware Acceleration"],
-    eligibility: "College students, researchers, early-stage founders, and engineers across India.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Direct fast-track entry into T-Hub incubator programs",
-      "3 months free co-working space pass for winning teams",
-      "₹12,00,000 in equity-free cash grants",
-      "Gourmet food and beverage stations throughout the event"
+    "registrationLink": "https://techfest.org/competitions/perceptron-hackathon",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Perceptron%20Hackathon",
+    "isVerified": true,
+    "description": "Registration closes - 15th October 2026. Round 1 submission deadline - 31st October 2026. Shortlist announcement - 10th November 2026. Midway Check - 1st ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus",
-    featured: true
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 9. ETHIndia New Delhi Regional - Free, Offline
   {
-    id: "hack-ethindia-delhi",
-    title: "ETHIndia Regional Sprint New Delhi",
-    slug: "ethindia-delhi-2026",
-    tagline: "Asia's largest Ethereum community regional builder hackathon",
-    organizer: "ETHIndia & Devfolio",
-    institutionType: "Private / Corporate",
-    institutionName: "Devfolio Community Hub",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "New Delhi",
-      state: "Delhi NCR",
-      venue: "Aerocity Tech Convention Hall, New Delhi",
-      pincode: "110037"
+    "id": "devfolio-hack-nexus",
+    "title": "Hack Nexus 2027",
+    "slug": "devfolio-hack-nexus",
+    "tagline": "Official Devfolio National Hackathon",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Nagpur Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Nagpur",
+      "state": "Maharashtra",
+      "venue": "Nagpur, Maharashtra, India"
     },
-    prizePool: "₹18,00,000",
-    prizePoolAmountINR: 1800000,
-    dates: {
-      registrationDeadline: "2026-11-16T23:59:59+05:30",
-      startDate: "2026-12-01T10:00:00+05:30",
-      endDate: "2026-12-03T16:00:00+05:30",
-      durationHours: 36
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-12-15T18:29:00+00:00",
+      "startDate": "2026-10-31T18:30:00+00:00",
+      "endDate": "2026-12-15T18:29:00+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://ethindia.co/",
-    description: "Join 1,000+ passionate developers, researchers, and builders for an exhilarating 36-hour weekend sprint pushing the boundaries of decentralization, zero-knowledge proofs, and cryptographic tech.",
-    tracks: ["Account Abstraction & UX", "Zero Knowledge Proofs (ZK)", "DeFi Protocols", "Decentralized Social & Identity"],
-    eligibility: "Open to all developers worldwide, no prior Web3 experience required.",
-    teamSize: "2 - 5 Members",
-    perks: [
-      "Completely free entry, lodging recommendations, and meals",
-      "Massive sponsor bounties from Polygon, Ethereum Foundation, Arbitrum",
-      "Legendary ETHIndia hoodies and collectible hardware swags",
-      "Direct VC connections for grant funding"
+    "registrationLink": "https://hack-nexus.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "Hack Nexus 2027 is a 36-hour student hackathon bringing together 300+ students, developers, and innovators from across Nagpur and beyond. Join us to build innovative projects, learn from mentors, explore emerging technologies, and connect w...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Devfolio"
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "2 - 4 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
   },
-
-  // 10. IIT Roorkee Cognizance - Free, Hybrid
   {
-    id: "hack-iitr-cognizance",
-    title: "Cognizance AI Hack - IIT Roorkee",
-    slug: "cognizance-ai-hack-iit-roorkee-2026",
-    tagline: "IIT Roorkee's Annual Technical Festival flagship AI/Robotics Challenge",
-    organizer: "IIT Roorkee Cognizance",
-    institutionType: "IIT",
-    institutionName: "Indian Institute of Technology Roorkee",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "hybrid",
-    location: {
-      city: "Roorkee",
-      state: "Uttarakhand",
-      venue: "Multi Activity Centre (MAC), IIT Roorkee Campus (Online option available for Prelims)",
-      pincode: "247667"
+    "id": "tinyfish-1793912010847-6-950",
+    "title": "Innov8 4.0: A Hackathon by Eightfold Ai X Aries IIT Delhi",
+    "slug": "innov8-4-0-a-hackathon-by-eightfold-ai-x-aries-iit-delhi",
+    "tagline": "Hackathon by Eightfold. The preliminary round is an online 2-hour mini-hackathon on the 19th of September. lis...",
+    "organizer": "unstop.com",
+    "institutionType": "IIT",
+    "institutionName": "IIT Delhi",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "New Delhi",
+      "state": "Delhi NCR",
+      "venue": "IIT Delhi, New Delhi / NCR"
     },
-    prizePool: "₹4,00,000",
-    prizePoolAmountINR: 400000,
-    dates: {
-      registrationDeadline: "2026-11-24T20:00:00+05:30",
-      startDate: "2026-12-11T10:00:00+05:30",
-      endDate: "2026-12-13T18:00:00+05:30",
-      durationHours: 36
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-20T20:53:30.847+00:00",
+      "startDate": "2026-11-30T20:53:30.847+00:00",
+      "endDate": "2026-12-02T20:53:30.847+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://unstop.com/college-fests/cognizance-2024-indian-institute-of-technology-iit-roorkee-190629",
-    description: "Solve high-impact problems at the foothills of the Himalayas. Cognizance AI Hack features challenging problem statements created in partnership with DRDO and top deep tech research labs.",
-    tracks: ["Computer Vision & Edge AI", "Robotics & Swarm Drones", "Clean River Tech & Hydrology", "Quantum Computing Algorithms"],
-    eligibility: "All undergraduate and postgraduate college students from recognized institutes.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Zero registration fee",
-      "Stay provided on IIT Roorkee campus for offline finalists",
-      "Certificates accredited by IIT Roorkee",
-      "Opportunity to pitch to DRDO and corporate partners"
+    "registrationLink": "https://unstop.com/hackathons/innov8-40-a-hackathon-by-eightfold-ai-x-aries-iit-delhi-iit-delhi-1742230",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Innov8%204%200%20%20A%20Hackathon%20by%20Eightfold%20Ai%20X%20Aries%20IIT%20Delhi",
+    "isVerified": true,
+    "description": "Hackathon by Eightfold. The preliminary round is an online 2-hour mini-hackathon on the 19th of September. listed by Indian Institute of ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus"
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 11. Microsoft Azure India Student Hack - Free, Online
   {
-    id: "hack-msft-azure-india",
-    title: "Microsoft Azure India National Hackathon",
-    slug: "microsoft-azure-india-national-hackathon-2026",
-    tagline: "Build Scalable Cloud & AI Apps on Microsoft Azure",
-    organizer: "Microsoft & Reskilll",
-    institutionType: "Corporate / Private",
-    institutionName: "Microsoft India Virtual Community",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "online",
-    location: {
-      city: "Online",
-      state: "Pan-India",
-      venue: "Microsoft Reactor Virtual & Teams"
+    "id": "tinyfish-1794038434574-8-970",
+    "title": "National AI/ML Hackathon by Vivriti Capital - 2026",
+    "slug": "national-ai-ml-hackathon-by-vivriti-capital-2026",
+    "tagline": "Find out the best National AI/ML Hackathon by Vivriti Capital that match your interests. Prove your mettle and...",
+    "organizer": "unstop.com",
+    "institutionType": "Tech School",
+    "institutionName": "unstop.com Tech Hub",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop / Devfolio / Zoom)"
     },
-    prizePool: "₹10,00,000",
-    prizePoolAmountINR: 1000000,
-    dates: {
-      registrationDeadline: "2026-11-19T23:59:00+05:30",
-      startDate: "2026-11-28T09:00:00+05:30",
-      endDate: "2026-11-30T22:00:00+05:30",
-      durationHours: 48
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-22T08:00:34.574+00:00",
+      "startDate": "2026-12-02T08:00:34.574+00:00",
+      "endDate": "2026-12-04T08:00:34.574+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://reskilll.com/",
-    description: "Harness the power of Azure OpenAI, Cosmos DB, and GitHub Copilot to architect resilient modern applications. Top 3 winning teams receive direct interview consideration for Microsoft Imagine Cup and India internships.",
-    tracks: ["Azure OpenAI & Semantic Kernel", "Serverless Microservices", "Cloud Security", "Accessibility & Inclusion"],
-    eligibility: "Any college student enrolled in India or self-paced learner under 26 years.",
-    teamSize: "1 - 4 Members",
-    perks: [
-      "$200 Azure cloud credits for every registered team",
-      "Free Microsoft Certified: Azure Fundamentals (AZ-900) exam voucher",
-      "Official Microsoft trophy and swag kits shipped to home",
-      "₹10,00,000 prize pool"
+    "registrationLink": "https://unstop.com/hackathons/national-aiml-hackathon-by-vivriti-capital-yuvaan-iit-hyderabad-1644132",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=National%20AI%20ML%20Hackathon%20by%20Vivriti%20Capital%20%20%202026",
+    "isVerified": true,
+    "description": "Find out the best National AI/ML Hackathon by Vivriti Capital that match your interests. Prove your mettle and win exciting prizes like job opportunities ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Unstop"
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 12. NIT Warangal - Free, Hybrid
   {
-    id: "hack-nitw-technozion",
-    title: "CodeSprint '26 - NIT Warangal",
-    slug: "codesprint-nit-warangal-2026",
-    tagline: "NIT Warangal's Technozion National Technical Festival Coding Odyssey",
-    organizer: "NIT Warangal CSEA",
-    institutionType: "NIT",
-    institutionName: "National Institute of Technology Warangal",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "hybrid",
-    location: {
-      city: "Warangal",
-      state: "Telangana",
-      venue: "Dr. B.R. Ambedkar Learning Resource Centre, NIT Warangal Campus",
-      pincode: "506004"
+    "id": "tinyfish-1794214346966-3-474",
+    "title": "Road Safety Hackathon 2026 - BIMSTEC International ...",
+    "slug": "road-safety-hackathon-2026-bimstec-international-",
+    "tagline": "Road Safety Hackathon 2026 - BIMSTEC International Track (Not Open to Indian Participants). Indian Institute o...",
+    "organizer": "unstop.com",
+    "institutionType": "IIT",
+    "institutionName": "IIT Madras",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "venue": "IIT Madras Main Campus"
     },
-    prizePool: "₹3,50,000",
-    prizePoolAmountINR: 350000,
-    dates: {
-      registrationDeadline: "2026-11-27T18:00:00+05:30",
-      startDate: "2026-12-15T09:00:00+05:30",
-      endDate: "2026-12-16T18:00:00+05:30",
-      durationHours: 32
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-24T08:52:26.966+00:00",
+      "startDate": "2026-12-04T08:52:26.966+00:00",
+      "endDate": "2026-12-06T08:52:26.966+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://technozion.nitw.ac.in/",
-    description: "A hybrid 32-hour marathon testing algorithmic problem solving, full-stack design, and distributed architectures. Join either physically at NIT Warangal's modern labs or virtually.",
-    tracks: ["Full-Stack Distributed Systems", "AI for Public Sector", "Cyber Threat Detection", "Web3 Open Challenge"],
-    eligibility: "College students pursuing technical degrees across India.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Zero registration charges",
-      "Hostel accommodation provided for physical attendees",
-      "Cash prizes with spot goodies",
-      "Certificate of excellence"
+    "registrationLink": "https://unstop.com/hackathons/road-safety-hackathon-2026-iit-madras-1680515",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Road%20Safety%20Hackathon%202026%20%20%20BIMSTEC%20International",
+    "isVerified": true,
+    "description": "Road Safety Hackathon 2026 - BIMSTEC International Track (Not Open to Indian Participants). Indian Institute of Technology (IIT), Madras. Team Size 1 - 10 ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus"
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-
-  // ==================== PAID ENTRY HACKATHONS ====================
-  // 13. IIIT Hyderabad Megathon '26 - Paid, Offline
   {
-    id: "hack-iiith-megathon-2026",
-    title: "Megathon '26 - IIIT Hyderabad",
-    slug: "megathon-iiit-hyderabad-2026",
-    tagline: "Hyderabad's Largest Student-Run 24-Hour Hackathon at IIIT Hyderabad",
-    organizer: "IIIT Hyderabad E-Cell & Felicity",
-    institutionType: "IIIT",
-    institutionName: "International Institute of Information Technology Hyderabad",
-    entryFeeType: "paid",
-    entryFeeAmount: 250,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Hyderabad",
-      state: "Telangana",
-      venue: "Himalaya Block & KRB Seminar Hall, IIIT Hyderabad, Gachibowli",
-      pincode: "500032"
+    "id": "tinyfish-1794125985793-9-183",
+    "title": "CodeTitans India 2026 - National Hackathon",
+    "slug": "codetitans-india-2026-national-hackathon",
+    "tagline": "Find out the best CodeTitans India 2026 - National Hackathon that match your interests. Prove your mettle and ...",
+    "organizer": "unstop.com",
+    "institutionType": "Tech School",
+    "institutionName": "unstop.com Tech Hub",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop / Devfolio / Zoom)"
     },
-    prizePool: "₹8,50,000",
-    prizePoolAmountINR: 850000,
-    dates: {
-      registrationDeadline: "2026-11-21T23:59:59+05:30",
-      startDate: "2026-12-06T10:00:00+05:30",
-      endDate: "2026-12-07T14:00:00+05:30",
-      durationHours: 24
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-23T08:19:45.793+00:00",
+      "startDate": "2026-12-03T08:19:45.793+00:00",
+      "endDate": "2026-12-05T08:19:45.793+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://felicity.iiit.ac.in/infinium/",
-    description: "Megathon is IIIT Hyderabad's flagship hackathon with 1,200+ participants. The nominal entry fee covers overnight access to high-speed fiber internet, continuous catering, Midnight Pizza Fest, and official premium swag kits.",
-    tracks: ["Generative AI & Agentic Workflows", "Fintech & UPI Infrastructure", "Hardware / IoT Embedded Systems", "GovTech & Citizen Services"],
-    eligibility: "College students, fresh graduates, and startup developers. Team fee is ₹250 per participant.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Unlimited Midnight Pizza, Red Bull, energy snacks, and breakfast",
-      "Exclusive Megathon '26 tech hoodie, stickers, and lanyard",
-      "Direct incubation review by CIE (Center for Innovation and Entrepreneurship) IIITH",
-      "Cash awards totaling ₹8.5 Lakhs with instant prize distribution"
+    "registrationLink": "https://unstop.com/hackathons/codetitans-india-2026-national-hackathon-wecodecoders-1766190",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=CodeTitans%20India%202026%20%20%20National%20Hackathon",
+    "isVerified": true,
+    "description": "Find out the best CodeTitans India 2026 - National Hackathon that match your interests. Prove your mettle and win exciting prizes like job ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus",
-    featured: true
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 14. IIT Madras Shaastra Hack - Paid, Offline
   {
-    id: "hack-iitm-shaastra-2026",
-    title: "Shaastra Tech Hackathon 2026 - IIT Madras",
-    slug: "shaastra-tech-hackathon-iit-madras-2026",
-    tagline: "India's only ISO 9001 certified student-run annual tech fest hackathon",
-    organizer: "IIT Madras Shaastra",
-    institutionType: "IIT",
-    institutionName: "Indian Institute of Technology Madras",
-    entryFeeType: "paid",
-    entryFeeAmount: 300,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Chennai",
-      state: "Tamil Nadu",
-      venue: "IC&SR Building & Central Lecture Theatre, IIT Madras Campus, Adyar",
-      pincode: "600036"
+    "id": "unstop-1801814",
+    "title": "Inter-College Coding Competition 2026 | Java & Python | ₹10,000 in Cash Prizes+ Free Lunch",
+    "slug": "unstop-1801814-inter-college-coding-competition-2026-java-python-10-000-in-cash-",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "College Of Engineering And Management,Kolaghat",
+    "institutionType": "Tech School",
+    "institutionName": "College Of Engineering And Management,Kolaghat",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Purba Medinipur district",
+      "state": "West Bengal",
+      "venue": "College of Engineering and Management , Kolaghat "
     },
-    prizePool: "₹6,00,000",
-    prizePoolAmountINR: 600000,
-    dates: {
-      registrationDeadline: "2026-11-23T20:00:00+05:30",
-      startDate: "2026-12-14T09:00:00+05:30",
-      endDate: "2026-12-15T18:00:00+05:30",
-      durationHours: 32
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-15T18:29:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-17T18:29:00+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://shaastra.org/",
-    description: "Shaastra Hackathon brings forward cutting-edge problem statements sponsored by leading multinational corporations and defense labs. Registration fee covers IIT Madras fest access pass and hospitality.",
-    tracks: ["Autonomous Vehicles & LiDAR", "Healthcare AI & Diagnostics", "Defense & Cybersecurity", "Sustainable Infrastructure"],
-    eligibility: "Open to engineering, science, and design students across India. Registration pass is ₹300 per participant.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Includes full 4-day pass to Shaastra IIT Madras festival & pro-shows",
-      "Hostel accommodation assistance inside IIT Madras lush green deer campus",
-      "Shaastra official certificates verified on blockchain",
-      "Direct mentor access to professors from IITM Robert Bosch Centre for Data Science & AI"
+    "registrationLink": "https://unstop.com/hackathons/inter-college-coding-competition-2026-college-of-engineering-and-managementkolaghat-1801814",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Inter-College%20Coding%20Competition%202026%20%7C%20Java%20%26%20Python%20%7C%20%E2%82%B910%2C000%20in%20Cash%20Prizes%2B%20Free%20Lunch",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 15/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus",
-    featured: true
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 1 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
   },
-
-  // 15. BITS Pilani Conquest & APOGEE - Paid, Offline
   {
-    id: "hack-bits-apogee-2026",
-    title: "APOGEE HackSprint 2026 - BITS Pilani",
-    slug: "apogee-hacksprint-bits-pilani-2026",
-    tagline: "Birla Institute of Technology and Science Flagship 36-Hour Hackathon",
-    organizer: "BITS Pilani APOGEE & Center for Software Development",
-    institutionType: "Tech School",
-    institutionName: "BITS Pilani, Pilani Campus",
-    entryFeeType: "paid",
-    entryFeeAmount: 400,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Pilani",
-      state: "Rajasthan",
-      venue: "Computer Centre (IPC) & NAB, BITS Pilani Campus, Vidya Vihar",
-      pincode: "333031"
+    "id": "tinyfish-1793824635432-6-928",
+    "title": "HackIIITD - 2026",
+    "slug": "hackiiitd-2026",
+    "tagline": "HACKIIITD 2026 National Level 24-Hour Hackathon Organised by Tech Council, IIIT Delhi, on 24th and 25th Octobe...",
+    "organizer": "unstop.com",
+    "institutionType": "IIIT",
+    "institutionName": "IIIT Delhi",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "New Delhi",
+      "state": "Delhi NCR",
+      "venue": "IIT Delhi, New Delhi / NCR"
     },
-    prizePool: "₹5,50,000",
-    prizePoolAmountINR: 550000,
-    dates: {
-      registrationDeadline: "2026-11-26T22:00:00+05:30",
-      startDate: "2026-12-10T10:00:00+05:30",
-      endDate: "2026-12-11T22:00:00+05:30",
-      durationHours: 36
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-19T20:37:15.432+00:00",
+      "startDate": "2026-11-29T20:37:15.432+00:00",
+      "endDate": "2026-12-01T20:37:15.432+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://bits-apogee.org/",
-    description: "APOGEE is BITS Pilani's legendary international technical fest. The nominal registration fee covers hostel stay inside BITS Pilani campus, food passes, and access to all celebrity tech keynotes.",
-    tracks: ["Decentralized Finance (DeFi)", "Computer Vision in AgriTech", "Autonomous Systems", "SaaS & Cloud Platforms"],
-    eligibility: "Undergraduate and master's students with valid college ID. ₹400 registration fee per team member.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Hostel room accommodation inside BITS Pilani campus for all 36 hours",
-      "Free access to APOGEE 2026 tech speaker sessions and star nights",
-      "High-speed gigabit Wi-Fi and unlimited beverages",
-      "BITS Pilani incubation center (Pilani Innovation & Technology Hub) fast-track"
+    "registrationLink": "https://unstop.com/hackathons/hackiiitd-esya26-indraprastha-institute-of-information-technology-iiit-delhi-1761212",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=HackIIITD%20%20%202026",
+    "isVerified": true,
+    "description": "HACKIIITD 2026 National Level 24-Hour Hackathon Organised by Tech Council, IIIT Delhi, on 24th and 25th October. Open Across India No ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus"
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 16. Bengaluru Tech Summit DeepTech Hack - Paid, Offline
   {
-    id: "hack-bts-bengaluru-deeptech",
-    title: "Bengaluru Tech Summit DeepTech Hackathon",
-    slug: "bengaluru-tech-summit-deeptech-hack-2026",
-    tagline: "Karnataka Innovation Technology Society (KITS) flagship 36-hour hack",
-    organizer: "Government of Karnataka & BTS Tech Conclave",
-    institutionType: "Private / Corporate",
-    institutionName: "Bangalore Palace & KITS Tech Hub",
-    entryFeeType: "paid",
-    entryFeeAmount: 500,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Bengaluru",
-      state: "Karnataka",
-      venue: "Bengaluru Palace Grounds, Tripuravasini, Bellary Rd",
-      pincode: "560006"
+    "id": "tinyfish-1794162938749-9-270",
+    "title": "India Innovates 2026",
+    "slug": "india-innovates-2026",
+    "tagline": "India Innovates 2026 is the world's largest civic tech hackathon, organized by HN and the Municipal Corporatio...",
+    "organizer": "indiainnovates.org",
+    "institutionType": "Tech School",
+    "institutionName": "VIT Vellore",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "New Delhi",
+      "state": "Delhi NCR",
+      "venue": "Virtual (Unstop / Devfolio / Zoom)"
     },
-    prizePool: "₹20,00,000",
-    prizePoolAmountINR: 2000000,
-    dates: {
-      registrationDeadline: "2026-11-17T23:59:00+05:30",
-      startDate: "2026-12-04T09:00:00+05:30",
-      endDate: "2026-12-05T19:00:00+05:30",
-      durationHours: 34
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-23T18:35:38.749+00:00",
+      "startDate": "2026-12-03T18:35:38.749+00:00",
+      "endDate": "2026-12-05T18:35:38.749+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://bengalurutechsummit.com/",
-    description: "India's premier tech event brings corporate giants, global venture funds, and brilliant engineering minds together. Paid delegate pass grants access to Bengaluru Tech Summit exhibitions and VIP lounge.",
-    tracks: ["Generative AI & Foundation Models", "Aerospace & Satellite Data", "Quantum Security", "CleanTech & Smart Urbanism"],
-    eligibility: "Open to professional software engineers, university students, and startup founders. Ticket: ₹500.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Access to full 3-day Bengaluru Tech Summit conference & exhibition worth ₹5,000+",
-      "Direct pitching in front of Karnataka IT Minister & Tier-1 VCs (Sequoia, Accel)",
-      "₹20,00,000 cash prize pool with government grant incentives",
-      "Catered 5-star buffet meals at Bangalore Palace"
+    "registrationLink": "https://indiainnovates.org/",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=India%20Innovates%202026",
+    "isVerified": true,
+    "description": "India Innovates 2026 is the world's largest civic tech hackathon, organized by HN and the Municipal Corporation of Delhi (MCD). It invites India's brightest ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "closing_soon",
-    source: "Unstop",
-    featured: true
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 17. VIT Vellore graVITas - Paid, Offline
   {
-    id: "hack-vit-gravitas-2026",
-    title: "graVITas Hackathon '26 - VIT Vellore",
-    slug: "gravitas-hackathon-vit-vellore-2026",
-    tagline: "VIT Vellore's International Knowledge and Tech Carnival Hackathon",
-    organizer: "VIT Vellore Technology Tower & IEEE CS",
-    institutionType: "Tech School",
-    institutionName: "Vellore Institute of Technology",
-    entryFeeType: "paid",
-    entryFeeAmount: 350,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Vellore",
-      state: "Tamil Nadu",
-      venue: "Anna Auditorium & Technology Tower, VIT Vellore Campus",
-      pincode: "632014"
+    "id": "devfolio-devnexus2",
+    "title": "DevNexus 2.0",
+    "slug": "devfolio-devnexus2",
+    "tagline": "Code Through the Night. Build Beyond the Fear.",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Kolkata Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "venue": "Government College of Engineering and Leather Technology, Eastern Metropolitan Bypass, LB Block, Sector 3, Bidhannagar, Kolkata, West Bengal, India"
     },
-    prizePool: "₹5,00,000",
-    prizePoolAmountINR: 500000,
-    dates: {
-      registrationDeadline: "2026-11-20T23:00:00+05:30",
-      startDate: "2026-12-03T10:00:00+05:30",
-      endDate: "2026-12-04T18:00:00+05:30",
-      durationHours: 32
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-11-13T18:30:00+00:00",
+      "startDate": "2026-09-18T18:30:00+00:00",
+      "endDate": "2026-11-13T18:30:00+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://vit.ac.in/",
-    description: "VIT Vellore graVITas Hackathon attracts 1,500+ builders across the nation. The ₹350 registration fee includes campus entry, breakfast, lunch, dinner, and 24/7 computer center facilities.",
-    tracks: ["Edge AI & Computer Vision", "Blockchain & Decentralized Identity", "FinTech & UPI 2.0", "Assistive Health Devices"],
-    eligibility: "Any bona fide student of an accredited university or college.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "All meals & high-protein midnight refreshments provided",
-      "VIT Technology Business Incubator (VITTBI) funding recommendation",
-      "Exclusive graVITas hoodie & kit",
-      "Total cash prizes of ₹5,00,000"
+    "registrationLink": "https://devnexus2.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "**DEV NEXUS 2.0** is a **36-hour hackathon** where developers, innovators, and problem-solvers come together to build, create, collaborate, and turn ideas into impactful solutions.\n\n📅 **28th–29th November 2026**  \n📍 **Government College o...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus"
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "2 - 4 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
   },
-
-  // 18. CyberCity Gurugram FinTech Hack - Paid, Offline
   {
-    id: "hack-cybercity-fintech",
-    title: "CyberCity FinTech & NeoBanking Hackathon",
-    slug: "cybercity-fintech-hackathon-gurugram-2026",
-    tagline: "North India's largest FinTech builder sprint in DLF CyberCity",
-    organizer: "Gurugram Tech Alliance & FinTech Council",
-    institutionType: "Private / Corporate",
-    institutionName: "WeWork DLF Cyber City Hub",
-    entryFeeType: "paid",
-    entryFeeAmount: 600,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Gurugram",
-      state: "Delhi NCR",
-      venue: "DLF CyberCity, Phase II, Gurugram, Haryana",
-      pincode: "122002"
+    "id": "tinyfish-1794266009833-2-294",
+    "title": "InsightX: Leadership Analytics Challenge",
+    "slug": "insightx-leadership-analytics-challenge",
+    "tagline": "Indian Institute of Technology (IIT), Registration Deadline 13 Feb 26, 06:29. No coding or dataset access is r...",
+    "organizer": "unstop.com",
+    "institutionType": "IIT",
+    "institutionName": "Indian Institute of Technology (IIT)",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "venue": "Indian Institute of Technology (IIT) Main Campus"
     },
-    prizePool: "₹10,00,000",
-    prizePoolAmountINR: 1000000,
-    dates: {
-      registrationDeadline: "2026-11-22T20:00:00+05:30",
-      startDate: "2026-12-05T09:30:00+05:30",
-      endDate: "2026-12-06T19:30:00+05:30",
-      durationHours: 34
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-24T23:13:29.833+00:00",
+      "startDate": "2026-12-04T23:13:29.833+00:00",
+      "endDate": "2026-12-06T23:13:29.833+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://unstop.com/hackathons",
-    description: "Build the future of payments, algorithmic trading, fraud mitigation, and account aggregation. Entry ticket covers WeWork luxury workspace pass, barista coffee, dinner buffet, and hackathon infrastructure.",
-    tracks: ["Real-time UPI Fraud Prevention", "Algorithmic Market Intelligence", "Account Aggregator Ecosystem", "RegTech & Compliance AI"],
-    eligibility: "Tech developers, fintech enthusiasts, university students. Fee: ₹600.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Unlimited specialty coffee and catered lunch/dinner in WeWork DLF CyberCity",
-      "Mentorship from Chief Risk Officers and FinTech VP of Engineering",
-      "₹10,00,000 in cash prizes",
-      "Direct interviews for roles at top FinTech unicorns"
+    "registrationLink": "https://unstop.com/hackathons/insightx-leadership-analytics-challenge-techfest-2025-26-iit-bombay-1632209",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=InsightX%20%20Leadership%20Analytics%20Challenge",
+    "isVerified": true,
+    "description": "Indian Institute of Technology (IIT), Registration Deadline 13 Feb 26, 06:29. No coding or dataset access is required at this stage. a premier ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Unstop"
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 19. Maker Village Kochi Hardware & IoT Hack - Paid, Offline
   {
-    id: "hack-maker-village-kochi",
-    title: "Maker Village IoT & Embedded Systems Hackathon",
-    slug: "maker-village-iot-hackathon-kochi-2026",
-    tagline: "India's largest electronic hardware incubator 30-hour sprint",
-    organizer: "Maker Village & Kerala Startup Mission",
-    institutionType: "Private / Corporate",
-    institutionName: "Maker Village Electronics Incubator",
-    entryFeeType: "paid",
-    entryFeeAmount: 200,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Kochi",
-      state: "Kerala",
-      venue: "Technology Innovation Zone, Kinfra Hi-Tech Park, Kalamassery, Kochi",
-      pincode: "683503"
+    "id": "tinyfish-1794266009833-6-120",
+    "title": "Multimodal AI Hackathon 2026",
+    "slug": "multimodal-ai-hackathon-2026",
+    "tagline": "Indian Institute of Technology (IIT), This nationwide hackathon invites students to work at the intersection o...",
+    "organizer": "unstop.com",
+    "institutionType": "IIT",
+    "institutionName": "Indian Institute of Technology (IIT)",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "venue": "Indian Institute of Technology (IIT) Main Campus"
     },
-    prizePool: "₹4,00,000",
-    prizePoolAmountINR: 400000,
-    dates: {
-      registrationDeadline: "2026-11-25T18:00:00+05:30",
-      startDate: "2026-12-09T09:00:00+05:30",
-      endDate: "2026-12-10T15:00:00+05:30",
-      durationHours: 30
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-24T23:13:29.833+00:00",
+      "startDate": "2026-12-04T23:13:29.833+00:00",
+      "endDate": "2026-12-06T23:13:29.833+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://startupmission.kerala.gov.in/",
-    description: "Full access to Maker Village PCB fabrication units, 3D printers, laser cutters, oscilloscope benches, and microcontrollers. Registration fee of ₹200 includes hardware test kits and meals.",
-    tracks: ["Drone Avionics & Surveillance", "Industrial IoT & Smart Sensors", "Wearable Medical Tech", "Smart Agriculture Hardware"],
-    eligibility: "Open to hardware engineers, firmware developers, and robotics students.",
-    teamSize: "2 - 3 Members",
-    perks: [
-      "Free hardware development kits (ESP32, STM32, sensor arrays) to keep",
-      "Hands-on access to multimillion-dollar testing labs and clean rooms",
-      "₹4 Lakhs cash awards plus incubation grants up to ₹10 Lakhs",
-      "Accommodation support and all meals"
+    "registrationLink": "https://unstop.com/hackathons/multimodal-ai-hackathon-2026-iit-mandi-1755408",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Multimodal%20AI%20Hackathon%202026",
+    "isVerified": true,
+    "description": "Indian Institute of Technology (IIT), This nationwide hackathon invites students to work at the intersection of Generative AI, Agentic AI, Oct 12 Oct 26, 06:30 ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus"
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 20. Pune Tech Conclave Hack - Paid, Offline
   {
-    id: "hack-pune-tech-conclave",
-    title: "Pune AI & Cloud Summit Hackathon",
-    slug: "pune-ai-cloud-summit-hackathon-2026",
-    tagline: "Automotive & IT Hub Pune's premier enterprise hackathon",
-    organizer: "Pune Open Source Tech Community & COEP Tech",
-    institutionType: "Tech School",
-    institutionName: "COEP Technological University Campus",
-    entryFeeType: "paid",
-    entryFeeAmount: 300,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Pune",
-      state: "Maharashtra",
-      venue: "COEP Technological University Main Auditorium, Shivajinagar, Pune",
-      pincode: "411005"
+    "id": "tinyfish-1794266009833-8-878",
+    "title": "Perceptron Hackathon - Techfest",
+    "slug": "perceptron-hackathon-techfest",
+    "tagline": "Registration closes - 15th October 2026. Round 1 submission deadline - 31st October 2026. Shortlist announceme...",
+    "organizer": "techfest.org",
+    "institutionType": "IIT",
+    "institutionName": "IIT Bombay",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "venue": "IIT Bombay Main Campus"
     },
-    prizePool: "₹5,00,000",
-    prizePoolAmountINR: 500000,
-    dates: {
-      registrationDeadline: "2026-11-24T23:59:00+05:30",
-      startDate: "2026-12-07T08:30:00+05:30",
-      endDate: "2026-12-08T18:00:00+05:30",
-      durationHours: 34
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-24T23:13:29.833+00:00",
+      "startDate": "2026-12-04T23:13:29.833+00:00",
+      "endDate": "2026-12-06T23:13:29.833+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://www.mind-spark.org/",
-    description: "Experience 34 hours of intense coding at the historic COEP campus in Pune. Focus on enterprise cloud architecture, connected mobility, and LLM orchestration.",
-    tracks: ["Connected Vehicles & Telematics", "Enterprise LLM Workflows", "DevOps & Cloud Reliability", "Civic Tech Pune"],
-    eligibility: "Engineering students, BCA/MCA students, and IT professionals. ₹300 fee covers food and kits.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Catered breakfast, lunch, and late night biryani box",
-      "Mentorship from Pune IT hub engineering managers (Barclays, Veritas, Nvidia)",
-      "Special Pune Tech Hackathon trophy and ₹5,00,000 cash prizes",
-      "Participation certificates and stickers"
+    "registrationLink": "https://techfest.org/competitions/perceptron-hackathon",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Perceptron%20Hackathon%20%20%20Techfest",
+    "isVerified": true,
+    "description": "Registration closes - 15th October 2026. Round 1 submission deadline - 31st October 2026. Shortlist announcement - 10th November 2026. Midway Check - 1st ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Unstop"
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 21. Solana India All-Star Fellowship - Paid (Nominal Registration / Refundable Deposit), Hybrid
   {
-    id: "hack-solana-india-allstar",
-    title: "Solana Superteam India Fellowship & Hackathon",
-    slug: "solana-superteam-india-fellowship-2026",
-    tagline: "India's highest bounty Web3 hackathon with regional hubs in Bengaluru & Delhi",
-    organizer: "Superteam India & Solana Foundation",
-    institutionType: "Private / Corporate",
-    institutionName: "Superteam Hub Bengaluru & Online Stream",
-    entryFeeType: "paid",
-    entryFeeAmount: 350,
-    entryFeeCurrency: "₹",
-    mode: "hybrid",
-    location: {
-      city: "Bengaluru",
-      state: "Karnataka",
-      venue: "Superteam House, Indiranagar, Bengaluru (or participate 100% online)",
-      pincode: "560038"
+    "id": "tinyfish-1794301101641-5-718",
+    "title": "Computer Vision AI Hackathon - 2026",
+    "slug": "computer-vision-ai-hackathon-2026",
+    "tagline": "Registrations open now, close Oct 10; Shortlisted teams get dataset access + kickoff with Everseen engineers; ...",
+    "organizer": "unstop.com",
+    "institutionType": "Tech School",
+    "institutionName": "unstop.com Tech Hub",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop / Devfolio / Zoom)"
     },
-    prizePool: "₹25,00,000",
-    prizePoolAmountINR: 2500000,
-    dates: {
-      registrationDeadline: "2026-11-19T23:59:59+05:30",
-      startDate: "2026-12-01T10:00:00+05:30",
-      endDate: "2026-12-05T20:00:00+05:30",
-      durationHours: 96
+    "prizePool": "₹5,00,000",
+    "prizePoolAmountINR": 500000,
+    "dates": {
+      "registrationDeadline": "2026-11-25T08:58:21.641+00:00",
+      "startDate": "2026-12-05T08:58:21.641+00:00",
+      "endDate": "2026-12-07T08:58:21.641+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://superteam.fun/",
-    description: "Build high-speed decentralized apps, consumer crypto, and DePIN projects. The ₹350 commitment fee is fully refunded upon qualifying project submission and unlocks full physical house access.",
-    tracks: ["Consumer Crypto & Social", "DePIN & Physical Infrastructure", "DeFi & Trading Systems", "AI x Crypto Agents"],
-    eligibility: "Open to all developers across India. Online submissions welcome, physical demo day in Bengaluru.",
-    teamSize: "1 - 4 Members",
-    perks: [
-      "Access to Superteam Hacker House in Indiranagar Bengaluru with free food & red bull",
-      "Instant grant allocations up to $10,000 for standout prototypes",
-      "Total prize pool of ₹25 Lakhs ($30,000+)",
-      "Global demo day stream to top Silicon Valley crypto VCs"
+    "registrationLink": "https://unstop.com/hackathons/computer-vision-ai-hackathon-e-cell-iit-bombay-1760776",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Computer%20Vision%20AI%20Hackathon%20%20%202026",
+    "isVerified": true,
+    "description": "Registrations open now, close Oct 10; Shortlisted teams get dataset access + kickoff with Everseen engineers; 36-hour build weekend with ...",
+    "tracks": [
+      "Artificial Intelligence",
+      "Web3 & Decentralization",
+      "Cloud Computing",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Devfolio",
-    featured: true
+    "eligibility": "Open to engineering, polytechnic, and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct Live Scraped via TinyFish AI Web Search",
+      "Fast-track Registration via official platform",
+      "Industry Certification and Mentorship"
+    ],
+    "status": "open",
+    "source": "TinyFish AI Live"
   },
-
-  // 22. National CodeSprint Online - Paid, Online
   {
-    id: "hack-national-codesprint-online",
-    title: "CodeCon India 2026 - Master's Online Hackathon",
-    slug: "codecon-india-masters-online-2026",
-    tagline: "Pan-India Competitive Coding & System Design Championship",
-    organizer: "CodeNation & TechGig",
-    institutionType: "Corporate / Private",
-    institutionName: "Online Virtual Arena",
-    entryFeeType: "paid",
-    entryFeeAmount: 199,
-    entryFeeCurrency: "₹",
-    mode: "online",
-    location: {
-      city: "Online",
-      state: "Pan-India",
-      venue: "Online Proctored Platform"
+    "id": "unstop-1799091",
+    "title": "Hacksmart 2.0",
+    "slug": "unstop-1799091-hacksmart-2-0",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Geek Room",
+    "institutionType": "Tech School",
+    "institutionName": "Geek Room",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "hybrid",
+    "location": {
+      "city": "Gurgaon",
+      "state": "Haryana",
+      "venue": "6th Floor, Tower C, Pioneer Urban Square, Sector 62, Gurugram, Ghata, Haryana 122098"
     },
-    prizePool: "₹6,00,000",
-    prizePoolAmountINR: 600000,
-    dates: {
-      registrationDeadline: "2026-11-20T23:59:59+05:30",
-      startDate: "2026-11-29T10:00:00+05:30",
-      endDate: "2026-11-30T18:00:00+05:30",
-      durationHours: 32
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-12-15T18:29:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-12-17T18:29:00+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://www.techgig.com/hackathons",
-    description: "Test your system architecture, concurrency, and algorithm skills in a proctored 32-hour live build. Nominal registration fee of ₹199 ensures serious competitors.",
-    tracks: ["High-Throughput Microservices", "Real-Time Collaborative Systems", "Autonomous Database Optimizers"],
-    eligibility: "Open to students and software engineers across India.",
-    teamSize: "1 - 3 Members",
-    perks: [
-      "Direct interview referrals to high-frequency trading (HFT) firms",
-      "₹6,00,000 cash prizes",
-      "Ranked leaderboard profile badges",
-      "Comprehensive performance review report"
+    "registrationLink": "https://unstop.com/hackathons/hacksmart-20-geek-room-1799091",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Hacksmart%202.0",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 15/12/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Unstop"
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
   },
-
-  // 23. NIT Surathkal Incident - Paid, Offline
   {
-    id: "hack-nits-incident",
-    title: "Incident Hackathon '26 - NIT Surathkal",
-    slug: "incident-hackathon-nit-surathkal-2026",
-    tagline: "Beachside Hackathon at India's scenic coastal engineering campus",
-    organizer: "NITK Surathkal Incident & Web Club",
-    institutionType: "NIT",
-    institutionName: "National Institute of Technology Karnataka, Surathkal",
-    entryFeeType: "paid",
-    entryFeeAmount: 150,
-    entryFeeCurrency: "₹",
-    mode: "offline",
-    location: {
-      city: "Mangaluru",
-      state: "Karnataka",
-      venue: "Main Seminar Hall & Central Computing Center, NITK Surathkal Campus",
-      pincode: "575025"
+    "id": "unstop-1794884",
+    "title": "BuildSprint",
+    "slug": "unstop-1794884-buildsprint",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Workelate",
+    "institutionType": "Tech School",
+    "institutionName": "Workelate",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "hybrid",
+    "location": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "venue": "Ground Floor, Kondapur Main Road, Kondapur, Laxmi Cyber City, Whitefields, Kondapur, Hyderabad, Telangana 500084"
     },
-    prizePool: "₹3,50,000",
-    prizePoolAmountINR: 350000,
-    dates: {
-      registrationDeadline: "2026-11-26T23:59:00+05:30",
-      startDate: "2026-12-16T09:00:00+05:30",
-      endDate: "2026-12-17T18:00:00+05:30",
-      durationHours: 33
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-17T06:20:48+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-19T06:20:48+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://incident.nitk.ac.in/events/hackathon",
-    description: "Experience the unique vibe of building at NITK's private beach campus. A nominal registration fee of ₹150 covers festival entry, campus stay, and all hackathon sessions.",
-    tracks: ["Marine Tech & Ocean Sensing", "FinTech Solutions", "Generative AI for Media", "Open Innovation"],
-    eligibility: "College students with valid university identity cards. Team fee is ₹150 per person.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Hostel accommodation inside NITK Surathkal campus right next to the beach",
-      "Access to Incident 2026 pro-nights and cultural events",
-      "₹3.5 Lakhs prize pool with dedicated freshers category",
-      "Free snacks and midnight meal rations"
+    "registrationLink": "https://unstop.com/hackathons/buildsprint-workelate-1794884",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=BuildSprint",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 17/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Direct Campus"
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 1 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
   },
-
-  // 24. Kolkata DevHack - Free, Hybrid
   {
-    id: "hack-kolkata-devhack",
-    title: "Kolkata DevHack 2026",
-    slug: "kolkata-devhack-2026",
-    tagline: "Eastern India's flagship community hackathon at Salt Lake Sector V",
-    organizer: "GDG Kolkata & IEM Tech Club",
-    institutionType: "Tech School",
-    institutionName: "Salt Lake Sector V Tech Hub",
-    entryFeeType: "free",
-    entryFeeAmount: 0,
-    entryFeeCurrency: "₹",
-    mode: "hybrid",
-    location: {
-      city: "Kolkata",
-      state: "West Bengal",
-      venue: "Biswa Bangla Convention Centre & IEM Campus, Salt Lake Sector V",
-      pincode: "700091"
+    "id": "unstop-1803912",
+    "title": "Code to Cart: AI x E-commerce Hackathon | KartAI X CodeXcelerate",
+    "slug": "unstop-1803912-code-to-cart-ai-x-e-commerce-hackathon-kartai-x-codexcelerate",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "KartAI",
+    "institutionType": "Tech School",
+    "institutionName": "KartAI",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
     },
-    prizePool: "₹4,50,000",
-    prizePoolAmountINR: 450000,
-    dates: {
-      registrationDeadline: "2026-11-27T23:59:59+05:30",
-      startDate: "2026-12-13T10:00:00+05:30",
-      endDate: "2026-12-14T18:00:00+05:30",
-      durationHours: 32
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-23T18:29:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-25T18:29:00+00:00",
+      "durationHours": 36
     },
-    registrationLink: "https://unstop.com/hackathons/multimodal-ai-hackathon-2026-iit-mandi-1755408",
-    description: "East India's largest collaborative hackathon bringing together students and professionals. Join physically in Salt Lake or participate online via Devfolio.",
-    tracks: ["AI for Bengali & Regional Languages", "Civic Tech & Urban Planning", "Web3 Decentralized Systems", "Green Tech"],
-    eligibility: "Open to all students and budding engineers.",
-    teamSize: "2 - 4 Members",
-    perks: [
-      "Zero registration fee",
-      "Exclusive Kolkata DevHack commemorative swags and stickers",
-      "High speed gigabit connectivity and meals provided",
-      "Fast-track incubation support"
+    "registrationLink": "https://unstop.com/hackathons/code-to-cart-ai-x-e-commerce-hackathon-kartai-x-codexcelerate-kartai-1803912",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Code%20to%20Cart%3A%20AI%20x%20E-commerce%20Hackathon%20%7C%20KartAI%20X%20CodeXcelerate",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 23/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
     ],
-    status: "open",
-    source: "Devfolio"
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "devfolio-lean-in-hacks-8",
+    "title": "Lean In Hacks 8.0",
+    "slug": "devfolio-lean-in-hacks-8",
+    "tagline": "Lean In IGDTUW's Flagship Hackathon",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Bengaluru Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Bengaluru",
+      "state": "India",
+      "venue": "Bengaluru Campus"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-11-18T17:00:00+00:00",
+      "startDate": "2026-10-20T10:30:00+00:00",
+      "endDate": "2026-11-18T17:00:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://lean-in-hacks-8.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "> Lean In Hacks is an **annual flagship hackathon of Lean In IGDTUW** - the first chapter of Lean In India. \n\n\nLean In Hacks is a **beginner-friendly hackathon** and has a place for everyone wanting to learn, build, share, and grow in their...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "unstop-1800629",
+    "title": "HackKumbh 2026 : Tech For Humanity",
+    "slug": "unstop-1800629-hackkumbh-2026-tech-for-humanity",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Yeshwantrao Chavan College of Engineering (YCCE), Nagpur",
+    "institutionType": "Tech School",
+    "institutionName": "Yeshwantrao Chavan College of Engineering (YCCE), Nagpur",
+    "entryFeeType": "paid",
+    "entryFeeAmount": 250,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Nagpur",
+      "state": "Maharashtra",
+      "venue": "Yeshwantrao Chavan College Of Engineering"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-20T18:29:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-22T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/hackkumbh-2026-tech-for-humanity-yeshwantrao-chavan-college-of-engineering-ycce-nagpur-1800629",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=HackKumbh%202026%20%3A%20Tech%20For%20Humanity",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 20/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "2 - 5 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1802400",
+    "title": "Rewired (Tech Hackathon)",
+    "slug": "unstop-1802400-rewired-tech-hackathon-",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Masters Union School of Business",
+    "institutionType": "Tech School",
+    "institutionName": "Masters Union School of Business",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "hybrid",
+    "location": {
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "venue": "TBD (To Be Disclosed)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-15T18:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-17T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/rewired-tech-hackathon-road-to-milky-way-bangalore-masters-union-school-of-business-1802400",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Rewired%20(Tech%20Hackathon)",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 16/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "2 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1803074",
+    "title": "IDEATHON- FutureX: Innovating for Global Challenges",
+    "slug": "unstop-1803074-ideathon-futurex-innovating-for-global-challenges",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Skill2Career",
+    "institutionType": "Tech School",
+    "institutionName": "Skill2Career",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-12-15T18:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-12-17T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/ideathon-futurex-innovating-for-global-challenges-skill2career-1803074",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=IDEATHON-%20FutureX%3A%20Innovating%20for%20Global%20Challenges",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 16/12/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "2 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1802090",
+    "title": "CSS Battle",
+    "slug": "unstop-1802090-css-battle",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Army Institute of Technology (AIT), Pune",
+    "institutionType": "Tech School",
+    "institutionName": "Army Institute of Technology (AIT), Pune",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2027-02-28T18:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2027-03-02T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/css-battle-solutions-2k27-army-institute-of-technology-ait-pune-1802090",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=CSS%20Battle",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 1/3/2027.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 1 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1802169",
+    "title": "Housing Fintech Challenge",
+    "slug": "unstop-1802169-housing-fintech-challenge",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Indian Institute of Technology (IIT), Bombay",
+    "institutionType": "IIT",
+    "institutionName": "Indian Institute of Technology (IIT), Bombay",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-22T18:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-24T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/hero-housing-fintech-challenge-iit-bombay-1802169",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Housing%20Fintech%20Challenge",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 23/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1790028",
+    "title": "Zenith'26",
+    "slug": "unstop-1790028-zenith-26",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "MLR Institute Of Technology (MLRIT), Hyderabad",
+    "institutionType": "Tech School",
+    "institutionName": "MLR Institute Of Technology (MLRIT), Hyderabad",
+    "entryFeeType": "paid",
+    "entryFeeAmount": 250,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Hyderabad",
+      "state": "Telangana",
+      "venue": "Mlr institute of technology,Dundigal Police Station Road, Hyderabad, Telangana ,500043"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-12-04T08:00:42+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-12-06T08:00:42+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/zenith26-mlr-institute-of-technology-mlrit-hyderabad-1790028",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Zenith'26",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 4/12/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "3 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1802089",
+    "title": "SHE CODE",
+    "slug": "unstop-1802089-she-code",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Army Institute of technology, Pune",
+    "institutionType": "Tech School",
+    "institutionName": "Army Institute of technology, Pune",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "hybrid",
+    "location": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "venue": "AIT PUNE "
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2027-02-28T18:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2027-03-02T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/she-code-solutions-2k27-army-institute-of-technology-pune-1802089",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=SHE%20CODE",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 1/3/2027.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 1 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1794522",
+    "title": "CodeElitePune - Hack With Pune",
+    "slug": "unstop-1794522-codeelitepune-hack-with-pune",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "HackWithPune",
+    "institutionType": "Tech School",
+    "institutionName": "HackWithPune",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-12-03T13:00:48+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-12-05T13:00:48+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/codeelitepune-hack-with-pune-hackwithpune-1794522",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=CodeElitePune%20-%20Hack%20With%20Pune",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 3/12/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1801200",
+    "title": "Code Red",
+    "slug": "unstop-1801200-code-red",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Army Institute of Technology (AIT), Pune",
+    "institutionType": "Tech School",
+    "institutionName": "Army Institute of Technology (AIT), Pune",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "hybrid",
+    "location": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "venue": "AIT pune"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2027-03-01T06:20:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2027-03-03T06:20:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/code-red-solutions-2k27-army-institute-of-technology-ait-pune-1801200",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Code%20Red",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 1/3/2027.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 1 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1789431",
+    "title": "AI Vibeathon 2026: 24-Hour AI Hackathon",
+    "slug": "unstop-1789431-ai-vibeathon-2026-24-hour-ai-hackathon",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "DotRepo",
+    "institutionType": "Tech School",
+    "institutionName": "DotRepo",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-13T18:29:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-15T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/ai-vibeathon-2026-24-hour-ai-hackathon-dotrepo-1789431",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=AI%20Vibeathon%202026%3A%2024-Hour%20AI%20Hackathon",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 13/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1799281",
+    "title": "Adaption Dataset Challenge",
+    "slug": "unstop-1799281-adaption-dataset-challenge",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Hackyard Technologies Pvt limited",
+    "institutionType": "Tech School",
+    "institutionName": "Hackyard Technologies Pvt limited",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-12-06T18:29:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-12-08T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/adaption-dataset-challenge-hackyard-technologies-pvt-limited-1799281",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Adaption%20Dataset%20Challenge",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 6/12/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1800891",
+    "title": "NextGen AI Hackathon",
+    "slug": "unstop-1800891-nextgen-ai-hackathon",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Product Space",
+    "institutionType": "Tech School",
+    "institutionName": "Product Space",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-21T05:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-23T05:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/nextgen-ai-hackathon-product-space-1800891",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=NextGen%20AI%20Hackathon",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 21/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 2 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1800924",
+    "title": "ELUCode - 8",
+    "slug": "unstop-1800924-elucode-8",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "EduLinkUp",
+    "institutionType": "Tech School",
+    "institutionName": "EduLinkUp",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-21T15:30:51+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-23T15:30:51+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/elucode-8-edulinkup-1800924",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=ELUCode%20-%208",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 21/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 1 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1800857",
+    "title": "Agentic AI in BFSI Hackathon",
+    "slug": "unstop-1800857-agentic-ai-in-bfsi-hackathon",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Indian Institute of Technology (IIT), Bombay",
+    "institutionType": "IIT",
+    "institutionName": "Indian Institute of Technology (IIT), Bombay",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Powai",
+      "state": "Maharashtra",
+      "venue": "IIT Bombay"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-24T18:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-26T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/agentic-ai-in-bfsi-hackathon-iit-bombay-1800857",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Agentic%20AI%20in%20BFSI%20Hackathon",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 25/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1794479",
+    "title": "Inceptrix 3.0",
+    "slug": "unstop-1794479-inceptrix-3-0",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Faculty of Engineering and Technology, Jain Deemed to be University",
+    "institutionType": "Tech School",
+    "institutionName": "Faculty of Engineering and Technology, Jain Deemed to be University",
+    "entryFeeType": "paid",
+    "entryFeeAmount": 250,
+    "entryFeeCurrency": "₹",
+    "mode": "hybrid",
+    "location": {
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "venue": "5th km, NH - 209,Jakkasandra Post, Bengaluru - Kanakapura Rd, Bengaluru, Karnataka, 562112"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-12-24T18:29:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-12-26T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/incpetrix-30-faculty-of-engineering-and-technology-jain-deemed-to-be-university-1794479",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Inceptrix%203.0",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 24/12/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "4 - 5 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1798677",
+    "title": "Overclock",
+    "slug": "unstop-1798677-overclock",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Agnel Charities Fr. C. Rodrigues Institute of Technology, Vashi, Navi Mumbai",
+    "institutionType": "Tech School",
+    "institutionName": "Agnel Charities Fr. C. Rodrigues Institute of Technology, Vashi, Navi Mumbai",
+    "entryFeeType": "paid",
+    "entryFeeAmount": 250,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Navi Mumbai",
+      "state": "Maharashtra",
+      "venue": "AGNEL CHARITIES  Fr. C. Rodrigues Institute of Technology, Vashi, Navi Mumbai"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-12-14T19:19:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-12-16T19:19:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/overclock-agnel-charities-fr-c-rodrigues-institute-of-technology-vashi-navi-mumbai-1798677",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Overclock",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 15/12/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "2 - 4 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1799780",
+    "title": "Expanding Horizons 8.0  EE",
+    "slug": "unstop-1799780-expanding-horizons-8-0-ee",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Motilal Nehru National Institute of Technology",
+    "institutionType": "NIT",
+    "institutionName": "Motilal Nehru National Institute of Technology",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-20T18:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-22T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/expanding-horizons-80-ee-expanding-horizon-80-motilal-nehru-national-institute-of-technology-1799780",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Expanding%20Horizons%208.0%20%20EE",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 21/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 1 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1799791",
+    "title": "Expanding Horizons 8.0 Chemical",
+    "slug": "unstop-1799791-expanding-horizons-8-0-chemical",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Motilal Nehru National Institute of Technology",
+    "institutionType": "NIT",
+    "institutionName": "Motilal Nehru National Institute of Technology",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-20T18:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-22T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/expanding-horizons-80-chemical-expanding-horizon-80-motilal-nehru-national-institute-of-technology-1799791",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Expanding%20Horizons%208.0%20Chemical",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 21/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 1 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1799790",
+    "title": "Expanding Horizons 8.0   BIOTECH",
+    "slug": "unstop-1799790-expanding-horizons-8-0-biotech",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "Motilal Nehru National Institute of Technology",
+    "institutionType": "NIT",
+    "institutionName": "Motilal Nehru National Institute of Technology",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-20T18:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-22T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/expanding-horizons-80-biotech-expanding-horizon-80-motilal-nehru-national-institute-of-technology-1799790",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Expanding%20Horizons%208.0%20%20%20BIOTECH",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 21/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 1 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "unstop-1795134",
+    "title": "Remote Robotics Hackathon",
+    "slug": "unstop-1795134-remote-robotics-hackathon",
+    "tagline": "Official Unstop Hackathon with Live Verified Registrations Open",
+    "organizer": "PES University (PESU), Bengaluru",
+    "institutionType": "Tech School",
+    "institutionName": "PES University (PESU), Bengaluru",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Unstop Online Platform)"
+    },
+    "prizePool": "₹1,50,000+",
+    "prizePoolAmountINR": 150000,
+    "dates": {
+      "registrationDeadline": "2026-11-17T18:30:00+00:00",
+      "startDate": "2026-11-20T18:06:22.189+00:00",
+      "endDate": "2026-11-19T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://unstop.com/hackathons/remote-robotics-hackathon-pes-university-pesu-bengaluru-1795134",
+    "backupLink": "https://unstop.com/hackathons?searchTerm=Remote%20Robotics%20Hackathon",
+    "isVerified": true,
+    "description": "Verified live challenge hosted on Unstop. Applications are officially active and closing on 18/11/2026.",
+    "tracks": [
+      "Artificial Intelligence",
+      "Full-Stack Engineering",
+      "Cloud & Systems",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to college students and early-career developers in India.",
+    "teamSize": "1 - 3 Members",
+    "perks": [
+      "Direct registration on official Unstop portal",
+      "Official Certificate of Participation",
+      "Cash prizes and hiring opportunities"
+    ],
+    "status": "open",
+    "source": "Unstop"
+  },
+  {
+    "id": "devfolio-genarrative-clash",
+    "title": "GeNarrative Clash",
+    "slug": "devfolio-genarrative-clash",
+    "tagline": "Where Generative AI Meets Human Creativity: Kolkata's Ultimate Prompt Engineering Challenge",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Kolkata Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Kolkata",
+      "state": "West Bengal",
+      "venue": "Techno India University, EM Block, Sector V, Bidhannagar, Kolkata, West Bengal 700091, India"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-11-15T18:29:00+00:00",
+      "startDate": "2026-09-27T04:30:00+00:00",
+      "endDate": "2026-11-15T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://genarrative-clash.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "# GeNarrative Clash 2026\n*Where Generative AI Meets Human Creativity*\n\nAre you ready to redefine how stories are told, music is composed, and digital art is created? **GeNarrative Clash** is Kolkata's premier Prompt Engineering & AI Buildin...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "2 - 4 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "devfolio-codenmod",
+    "title": "Code N Mod",
+    "slug": "devfolio-codenmod",
+    "tagline": "Learn the craft. Build the game. Play your creation.",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Tumakur Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Tumakur",
+      "state": "Karnataka",
+      "venue": "Siddaganga Institute Of Technology, Chandana Complex, Tumakur, Karnataka, India"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-11-18T02:45:00+00:00",
+      "startDate": "2026-11-09T18:30:00+00:00",
+      "endDate": "2026-11-18T02:45:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://codenmod.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "## About the Event\n\nOrganized by **32BIT — Game Development Club of Siddaganga Institute of Technology (SIT), Tumakuru**, this one-day, offline event brings together students interested in gaming, programming, game design, and interactive e...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "1 - 6 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "devfolio-founders-house-kolkata",
+    "title": "Founders' House Kolkata",
+    "slug": "devfolio-founders-house-kolkata",
+    "tagline": "Build. Validate. Launch.",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Bengaluru Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Bengaluru",
+      "state": "India",
+      "venue": "Bengaluru Campus"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-11-24T18:30:00+00:00",
+      "startDate": "2026-11-08T18:30:00+00:00",
+      "endDate": "2026-11-24T18:30:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://founders-house-kolkata.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "Kolkata's most relentless 72 hour startup sprint. 10 elite squads live on site at AIC Techno (Offbeat CCU), crack raw mentor problems, build real products, and pitch live to venture syndicates.\n\nOrganized by Hult Prize at TIU and hosted at ...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "3 - 5 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "devfolio-health-hackathon",
+    "title": "Health Hackathon 3.0",
+    "slug": "devfolio-health-hackathon",
+    "tagline": "Global Health Access Innovation Challenge",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Kothri Kalan Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Kothri Kalan",
+      "state": "Madhya Pradesh",
+      "venue": "VIT Bhopal University, Indore - Bhopal Road, Kothri Kalan, Sehore, Madhya Pradesh, India"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-11-30T18:29:00+00:00",
+      "startDate": "2026-10-29T18:30:00+00:00",
+      "endDate": "2026-11-30T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://health-hackathon.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "VIT Bhopal University to Host Health Hackathon 3.0 in January 2027\n\nEvent invites new ideas to make healthcare better and cost less\n\nVIT Bhopal University will host Health Hackathon 3.0 on 28 and 29 January 2027. A pre-event workshop will t...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "1 - 6 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "devfolio-clash-of-commits",
+    "title": "Clash of Commits",
+    "slug": "devfolio-clash-of-commits",
+    "tagline": "Every commit is a battle!",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Chennai Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Chennai",
+      "state": "Tamil Nadu",
+      "venue": "VIT Chennai, Kelambakkam - Vandalur Road, Chennai, Tamil Nadu, India"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-11-30T18:29:00+00:00",
+      "startDate": "2026-11-04T18:30:00+00:00",
+      "endDate": "2026-11-30T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://clash-of-commits.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "# CLASH OF COMMITS\n### Build Your Clan. Prepare for War. Claim the Crown.\n\nThe kingdom is calling. The battlefield is open. Is your clan ready?\n\n**Clash of Commits** is not your usual hackathon. It's a clan-based coding battlefield where id...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "3 - 5 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "devfolio-haxfinity",
+    "title": "haxfinity",
+    "slug": "devfolio-haxfinity",
+    "tagline": "Official Devfolio National Hackathon",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Myladi Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Myladi",
+      "state": "Kerala",
+      "venue": "Amal College of Advanced Studies, Nilambur, Myladi, Eranhimangad, Kerala, India"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-12-10T18:29:00+00:00",
+      "startDate": "2026-08-14T18:29:00+00:00",
+      "endDate": "2026-12-10T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://haxfinity.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "HAXFINITY — Hack the Infinite\n\nThe 24-hour hackathon of XTHRON ’27\n\n3–4 JANUARY 2027\n10:30 AM, 3 December – 10:30 AM, 4 December  \nAmal College of Advanced Studies (Autonomous), Nilambur, Kerala\n\nPrizes:Exciting prizes — details to be annou...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "2 - 4 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "devfolio-hacksprint-3",
+    "title": "Hacksprint 3.0",
+    "slug": "devfolio-hacksprint-3",
+    "tagline": "Build Bold. Ride Beyond.",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Bengaluru Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Bengaluru",
+      "state": "India",
+      "venue": "Bengaluru Campus"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-12-28T18:29:00+00:00",
+      "startDate": "2026-11-08T02:15:00+00:00",
+      "endDate": "2026-12-28T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hacksprint-3.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "💬 **WHATSAPP COMMUNITY — JOIN NOW:** https://chat.whatsapp.com/C9gawXXKFtr76gk6YoUe3K\n\n# HackSprint 3.0 — Build Bold. Ride Beyond.\n\n# 🚀 About the Event\n\n**HackSprint 3.0** is a National-Level, 36-Hour Hackathon organized by the Department...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "2 - 5 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "devfolio-innerve-11",
+    "title": "Innerve 11.0",
+    "slug": "devfolio-innerve-11",
+    "tagline": "Nerve to Innovate",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Pune Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Pune",
+      "state": "Maharashtra",
+      "venue": "Army Institute of Technology, Alandi Road, Dighi, Pune, Maharashtra, India"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-12-30T18:29:00+00:00",
+      "startDate": "2026-11-06T18:30:00+00:00",
+      "endDate": "2026-12-30T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://innerve-11.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "**Innerve 11** stands as **India’s Largest Student-Driven Hackathon**, proudly organized by the AIT Open Source Software Club at the prestigious **Army Institute of Technology (AIT), Pune**. This flagship innovation festival is dedicated to...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "2 - 4 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "devfolio-techacks05",
+    "title": "Techacks 5.0",
+    "slug": "devfolio-techacks05",
+    "tagline": "24 hours, in person Hackathon. From Bharat to World 🇮🇳→🌍",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Rajpura Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Rajpura",
+      "state": "Punjab",
+      "venue": "Chitkara University, Rajpura, Punjab, India"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-12-31T18:29:00+00:00",
+      "startDate": "2026-11-08T03:30:00+00:00",
+      "endDate": "2026-12-31T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://techacks05.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "## 🚀 Season 5 is cleared for launch.\n\n**TecHacks 5.0** is Season 05 of TecHacks: one **24-hour hackathon, fully in person**, on one stage at Chitkara University, Punjab. Form a crew, pick a track and turn an idea into a working solution in...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "2 - 4 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "devfolio-hack-with-gdg-s4",
+    "title": "HACK WITH GDG S4",
+    "slug": "devfolio-hack-with-gdg-s4",
+    "tagline": "Challenge Reality. Build What's Next.",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "KSR Kalvi Nagar Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "KSR Kalvi Nagar",
+      "state": "Tamil Nadu",
+      "venue": "K S R College of Engineering, KSR Kalvi Nagar, Tamil Nadu, India"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-12-31T18:29:00+00:00",
+      "startDate": "2026-08-23T18:30:00+00:00",
+      "endDate": "2026-12-31T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://hack-with-gdg-s4.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "# Hack With GDG S4\n\n### 36 Hours of Innovation, Building, and Impact\n\n**Hack With GDG S4** is the fourth season of the flagship hackathon organized by **Google Developer Groups – KSR College of Engineering (GDG KSRCE)**. The event brings to...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
+  },
+  {
+    "id": "devfolio-goa-buildathon",
+    "title": "GOA BUILDATHON 27",
+    "slug": "devfolio-goa-buildathon",
+    "tagline": "36 hours. Goa, India.",
+    "organizer": "Devfolio Community & University Chapters",
+    "institutionType": "Tech School",
+    "institutionName": "Bengaluru Tech Community",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "offline",
+    "location": {
+      "city": "Bengaluru",
+      "state": "Goa",
+      "venue": "Goa, India"
+    },
+    "prizePool": "₹2,00,000+",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-12-31T18:29:00+00:00",
+      "startDate": "2026-10-29T14:00:00+00:00",
+      "endDate": "2026-12-31T18:29:00+00:00",
+      "durationHours": 36
+    },
+    "registrationLink": "https://goa-buildathon.devfolio.co/",
+    "backupLink": "https://devfolio.co/discover",
+    "isVerified": true,
+    "description": "# All That You Need to Know About GOA BUILDATHON ’27\n\nWelcome to **GOA BUILDATHON ’27!**\n\n> Where ambition meets execution.\n\nEvery great innovation starts with an idea. What makes it great is the courage to build it, the curiosity to experi...",
+    "tracks": [
+      "Web3",
+      "AI & GenAI",
+      "Mobile & App Development",
+      "Open Innovation"
+    ],
+    "eligibility": "Open to engineering and university students across India.",
+    "teamSize": "2 - 4 Members",
+    "perks": [
+      "Direct submission via Devfolio application",
+      "Swag kits & sponsor bounties",
+      "Networking with founders & mentors"
+    ],
+    "status": "open",
+    "source": "Devfolio"
   }
 ];
