@@ -76,7 +76,8 @@ function filterHackathonsLocally(filters: FilterState): {
     iiitCount: number;
   };
 } {
-  let results = cleanAndFilterHackathons([...SEED_HACKATHONS]);
+  const allClean = cleanAndFilterHackathons([...SEED_HACKATHONS]);
+  let results = [...allClean];
 
   // 1. Fee filter: 'free' vs 'paid'
   if (filters.fee && filters.fee !== 'all') {
@@ -135,15 +136,15 @@ function filterHackathonsLocally(filters: FilterState): {
   }
 
   const stats = {
-    total: results.length,
-    freeCount: results.filter(h => h.entryFeeType === 'free').length,
-    paidCount: results.filter(h => h.entryFeeType === 'paid').length,
+    total: allClean.length,
+    freeCount: allClean.filter(h => h.entryFeeType === 'free').length,
+    paidCount: allClean.filter(h => h.entryFeeType === 'paid').length,
     onlineCount: results.filter(h => h.mode === 'online').length,
     offlineCount: results.filter(h => h.mode === 'offline').length,
     hybridCount: results.filter(h => h.mode === 'hybrid').length,
-    iitCount: results.filter(h => h.institutionType === 'IIT').length,
-    nitCount: results.filter(h => h.institutionType === 'NIT').length,
-    iiitCount: results.filter(h => h.institutionType === 'IIIT').length,
+    iitCount: allClean.filter(h => h.institutionType === 'IIT').length,
+    nitCount: allClean.filter(h => h.institutionType === 'NIT').length,
+    iiitCount: allClean.filter(h => h.institutionType === 'IIIT').length,
   };
 
   return { hackathons: results, stats };
@@ -250,7 +251,8 @@ export async function fetchHackathons(filters: FilterState): Promise<{
       }));
 
       // Sanitize out broken links & filter expired hackathons
-      let results = cleanAndFilterHackathons([...mapped]);
+      const allClean = cleanAndFilterHackathons([...mapped]);
+      let results = [...allClean];
       if (filters.fee && filters.fee !== 'all') {
         results = results.filter(h => h.entryFeeType === filters.fee);
       }
@@ -297,15 +299,15 @@ export async function fetchHackathons(filters: FilterState): Promise<{
       }
 
       const stats = {
-        total: results.length,
-        freeCount: results.filter(h => h.entryFeeType === 'free').length,
-        paidCount: results.filter(h => h.entryFeeType === 'paid').length,
+        total: allClean.length,
+        freeCount: allClean.filter(h => h.entryFeeType === 'free').length,
+        paidCount: allClean.filter(h => h.entryFeeType === 'paid').length,
         onlineCount: results.filter(h => h.mode === 'online').length,
         offlineCount: results.filter(h => h.mode === 'offline').length,
         hybridCount: results.filter(h => h.mode === 'hybrid').length,
-        iitCount: results.filter(h => h.institutionType === 'IIT').length,
-        nitCount: results.filter(h => h.institutionType === 'NIT').length,
-        iiitCount: results.filter(h => h.institutionType === 'IIIT').length,
+        iitCount: allClean.filter(h => h.institutionType === 'IIT').length,
+        nitCount: allClean.filter(h => h.institutionType === 'NIT').length,
+        iiitCount: allClean.filter(h => h.institutionType === 'IIIT').length,
       };
 
       return { hackathons: results, stats };
