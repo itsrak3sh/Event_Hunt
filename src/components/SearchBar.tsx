@@ -17,6 +17,9 @@ interface SearchBarProps {
   onOpenFilterModal: () => void;
   activeTags?: ActiveFilterTag[];
   onResetAllFilters?: () => void;
+  domainFilter?: 'all' | 'software' | 'both';
+  onDomainFilterChange?: (domain: 'all' | 'software' | 'both') => void;
+  domainCounts?: { both: number; software: number; all?: number };
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({
@@ -29,6 +32,9 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   onOpenFilterModal,
   activeTags = [],
   onResetAllFilters,
+  domainFilter = 'all',
+  onDomainFilterChange,
+  domainCounts = { both: 29, software: 57, all: 86 },
 }) => {
   return (
     <div className="flex flex-col gap-3 mb-6">
@@ -96,6 +102,66 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         </div>
 
       </div>
+
+      {/* Branch & Tech Domain Quick Switcher (Mechatronics/Robotics vs CS/AI) */}
+      {onDomainFilterChange && (
+        <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+          <span className="text-[11px] font-mono text-gray-500 font-semibold uppercase tracking-wider shrink-0 hidden sm:inline">
+            Branch Focus:
+          </span>
+
+          {/* All Fields */}
+          <button
+            type="button"
+            onClick={() => onDomainFilterChange('all')}
+            className={`px-3 py-1.5 rounded-lg font-bold border transition-all shrink-0 cursor-pointer ${
+              domainFilter === 'all'
+                ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
+                : 'bg-white text-gray-700 border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+            }`}
+          >
+            All Tech Fields
+          </button>
+
+          {/* Both: Hardware + Software (Mechatronics + CS collab) */}
+          <button
+            type="button"
+            onClick={() => onDomainFilterChange(domainFilter === 'both' ? 'all' : 'both')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold border transition-all shrink-0 cursor-pointer ${
+              domainFilter === 'both'
+                ? 'bg-purple-600 text-white border-purple-600 shadow-xs scale-102'
+                : 'bg-purple-50/70 text-purple-700 border-purple-200 hover:bg-purple-100/70'
+            }`}
+            title="Ideal for Mechatronics & CS/AI collab teams (Robotics, IoT, Embedded + AI/Web)"
+          >
+            <span>⚡ Both (Hardware + Software)</span>
+            <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
+              domainFilter === 'both' ? 'bg-purple-700 text-white' : 'bg-purple-200 text-purple-900'
+            }`}>
+              {domainCounts.both}
+            </span>
+          </button>
+
+          {/* Software & AI */}
+          <button
+            type="button"
+            onClick={() => onDomainFilterChange(domainFilter === 'software' ? 'all' : 'software')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold border transition-all shrink-0 cursor-pointer ${
+              domainFilter === 'software'
+                ? 'bg-blue-600 text-white border-blue-600 shadow-xs scale-102'
+                : 'bg-blue-50/70 text-blue-700 border-blue-200 hover:bg-blue-100/70'
+            }`}
+            title="Pure Software, AI/ML, Web, App & Cloud hackathons"
+          >
+            <span>💻 Software & AI</span>
+            <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
+              domainFilter === 'software' ? 'bg-blue-700 text-white' : 'bg-blue-200 text-blue-900'
+            }`}>
+              {domainCounts.software}
+            </span>
+          </button>
+        </div>
+      )}
 
       {/* Active Filter Chips Strip (Shows when filters are selected) */}
       {(activeTags.length > 0 || search) && (

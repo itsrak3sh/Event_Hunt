@@ -25,6 +25,7 @@ import { HackathonCard } from './components/HackathonCard';
 import { HackathonDetailModal } from './components/HackathonDetailModal';
 import { TinyFishDrawer } from './components/TinyFishDrawer';
 import { TinyFishInspectorModal } from './components/TinyFishInspectorModal';
+import { getTechDomain } from './utils/domain';
 import { 
   Sparkles, 
   AlertCircle, 
@@ -80,6 +81,7 @@ export function App() {
 
   // Track Filter state
   const [selectedTrack, setSelectedTrack] = useState<string>('all');
+  const [domainFilter, setDomainFilter] = useState<'all' | 'software' | 'both'>('all');
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   // Active filter count
@@ -90,8 +92,9 @@ export function App() {
     if (filters.city !== 'All Locations' && filters.city !== 'all') count++;
     if (filters.institution !== 'all') count++;
     if (selectedTrack !== 'all') count++;
+    if (domainFilter !== 'all') count++;
     return count;
-  }, [filters, selectedTrack]);
+  }, [filters, selectedTrack, domainFilter]);
 
   // Active filter tags for quick removal
   const activeTags = useMemo(() => {
@@ -132,8 +135,15 @@ export function App() {
         onRemove: () => setSelectedTrack('all'),
       });
     }
+    if (domainFilter !== 'all') {
+      tags.push({
+        id: 'domain',
+        label: domainFilter === 'both' ? '⚡ Hardware + Software' : '💻 Software & AI',
+        onRemove: () => setDomainFilter('all'),
+      });
+    }
     return tags;
-  }, [filters, selectedTrack]);
+  }, [filters, selectedTrack, domainFilter]);
 
   const handleResetFilters = () => {
     setFilters({
@@ -145,6 +155,7 @@ export function App() {
       sortBy: 'deadline',
     });
     setSelectedTrack('all');
+    setDomainFilter('all');
   };
 
   // User Skills for matching
@@ -259,7 +270,19 @@ export function App() {
     setIsTeammateModalOpen(true);
   };
 
-  // Filtered hackathons to display (handling bookmark view + track chips)
+  // Dynamic tech domain counts
+  const domainCounts = useMemo(() => {
+    let both = 0;
+    let software = 0;
+    hackathons.forEach((h) => {
+      const d = getTechDomain(h).type;
+      if (d === 'both' || d === 'hardware') both++;
+      if (d === 'software') software++;
+    });
+    return { both, software, all: hackathons.length };
+  }, [hackathons]);
+
+  // Filtered hackathons to display (handling bookmark view + track chips + domain filter)
   const displayedHackathons = useMemo(() => {
     let result = hackathons;
 
@@ -279,8 +302,18 @@ export function App() {
       }
     }
 
+    if (domainFilter !== 'all') {
+      result = result.filter((h) => {
+        const d = getTechDomain(h).type;
+        if (domainFilter === 'both') {
+          return d === 'both' || d === 'hardware';
+        }
+        return d === 'software';
+      });
+    }
+
     return result;
-  }, [hackathons, isBookmarksOnly, savedIds, selectedTrack]);
+  }, [hackathons, isBookmarksOnly, savedIds, selectedTrack, domainFilter]);
 
   return (
     <div className="min-h-screen bg-white text-gray-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
@@ -303,7 +336,7 @@ export function App() {
       {/* Main Page Body */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         
-        {/* Stats Summary Bar (Interactive 1-Tap Filter Cards) */}
+        {/* Stats Bar (Interactive 1-Tap Filter Cards) */}
         <StatsBar
           stats={stats}
           filters={filters}
@@ -311,7 +344,7 @@ export function App() {
           onResetFilters={handleResetFilters}
         />
 
-        {/* Unified Search, Single Filter Trigger Button & Sort Bar */}
+        {/* Unified Search, Tech Domain Chips, Single Filter Trigger Button & Sort Bar */}
         <SearchBar
           search={filters.search}
           onSearchChange={(searchVal) => setFilters((prev) => ({ ...prev, search: searchVal }))}
@@ -322,6 +355,9 @@ export function App() {
           onOpenFilterModal={() => setIsFilterModalOpen(true)}
           activeTags={activeTags}
           onResetAllFilters={handleResetFilters}
+          domainFilter={domainFilter}
+          onDomainFilterChange={setDomainFilter}
+          domainCounts={domainCounts}
         />
 
         {/* Bookmarks view notice */}

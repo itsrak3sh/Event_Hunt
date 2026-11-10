@@ -18,6 +18,7 @@ import {
   Search
 } from 'lucide-react';
 import { Hackathon } from '../types';
+import { getTechDomain } from '../utils/domain';
 import { generateGoogleCalendarUrl, shareToWhatsApp } from '../utils/calendar';
 
 interface HackathonCardProps {
@@ -36,6 +37,7 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
   onFindTeammates,
 }) => {
   const [copied, setCopied] = useState(false);
+  const domain = getTechDomain(hackathon);
 
   const handleCopyLink = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -116,6 +118,14 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             {/* Institution Badge */}
             <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold border ${getInstBadgeStyle()}`}>
               {hackathon.institutionType}
+            </span>
+
+            {/* Tech Domain Badge (Hardware vs Software vs Both) */}
+            <span
+              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold border ${domain.badgeClass}`}
+              title={domain.description}
+            >
+              <span>{domain.badgeLabel}</span>
             </span>
           </div>
 
@@ -352,6 +362,11 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
           </button>
 
         </div>
+
+        {/* Browser Guidance Note */}
+        <p className="text-[10px] text-gray-500 text-center font-mono mt-1">
+          ↗ Opens {hackathon.source} in new tab • BharatHack stays open here
+        </p>
 
       </div>
 

@@ -16,9 +16,11 @@ import {
   Bookmark, 
   DollarSign, 
   Download,
-  Search 
+  Search,
+  ArrowLeft
 } from 'lucide-react';
 import { Hackathon } from '../types';
+import { getTechDomain } from '../utils/domain';
 import { generateGoogleCalendarUrl, downloadIcsFile, shareToWhatsApp } from '../utils/calendar';
 
 interface HackathonDetailModalProps {
@@ -39,6 +41,8 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
   const [copied, setCopied] = useState(false);
 
   if (!hackathon) return null;
+
+  const domain = getTechDomain(hackathon);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(hackathon.registrationLink);
@@ -76,6 +80,20 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         
+        {/* Top Back Navigation Bar */}
+        <div className="flex items-center justify-between px-6 py-2.5 border-b border-gray-100 bg-gray-50/90 text-xs shrink-0">
+          <button
+            onClick={onClose}
+            className="inline-flex items-center gap-2 font-bold text-gray-700 hover:text-blue-600 transition cursor-pointer group py-1"
+          >
+            <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-blue-600" />
+            <span>← Back to all hackathons</span>
+          </button>
+          <div className="flex items-center gap-3 text-[11px] text-gray-400 font-mono">
+            <span className="hidden sm:inline">Press ESC to return</span>
+          </div>
+        </div>
+
         {/* Modal Header */}
         <div className="flex items-start justify-between p-6 border-b border-gray-200 bg-white">
           <div>
@@ -97,6 +115,14 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
               {/* Institution */}
               <span className="px-2 py-0.5 rounded text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200">
                 {hackathon.institutionType}
+              </span>
+
+              {/* Tech Domain Badge (Branch Focus) */}
+              <span
+                className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded text-xs font-bold border ${domain.badgeClass}`}
+                title={domain.description}
+              >
+                {domain.badgeLabel}
               </span>
 
               {/* Source Platform Badge */}
@@ -322,54 +348,71 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
         {/* =========================================================================
             BOTTOM REGISTRATION LINK BAR (CLEARLY POSITIONED BELOW DETAILS)
         ========================================================================= */}
-        <div className="p-5 border-t border-gray-200 bg-gray-50 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="p-4 sm:p-5 border-t border-gray-200 bg-gray-50 flex flex-col gap-3">
           
-          <div className="w-full sm:w-auto">
-            <div className="text-[11px] text-gray-500 flex items-center gap-1.5 font-mono">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-              <span>Official Registration Link Verified</span>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="w-full sm:w-auto">
+              <div className="text-[11px] text-gray-500 flex items-center gap-1.5 font-mono">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
+                <span>Official Registration Link Verified</span>
+              </div>
+              <div className="text-xs text-blue-600 truncate max-w-sm mt-0.5 underline">
+                {hackathon.registrationLink}
+              </div>
             </div>
-            <div className="text-xs text-blue-600 truncate max-w-sm mt-0.5 underline">
-              {hackathon.registrationLink}
+
+            <div className="flex items-center gap-2.5 w-full sm:w-auto">
+              {/* Backup Official Portal Search Link */}
+              <a
+                href={hackathon.backupLink || (
+                  hackathon.source === 'Devfolio' ? 'https://devfolio.co/discover' :
+                  hackathon.source === 'Devpost' ? 'https://devpost.com/hackathons' :
+                  hackathon.source === 'HackerEarth' ? 'https://www.hackerearth.com/challenges/' :
+                  hackathon.source === 'MLH' ? 'https://mlh.io/seasons/2027/events' :
+                  `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 text-xs font-semibold border border-gray-200 transition"
+                title={`Search on ${hackathon.source} portal (Backup if official portal is temporarily down)`}
+              >
+                <Search className="w-3.5 h-3.5 text-blue-600" />
+                <span>Backup Search</span>
+              </a>
+
+              <button
+                onClick={handleCopyLink}
+                className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 text-xs font-semibold border border-gray-200 transition cursor-pointer"
+              >
+                {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                <span>{copied ? 'Copied Link' : 'Copy Link'}</span>
+              </button>
+
+              <a
+                href={hackathon.registrationLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-xs transition active:scale-95"
+              >
+                <span>Apply & Register Official</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5 w-full sm:w-auto">
-            {/* Backup Official Portal Search Link */}
-            <a
-              href={hackathon.backupLink || (
-                hackathon.source === 'Devfolio' ? 'https://devfolio.co/discover' :
-                hackathon.source === 'Devpost' ? 'https://devpost.com/hackathons' :
-                hackathon.source === 'HackerEarth' ? 'https://www.hackerearth.com/challenges/' :
-                hackathon.source === 'MLH' ? 'https://mlh.io/seasons/2027/events' :
-                `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 text-xs font-semibold border border-gray-200 transition"
-              title={`Search on ${hackathon.source} portal (Backup if official portal is temporarily down)`}
-            >
-              <Search className="w-3.5 h-3.5 text-blue-600" />
-              <span>Backup Search</span>
-            </a>
-
+          {/* Browser Navigation Clarification Banner */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-3.5 py-2 rounded-lg bg-blue-50/70 border border-blue-200/60 text-[11px] font-mono text-gray-700">
+            <div className="flex items-center gap-1.5 text-blue-900">
+              <span className="font-bold">↗ Nayi Tab Warning:</span>
+              <span>Yeh link nayi browser tab me open hoga. BharatHack aapki pichhli tab me safe rahega!</span>
+            </div>
             <button
-              onClick={handleCopyLink}
-              className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-white hover:bg-gray-100 text-gray-700 text-xs font-semibold border border-gray-200 transition"
+              type="button"
+              onClick={onClose}
+              className="inline-flex items-center gap-1 font-bold text-blue-700 hover:text-blue-900 cursor-pointer self-start sm:self-auto underline"
             >
-              {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-              <span>{copied ? 'Copied Link' : 'Copy Link'}</span>
+              <span>← Wapas List Dekhein</span>
             </button>
-
-            <a
-              href={hackathon.registrationLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-xs transition active:scale-95"
-            >
-              <span>Apply & Register Official</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
           </div>
 
         </div>
