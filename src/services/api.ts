@@ -100,11 +100,15 @@ function filterHackathonsLocally(filters: FilterState): {
 
   // 4. Institution filter
   if (filters.institution && filters.institution !== 'all' && (filters.institution as string) !== 'All Institutions') {
-    const instStr = filters.institution.toLowerCase();
-    results = results.filter(h =>
-      h.institutionType.toLowerCase() === instStr ||
-      h.institutionName.toLowerCase().includes(instStr)
-    );
+    if (filters.institution === 'Top Colleges') {
+      results = results.filter(h => ['IIT', 'NIT', 'IIIT'].includes(h.institutionType));
+    } else {
+      const instStr = filters.institution.toLowerCase();
+      results = results.filter(h =>
+        h.institutionType.toLowerCase() === instStr ||
+        h.institutionName.toLowerCase().includes(instStr)
+      );
+    }
   }
 
   // 5. Keyword search
@@ -262,11 +266,15 @@ export async function fetchHackathons(filters: FilterState): Promise<{
         );
       }
       if (filters.institution && filters.institution !== 'all' && (filters.institution as string) !== 'All Institutions') {
-        const instStr = filters.institution.toLowerCase();
-        results = results.filter(h =>
-          h.institutionType.toLowerCase() === instStr ||
-          h.institutionName.toLowerCase().includes(instStr)
-        );
+        if (filters.institution === 'Top Colleges') {
+          results = results.filter(h => ['IIT', 'NIT', 'IIIT'].includes(h.institutionType));
+        } else {
+          const instStr = filters.institution.toLowerCase();
+          results = results.filter(h =>
+            h.institutionType.toLowerCase() === instStr ||
+            h.institutionName.toLowerCase().includes(instStr)
+          );
+        }
       }
       if (filters.search) {
         const q = filters.search.toLowerCase();

@@ -120,7 +120,7 @@ export function App() {
     if (filters.institution !== 'all') {
       tags.push({
         id: 'inst',
-        label: `🎓 ${filters.institution}`,
+        label: filters.institution === 'Top Colleges' ? '🏛️ IIT / NIT / IIIT' : `🎓 ${filters.institution}`,
         onRemove: () => setFilters((prev) => ({ ...prev, institution: 'all' })),
       });
     }
@@ -303,8 +303,13 @@ export function App() {
       {/* Main Page Body */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         
-        {/* Stats Summary Bar */}
-        <StatsBar stats={stats} />
+        {/* Stats Summary Bar (Interactive 1-Tap Filter Cards) */}
+        <StatsBar
+          stats={stats}
+          filters={filters}
+          onFilterChange={(newFilters) => setFilters(newFilters)}
+          onResetFilters={handleResetFilters}
+        />
 
         {/* Unified Search, Single Filter Trigger Button & Sort Bar */}
         <SearchBar

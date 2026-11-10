@@ -39,7 +39,7 @@ export interface Hackathon {
 
 export type FeeFilter = 'all' | 'free' | 'paid';
 export type ModeFilter = 'all' | 'online' | 'offline' | 'hybrid';
-export type InstitutionFilter = 'all' | 'IIT' | 'NIT' | 'IIIT' | 'Tech School' | 'Private / Corporate' | 'Corporate / Private';
+export type InstitutionFilter = 'all' | 'IIT' | 'NIT' | 'IIIT' | 'Top Colleges' | 'Tech School' | 'Private / Corporate' | 'Corporate / Private';
 
 export interface FilterState {
   fee: FeeFilter;
