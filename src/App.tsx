@@ -25,7 +25,7 @@ import { HackathonCard } from './components/HackathonCard';
 import { HackathonDetailModal } from './components/HackathonDetailModal';
 import { TinyFishDrawer } from './components/TinyFishDrawer';
 import { TinyFishInspectorModal } from './components/TinyFishInspectorModal';
-import { getTechDomain } from './utils/domain';
+import { getTechDomain, TechDomain } from './utils/domain';
 import { 
   Sparkles, 
   AlertCircle, 
@@ -81,7 +81,7 @@ export function App() {
 
   // Track Filter state
   const [selectedTrack, setSelectedTrack] = useState<string>('all');
-  const [domainFilter, setDomainFilter] = useState<'all' | 'software' | 'both'>('all');
+  const [domainFilter, setDomainFilter] = useState<TechDomain>('all');
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   // Active filter count
@@ -138,7 +138,11 @@ export function App() {
     if (domainFilter !== 'all') {
       tags.push({
         id: 'domain',
-        label: domainFilter === 'both' ? '⚡ Hardware + Software' : '💻 Software & AI',
+        label: domainFilter === 'hardware'
+          ? '🤖 Only Hardware'
+          : domainFilter === 'both'
+          ? '⚡ Both (HW + SW)'
+          : '💻 Software & AI',
         onRemove: () => setDomainFilter('all'),
       });
     }
@@ -343,12 +347,14 @@ export function App() {
   const domainCounts = useMemo(() => {
     let both = 0;
     let software = 0;
+    let hardware = 0;
     hackathons.forEach((h) => {
       const d = getTechDomain(h).type;
-      if (d === 'both' || d === 'hardware') both++;
-      if (d === 'software') software++;
+      if (d === 'hardware') hardware++;
+      else if (d === 'both') both++;
+      else if (d === 'software') software++;
     });
-    return { both, software, all: hackathons.length };
+    return { all: hackathons.length, hardware, both, software };
   }, [hackathons]);
 
   // Filtered hackathons to display (handling bookmark view + track chips + domain filter)
@@ -372,13 +378,7 @@ export function App() {
     }
 
     if (domainFilter !== 'all') {
-      result = result.filter((h) => {
-        const d = getTechDomain(h).type;
-        if (domainFilter === 'both') {
-          return d === 'both' || d === 'hardware';
-        }
-        return d === 'software';
-      });
+      result = result.filter((h) => getTechDomain(h).type === domainFilter);
     }
 
     return result;
@@ -424,9 +424,6 @@ export function App() {
           onOpenFilterModal={() => setIsFilterModalOpen(true)}
           activeTags={activeTags}
           onResetAllFilters={handleResetFilters}
-          domainFilter={domainFilter}
-          onDomainFilterChange={setDomainFilter}
-          domainCounts={domainCounts}
         />
 
         {/* Bookmarks view notice */}
@@ -613,6 +610,9 @@ export function App() {
         cities={cities}
         totalMatches={displayedHackathons.length}
         onResetFilters={handleResetFilters}
+        domainFilter={domainFilter}
+        onDomainFilterChange={setDomainFilter}
+        domainCounts={domainCounts}
       />
 
     </div>
