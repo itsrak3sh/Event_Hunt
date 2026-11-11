@@ -161,6 +161,28 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
           </div>
 
           <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+            {/* 1-Tap Manual Tick Button (Mark as Registered / Untick) */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleRegistered(hackathon.id);
+              }}
+              className={`p-1.5 rounded-lg transition cursor-pointer flex items-center justify-center ${
+                isRegistered
+                  ? 'bg-emerald-100 text-emerald-700 border border-emerald-300 hover:bg-red-50 hover:text-red-600 hover:border-red-300'
+                  : 'text-gray-400 hover:text-emerald-600 hover:bg-emerald-50 border border-transparent hover:border-emerald-200'
+              }`}
+              title={isRegistered ? 'Registered! Click to un-tick / remove' : 'Manual Tick: Mark as Registered'}
+              aria-label={isRegistered ? 'Remove registration tick' : 'Manually tick as registered'}
+            >
+              {isRegistered ? (
+                <CheckCircle className="w-4 h-4 fill-emerald-100 text-emerald-700" />
+              ) : (
+                <Check className="w-4 h-4" />
+              )}
+            </button>
+
             {/* Calendar Reminder Button */}
             <button
               onClick={handleCalendar}

@@ -93,28 +93,29 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
         </button>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
-          {/* Registered / Applied Status Indicator */}
-          {isRegistered ? (
-            <button
-              type="button"
-              onClick={() => onToggleRegistered(hackathon.id)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-700 text-xs font-bold shadow-2xs hover:bg-emerald-100 transition cursor-pointer"
-              title="Applied! Click to undo"
-            >
-              <CheckCircle className="w-4 h-4 text-emerald-600 fill-emerald-100" />
-              <span>Applied ✅</span>
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => onToggleRegistered(hackathon.id)}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-gray-600 text-xs font-semibold transition cursor-pointer"
-              title="Click if you have already registered for this hackathon"
-            >
-              <CheckCircle className="w-4 h-4 text-gray-400" />
-              <span>Mark as Registered</span>
-            </button>
-          )}
+          {/* Manual Tick / Registered Toggle Button */}
+          <button
+            type="button"
+            onClick={() => onToggleRegistered(hackathon.id)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition cursor-pointer ${
+              isRegistered
+                ? 'bg-emerald-50 border-emerald-300 text-emerald-800 hover:bg-red-50 hover:text-red-700 hover:border-red-300 shadow-2xs'
+                : 'bg-white hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 border-gray-200 text-gray-700'
+            }`}
+            title={isRegistered ? 'Registered! Click to un-tick' : 'Click to manually tick as Registered'}
+          >
+            {isRegistered ? (
+              <>
+                <CheckCircle className="w-4 h-4 text-emerald-600 fill-emerald-100" />
+                <span>Registered ✓</span>
+              </>
+            ) : (
+              <>
+                <Check className="w-4 h-4 text-emerald-600" />
+                <span>Manual Tick</span>
+              </>
+            )}
+          </button>
 
           {/* Bookmark Button */}
           <button
@@ -170,7 +171,24 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
                 onClick={() => onToggleRegistered(hackathon.id)}
                 className="text-xs text-emerald-700 hover:text-emerald-900 underline font-semibold cursor-pointer shrink-0 ml-2"
               >
-                Undo
+                Undo (Tick Hatayein)
+              </button>
+            </div>
+          )}
+
+          {/* Manual Tick Option if already registered */}
+          {!isRegistered && (
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 p-3 sm:p-3.5 rounded-xl bg-gray-50 border border-gray-200 text-xs">
+              <span className="text-gray-600 font-medium">
+                💡 Kya aap is hackathon me pehle se register kar chuke hain?
+              </span>
+              <button
+                type="button"
+                onClick={() => onToggleRegistered(hackathon.id)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-gray-300 hover:border-emerald-500 hover:text-emerald-700 font-bold text-gray-800 transition shadow-2xs cursor-pointer shrink-0"
+              >
+                <Check className="w-3.5 h-3.5 text-emerald-600 stroke-[3]" />
+                <span>Mark as Registered (Tick)</span>
               </button>
             </div>
           )}
