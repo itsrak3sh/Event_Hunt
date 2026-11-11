@@ -107,9 +107,16 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
           <div className="flex items-center gap-1.5 flex-wrap">
             {/* Registered / Applied Badge */}
             {isRegistered && (
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-2xs">
+              <span 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggleRegistered(hackathon.id);
+                }}
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-2xs hover:bg-emerald-200 transition cursor-pointer"
+                title="Applied! Click if you wish to undo"
+              >
                 <CheckCircle className="w-3.5 h-3.5 text-emerald-700" />
-                <span>REGISTERED</span>
+                <span>APPLIED</span>
               </span>
             )}
 
@@ -152,22 +159,6 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
           </div>
 
           <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
-            {/* Mark as Registered / Applied Button */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onToggleRegistered(hackathon.id);
-              }}
-              className={`p-1.5 rounded-lg transition cursor-pointer ${
-                isRegistered
-                  ? 'text-emerald-700 bg-emerald-100 border border-emerald-300'
-                  : 'text-gray-400 hover:text-emerald-600 hover:bg-emerald-50'
-              }`}
-              title={isRegistered ? 'Registered! Click to unmark' : 'Mark as Registered / Applied'}
-            >
-              <CheckCircle className={`w-4 h-4 ${isRegistered ? 'text-emerald-700 fill-emerald-100' : ''}`} />
-            </button>
-
             {/* Calendar Reminder Button */}
             <button
               onClick={handleCalendar}

@@ -91,20 +91,18 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
         </button>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
-          {/* Registered / Applied Toggle Button */}
-          <button
-            type="button"
-            onClick={() => onToggleRegistered(hackathon.id)}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition cursor-pointer ${
-              isRegistered
-                ? 'bg-emerald-50 border-emerald-300 text-emerald-700 shadow-2xs'
-                : 'bg-white hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 border-gray-200 text-gray-600'
-            }`}
-            title={isRegistered ? 'Marked as registered. Click to undo.' : 'Mark as Registered / Applied'}
-          >
-            <CheckCircle className={`w-4 h-4 ${isRegistered ? 'text-emerald-600 fill-emerald-100' : ''}`} />
-            <span>{isRegistered ? 'Registered ✅' : 'Mark Registered'}</span>
-          </button>
+          {/* Registered / Applied Status Indicator (Only appears when applied) */}
+          {isRegistered && (
+            <button
+              type="button"
+              onClick={() => onToggleRegistered(hackathon.id)}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-700 text-xs font-bold shadow-2xs hover:bg-emerald-100 transition cursor-pointer"
+              title="Applied! Click to undo"
+            >
+              <CheckCircle className="w-4 h-4 text-emerald-600 fill-emerald-100" />
+              <span>Applied ✅</span>
+            </button>
+          )}
 
           {/* Bookmark Button */}
           <button
