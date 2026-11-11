@@ -33,7 +33,8 @@ import {
   Filter, 
   Users, 
   Target,
-  BookOpen
+  BookOpen,
+  CheckCircle
 } from 'lucide-react';
 
 export function App() {
@@ -84,6 +85,26 @@ export function App() {
   const [domainFilter, setDomainFilter] = useState<TechDomain>('all');
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
+  // Registered / Applied state (Persisted in localStorage)
+  const [registeredIds, setRegisteredIds] = useState<string[]>(() => {
+    try {
+      const stored = localStorage.getItem('bharathack_registered');
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
+  });
+  const [isRegisteredOnly, setIsRegisteredOnly] = useState(false);
+  const [registrationFilter, setRegistrationFilter] = useState<'all' | 'registered' | 'unregistered'>('all');
+
+  const handleToggleRegistered = (id: string) => {
+    setRegisteredIds((prev) => {
+      const updated = prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id];
+      localStorage.setItem('bharathack_registered', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
   // Active filter count
   const activeFilterCount = useMemo(() => {
     let count = 0;
@@ -93,8 +114,9 @@ export function App() {
     if (filters.institution !== 'all') count++;
     if (selectedTrack !== 'all') count++;
     if (domainFilter !== 'all') count++;
+    if (isRegisteredOnly || registrationFilter !== 'all') count++;
     return count;
-  }, [filters, selectedTrack, domainFilter]);
+  }, [filters, selectedTrack, domainFilter, isRegisteredOnly, registrationFilter]);
 
   // Active filter tags for quick removal
   const activeTags = useMemo(() => {
@@ -146,8 +168,24 @@ export function App() {
         onRemove: () => setDomainFilter('all'),
       });
     }
+    if (isRegisteredOnly || registrationFilter === 'registered') {
+      tags.push({
+        id: 'registered',
+        label: `✅ Applied (${registeredIds.length})`,
+        onRemove: () => {
+          setIsRegisteredOnly(false);
+          setRegistrationFilter('all');
+        },
+      });
+    } else if (registrationFilter === 'unregistered') {
+      tags.push({
+        id: 'unregistered',
+        label: '⏳ Not Applied Yet',
+        onRemove: () => setRegistrationFilter('all'),
+      });
+    }
     return tags;
-  }, [filters, selectedTrack, domainFilter]);
+  }, [filters, selectedTrack, domainFilter, isRegisteredOnly, registrationFilter, registeredIds]);
 
   const handleResetFilters = () => {
     setFilters({
@@ -160,6 +198,8 @@ export function App() {
     });
     setSelectedTrack('all');
     setDomainFilter('all');
+    setIsRegisteredOnly(false);
+    setRegistrationFilter('all');
   };
 
   // User Skills for matching
@@ -357,12 +397,18 @@ export function App() {
     return { all: hackathons.length, hardware, both, software };
   }, [hackathons]);
 
-  // Filtered hackathons to display (handling bookmark view + track chips + domain filter)
+  // Filtered hackathons to display (handling bookmark view + track chips + domain filter + registered filter)
   const displayedHackathons = useMemo(() => {
     let result = hackathons;
 
     if (isBookmarksOnly) {
       result = result.filter((h) => savedIds.includes(h.id));
+    }
+
+    if (isRegisteredOnly || registrationFilter === 'registered') {
+      result = result.filter((h) => registeredIds.includes(h.id));
+    } else if (registrationFilter === 'unregistered') {
+      result = result.filter((h) => !registeredIds.includes(h.id));
     }
 
     if (selectedTrack !== 'all') {
@@ -382,7 +428,7 @@ export function App() {
     }
 
     return result;
-  }, [hackathons, isBookmarksOnly, savedIds, selectedTrack, domainFilter]);
+  }, [hackathons, isBookmarksOnly, savedIds, selectedTrack, domainFilter, isRegisteredOnly, registrationFilter, registeredIds]);
 
   return (
     <div className="min-h-screen bg-white text-gray-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
@@ -393,8 +439,17 @@ export function App() {
         onOpenTinyFishDrawer={() => setIsTinyFishDrawerOpen(true)}
         onOpenFetchModal={() => setIsInspectorModalOpen(true)}
         savedCount={savedIds.length}
-        onToggleBookmarksView={() => setIsBookmarksOnly(!isBookmarksOnly)}
+        onToggleBookmarksView={() => {
+          setIsBookmarksOnly(!isBookmarksOnly);
+          if (!isBookmarksOnly) setIsRegisteredOnly(false);
+        }}
         isBookmarksOnly={isBookmarksOnly}
+        registeredCount={registeredIds.length}
+        onToggleRegisteredView={() => {
+          setIsRegisteredOnly(!isRegisteredOnly);
+          if (!isRegisteredOnly) setIsBookmarksOnly(false);
+        }}
+        isRegisteredOnly={isRegisteredOnly}
         onOpenSkillMatcher={() => setIsSkillMatcherOpen(true)}
         onOpenPlaybook={() => setIsPlaybookOpen(true)}
         hackathons={displayedHackathons}
@@ -432,7 +487,28 @@ export function App() {
             <span>Showing your saved bookmarks ({savedIds.length} hackathons)</span>
             <button
               onClick={() => setIsBookmarksOnly(false)}
-              className="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 font-semibold"
+              className="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 font-semibold cursor-pointer"
+            >
+              Show All
+            </button>
+          </div>
+        )}
+
+        {/* Registered / Applied view notice */}
+        {isRegisteredOnly && (
+          <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-300 flex items-center justify-between text-emerald-900 text-xs sm:text-sm shadow-2xs">
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>
+                Showing your <strong>Registered / Applied</strong> hackathons ({registeredIds.length} hackathons)
+              </span>
+            </div>
+            <button
+              onClick={() => {
+                setIsRegisteredOnly(false);
+                setRegistrationFilter('all');
+              }}
+              className="px-3 py-1 rounded-lg bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-semibold cursor-pointer"
             >
               Show All
             </button>
@@ -521,6 +597,8 @@ export function App() {
                 hackathon={hackathon}
                 isSaved={savedIds.includes(hackathon.id)}
                 onToggleSave={handleToggleSave}
+                isRegistered={registeredIds.includes(hackathon.id)}
+                onToggleRegistered={handleToggleRegistered}
                 onOpenDetails={handleOpenHackathonDetails}
                 onFindTeammates={handleOpenTeammateFinder}
               />
@@ -553,6 +631,8 @@ export function App() {
         onClose={handleCloseHackathonDetails}
         onToggleSave={handleToggleSave}
         isSaved={selectedHackathon ? savedIds.includes(selectedHackathon.id) : false}
+        isRegistered={selectedHackathon ? registeredIds.includes(selectedHackathon.id) : false}
+        onToggleRegistered={handleToggleRegistered}
         onFindTeammates={handleOpenTeammateFinder}
       />
 
@@ -613,6 +693,17 @@ export function App() {
         domainFilter={domainFilter}
         onDomainFilterChange={setDomainFilter}
         domainCounts={domainCounts}
+        registrationFilter={registrationFilter}
+        onRegistrationFilterChange={(status) => {
+          setRegistrationFilter(status);
+          if (status === 'registered') {
+            setIsRegisteredOnly(true);
+            setIsBookmarksOnly(false);
+          } else {
+            setIsRegisteredOnly(false);
+          }
+        }}
+        registeredCount={registeredIds.length}
       />
 
     </div>

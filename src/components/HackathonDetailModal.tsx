@@ -28,6 +28,8 @@ interface HackathonDetailModalProps {
   onClose: () => void;
   onToggleSave: (id: string) => void;
   isSaved: boolean;
+  isRegistered: boolean;
+  onToggleRegistered: (id: string) => void;
   onFindTeammates: (hackathonId: string) => void;
 }
 
@@ -36,6 +38,8 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
   onClose,
   onToggleSave,
   isSaved,
+  isRegistered,
+  onToggleRegistered,
   onFindTeammates,
 }) => {
   const [copied, setCopied] = useState(false);
@@ -87,6 +91,21 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
         </button>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
+          {/* Registered / Applied Toggle Button */}
+          <button
+            type="button"
+            onClick={() => onToggleRegistered(hackathon.id)}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold transition cursor-pointer ${
+              isRegistered
+                ? 'bg-emerald-50 border-emerald-300 text-emerald-700 shadow-2xs'
+                : 'bg-white hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 border-gray-200 text-gray-600'
+            }`}
+            title={isRegistered ? 'Marked as registered. Click to undo.' : 'Mark as Registered / Applied'}
+          >
+            <CheckCircle className={`w-4 h-4 ${isRegistered ? 'text-emerald-600 fill-emerald-100' : ''}`} />
+            <span>{isRegistered ? 'Registered ✅' : 'Mark Registered'}</span>
+          </button>
+
           {/* Bookmark Button */}
           <button
             type="button"
@@ -127,6 +146,25 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-4xl mx-auto px-4 sm:px-8 py-5 sm:py-8 space-y-6">
           
+          {/* Registered Status Banner */}
+          {isRegistered && (
+            <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-300 flex items-center justify-between text-xs sm:text-sm text-emerald-900 shadow-2xs">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-5 h-5 text-emerald-600 shrink-0" />
+                <span>
+                  <strong>Aapne isme register kar liya hai!</strong> (Marked as Registered / Applied)
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={() => onToggleRegistered(hackathon.id)}
+                className="text-xs text-emerald-700 hover:text-emerald-900 underline font-semibold cursor-pointer shrink-0 ml-2"
+              >
+                Undo
+              </button>
+            </div>
+          )}
+
           {/* Badges + Title + Organizer */}
           <div>
             <div className="flex items-center gap-2 mb-3 flex-wrap">
@@ -406,14 +444,30 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
               href={hackathon.registrationLink}
               onClick={(e) => {
                 e.stopPropagation();
+                if (!isRegistered) {
+                  onToggleRegistered(hackathon.id);
+                }
                 const url = new URL(window.location.href);
                 url.searchParams.set('hackathon', hackathon.id);
                 window.history.replaceState({ modal: 'hackathon', hackathonId: hackathon.id }, '', url.toString());
               }}
-              className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-xs transition active:scale-95 cursor-pointer"
+              className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 sm:px-6 py-2.5 rounded-xl text-white text-xs sm:text-sm font-bold shadow-xs transition active:scale-95 cursor-pointer ${
+                isRegistered
+                  ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-600/15'
+                  : 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/15'
+              }`}
             >
-              <span>Apply & Register Official</span>
-              <ExternalLink className="w-4 h-4" />
+              {isRegistered ? (
+                <>
+                  <CheckCircle className="w-4 h-4 text-emerald-100" />
+                  <span>Registered · Open Official Link</span>
+                </>
+              ) : (
+                <>
+                  <span>Apply & Register Official</span>
+                  <ExternalLink className="w-4 h-4" />
+                </>
+              )}
             </a>
           </div>
 

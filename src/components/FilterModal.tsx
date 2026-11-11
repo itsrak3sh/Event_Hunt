@@ -3,6 +3,7 @@ import {
   X, 
   SlidersHorizontal, 
   Check, 
+  CheckCircle,
   RotateCcw,
   Sparkles,
   Globe, 
@@ -31,6 +32,9 @@ interface FilterModalProps {
   domainFilter: TechDomain;
   onDomainFilterChange: (domain: TechDomain) => void;
   domainCounts: { all: number; software: number; hardware: number; both: number };
+  registrationFilter: 'all' | 'registered' | 'unregistered';
+  onRegistrationFilterChange: (status: 'all' | 'registered' | 'unregistered') => void;
+  registeredCount: number;
 }
 
 export const FilterModal: React.FC<FilterModalProps> = ({
@@ -46,6 +50,9 @@ export const FilterModal: React.FC<FilterModalProps> = ({
   domainFilter,
   onDomainFilterChange,
   domainCounts,
+  registrationFilter,
+  onRegistrationFilterChange,
+  registeredCount,
 }) => {
   if (!isOpen) return null;
 
@@ -57,6 +64,7 @@ export const FilterModal: React.FC<FilterModalProps> = ({
     filters.institution !== 'all',
     selectedTrack !== 'all',
     domainFilter !== 'all',
+    registrationFilter !== 'all',
   ].filter(Boolean).length;
 
   return (
@@ -186,11 +194,71 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          {/* 2. Entry Fee Filter */}
+          {/* 2. Registration / Application Status */}
+          <div>
+            <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 font-mono mb-2.5">
+              <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
+              <span>2. Application Status</span>
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                type="button"
+                onClick={() => onRegistrationFilterChange('all')}
+                className={`py-2 px-3 rounded-xl border text-xs font-semibold transition flex items-center justify-between cursor-pointer ${
+                  registrationFilter === 'all'
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
+                    : 'bg-white hover:bg-gray-50 text-gray-700 border-gray-200'
+                }`}
+              >
+                <span>All</span>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono ${
+                  registrationFilter === 'all' ? 'bg-blue-700 text-white' : 'bg-gray-100 text-gray-700'
+                }`}>
+                  {domainCounts.all}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => onRegistrationFilterChange('registered')}
+                className={`py-2 px-3 rounded-xl border text-xs font-semibold transition flex items-center justify-between cursor-pointer ${
+                  registrationFilter === 'registered'
+                    ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs ring-2 ring-emerald-500/20'
+                    : 'bg-emerald-50/60 hover:bg-emerald-100 text-emerald-800 border-emerald-200'
+                }`}
+              >
+                <span>✅ Applied</span>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-bold ${
+                  registrationFilter === 'registered' ? 'bg-emerald-700 text-white' : 'bg-emerald-200 text-emerald-900'
+                }`}>
+                  {registeredCount}
+                </span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => onRegistrationFilterChange('unregistered')}
+                className={`py-2 px-3 rounded-xl border text-xs font-semibold transition flex items-center justify-between cursor-pointer ${
+                  registrationFilter === 'unregistered'
+                    ? 'bg-gray-900 text-white border-gray-900 shadow-xs ring-2 ring-gray-700/20'
+                    : 'bg-white hover:bg-gray-50 text-gray-700 border-gray-200'
+                }`}
+              >
+                <span>⏳ Not Applied</span>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono font-bold ${
+                  registrationFilter === 'unregistered' ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-700'
+                }`}>
+                  {Math.max(0, domainCounts.all - registeredCount)}
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* 3. Entry Fee Filter */}
           <div>
             <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 font-mono mb-2.5">
               <Gift className="w-3.5 h-3.5 text-emerald-600" />
-              <span>2. Entry Fee</span>
+              <span>3. Entry Fee</span>
             </label>
             <div className="grid grid-cols-3 gap-2">
               <button
@@ -229,11 +297,11 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          {/* 3. Participation Mode Filter */}
+          {/* 4. Participation Mode Filter */}
           <div>
             <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 font-mono mb-2.5">
               <Globe className="w-3.5 h-3.5 text-blue-600" />
-              <span>3. Mode</span>
+              <span>4. Mode</span>
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <button
@@ -283,11 +351,11 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          {/* 4. Location / City Selector (Useful for Offline & All) */}
+          {/* 5. Location / City Selector (Useful for Offline & All) */}
           <div>
             <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 font-mono mb-2.5">
               <MapPin className="w-3.5 h-3.5 text-blue-600" />
-              <span>4. Location / Campus City</span>
+              <span>5. Location / Campus City</span>
             </label>
             <div className="relative">
               <select
@@ -307,11 +375,11 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          {/* 5. College / Institution Type */}
+          {/* 6. College / Institution Type */}
           <div>
             <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 font-mono mb-2.5">
               <School className="w-3.5 h-3.5 text-purple-600" />
-              <span>5. College / Host Tier</span>
+              <span>6. College / Host Tier</span>
             </label>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {[
@@ -336,11 +404,11 @@ export const FilterModal: React.FC<FilterModalProps> = ({
             </div>
           </div>
 
-          {/* 6. Tracks / Domains */}
+          {/* 7. Tracks / Domains */}
           <div>
             <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gray-700 font-mono mb-2.5">
               <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>6. Tech Track</span>
+              <span>7. Tech Track</span>
             </label>
             <div className="flex flex-wrap gap-2">
               {TRACK_OPTIONS.map((track) => {

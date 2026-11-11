@@ -3,6 +3,7 @@ import {
   Sparkles, 
   Radio, 
   Bookmark, 
+  CheckCircle,
   Target, 
   BookOpen, 
   Download, 
@@ -23,6 +24,9 @@ interface HeaderProps {
   savedCount: number;
   onToggleBookmarksView: () => void;
   isBookmarksOnly: boolean;
+  registeredCount: number;
+  onToggleRegisteredView: () => void;
+  isRegisteredOnly: boolean;
   onOpenSkillMatcher: () => void;
   onOpenPlaybook: () => void;
   hackathons: Hackathon[];
@@ -37,6 +41,9 @@ export const Header: React.FC<HeaderProps> = ({
   savedCount,
   onToggleBookmarksView,
   isBookmarksOnly,
+  registeredCount,
+  onToggleRegisteredView,
+  isRegisteredOnly,
   onOpenSkillMatcher,
   onOpenPlaybook,
   hackathons,
@@ -147,6 +154,24 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <Sparkles className="w-3.5 h-3.5 text-blue-100" />
               <span>AI Search</span>
+            </button>
+
+            {/* Registered / Applied Hackathons */}
+            <button
+              onClick={onToggleRegisteredView}
+              className={`relative p-2 rounded-lg border transition cursor-pointer ${
+                isRegisteredOnly
+                  ? 'bg-emerald-50 border-emerald-300 text-emerald-700 shadow-2xs'
+                  : 'bg-white hover:bg-gray-50 border-gray-200 text-gray-600 hover:text-gray-900'
+              }`}
+              title={`View Registered / Applied Hackathons (${registeredCount})`}
+            >
+              <CheckCircle className={`w-4 h-4 ${isRegisteredOnly ? 'text-emerald-600 fill-emerald-100' : ''}`} />
+              {registeredCount > 0 && (
+                <span className="absolute -top-1 -right-1 min-w-[16px] h-4 px-1 rounded-full bg-emerald-600 text-white font-bold text-[10px] flex items-center justify-center shadow-xs">
+                  {registeredCount}
+                </span>
+              )}
             </button>
 
             {/* Saved Bookmarks */}

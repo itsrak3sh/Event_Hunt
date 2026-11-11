@@ -9,6 +9,7 @@ import {
   Sparkles, 
   Clock, 
   Check, 
+  CheckCircle,
   Copy, 
   Building, 
   ChevronRight,
@@ -25,6 +26,8 @@ interface HackathonCardProps {
   hackathon: Hackathon;
   isSaved: boolean;
   onToggleSave: (id: string) => void;
+  isRegistered: boolean;
+  onToggleRegistered: (id: string) => void;
   onOpenDetails: (hackathon: Hackathon) => void;
   onFindTeammates: (hackathonId: string) => void;
 }
@@ -33,6 +36,8 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
   hackathon,
   isSaved,
   onToggleSave,
+  isRegistered,
+  onToggleRegistered,
   onOpenDetails,
   onFindTeammates,
 }) => {
@@ -81,11 +86,17 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
   return (
     <div 
       onClick={() => onOpenDetails(hackathon)}
-      className="group relative flex flex-col justify-between rounded-2xl bg-white border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all duration-200 overflow-hidden cursor-pointer"
+      className={`group relative flex flex-col justify-between rounded-2xl transition-all duration-200 overflow-hidden cursor-pointer ${
+        isRegistered
+          ? 'bg-emerald-50/15 border-2 border-emerald-400 shadow-sm'
+          : 'bg-white border border-gray-200 hover:border-blue-400 hover:shadow-md'
+      }`}
     >
       
-      {/* Top Banner accent on hover */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+      {/* Top Banner accent */}
+      <div className={`absolute top-0 left-0 right-0 h-1 transition-opacity ${
+        isRegistered ? 'bg-emerald-500 opacity-100' : 'bg-blue-600 opacity-0 group-hover:opacity-100'
+      }`} />
 
       {/* Main Content Area */}
       <div className="p-5 sm:p-6 flex-1 flex flex-col">
@@ -94,6 +105,14 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
         <div className="flex items-center justify-between gap-2 mb-3.5">
           
           <div className="flex items-center gap-1.5 flex-wrap">
+            {/* Registered / Applied Badge */}
+            {isRegistered && (
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-black bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-2xs">
+                <CheckCircle className="w-3.5 h-3.5 text-emerald-700" />
+                <span>REGISTERED</span>
+              </span>
+            )}
+
             {/* Entry Fee Badge */}
             {hackathon.entryFeeType === 'free' ? (
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
@@ -133,6 +152,22 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
           </div>
 
           <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+            {/* Mark as Registered / Applied Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleRegistered(hackathon.id);
+              }}
+              className={`p-1.5 rounded-lg transition cursor-pointer ${
+                isRegistered
+                  ? 'text-emerald-700 bg-emerald-100 border border-emerald-300'
+                  : 'text-gray-400 hover:text-emerald-600 hover:bg-emerald-50'
+              }`}
+              title={isRegistered ? 'Registered! Click to unmark' : 'Mark as Registered / Applied'}
+            >
+              <CheckCircle className={`w-4 h-4 ${isRegistered ? 'text-emerald-700 fill-emerald-100' : ''}`} />
+            </button>
+
             {/* Calendar Reminder Button */}
             <button
               onClick={handleCalendar}
@@ -321,13 +356,27 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             href={hackathon.registrationLink}
             onClick={(e) => {
               e.stopPropagation();
+              if (!isRegistered) {
+                onToggleRegistered(hackathon.id);
+              }
               const url = new URL(window.location.href);
               url.searchParams.set('hackathon', hackathon.id);
               window.history.replaceState({ modal: 'hackathon', hackathonId: hackathon.id }, '', url.toString());
             }}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white bg-blue-600 hover:bg-blue-700 shadow-xs transition-all active:scale-[0.98] group/btn cursor-pointer"
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-white shadow-xs transition-all active:scale-[0.98] group/btn cursor-pointer ${
+              isRegistered
+                ? 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-600/15'
+                : 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/15'
+            }`}
           >
-            <span>Register Now</span>
+            {isRegistered ? (
+              <>
+                <CheckCircle className="w-4 h-4 text-emerald-100" />
+                <span>Registered · Open</span>
+              </>
+            ) : (
+              <span>Register Now</span>
+            )}
             <ExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
           </a>
 
