@@ -30,6 +30,7 @@ interface HackathonDetailModalProps {
   isSaved: boolean;
   isRegistered: boolean;
   onToggleRegistered: (id: string) => void;
+  onAttemptRegister?: (hackathon: Hackathon) => void;
   onFindTeammates: (hackathonId: string) => void;
 }
 
@@ -40,6 +41,7 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
   isSaved,
   isRegistered,
   onToggleRegistered,
+  onAttemptRegister,
   onFindTeammates,
 }) => {
   const [copied, setCopied] = useState(false);
@@ -91,8 +93,8 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
         </button>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
-          {/* Registered / Applied Status Indicator (Only appears when applied) */}
-          {isRegistered && (
+          {/* Registered / Applied Status Indicator */}
+          {isRegistered ? (
             <button
               type="button"
               onClick={() => onToggleRegistered(hackathon.id)}
@@ -101,6 +103,16 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
             >
               <CheckCircle className="w-4 h-4 text-emerald-600 fill-emerald-100" />
               <span>Applied ✅</span>
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => onToggleRegistered(hackathon.id)}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-gray-600 text-xs font-semibold transition cursor-pointer"
+              title="Click if you have already registered for this hackathon"
+            >
+              <CheckCircle className="w-4 h-4 text-gray-400" />
+              <span>Mark as Registered</span>
             </button>
           )}
 
@@ -442,8 +454,8 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
               href={hackathon.registrationLink}
               onClick={(e) => {
                 e.stopPropagation();
-                if (!isRegistered) {
-                  onToggleRegistered(hackathon.id);
+                if (onAttemptRegister) {
+                  onAttemptRegister(hackathon);
                 }
                 const url = new URL(window.location.href);
                 url.searchParams.set('hackathon', hackathon.id);

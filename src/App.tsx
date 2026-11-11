@@ -96,6 +96,7 @@ export function App() {
   });
   const [isRegisteredOnly, setIsRegisteredOnly] = useState(false);
   const [registrationFilter, setRegistrationFilter] = useState<'all' | 'registered' | 'unregistered'>('all');
+  const [pendingConfirmation, setPendingConfirmation] = useState<Hackathon | null>(null);
 
   const handleToggleRegistered = (id: string) => {
     setRegisteredIds((prev) => {
@@ -103,6 +104,17 @@ export function App() {
       localStorage.setItem('bharathack_registered', JSON.stringify(updated));
       return updated;
     });
+  };
+
+  const handleAttemptRegister = (hackathon: Hackathon) => {
+    try {
+      sessionStorage.setItem('bharathack_pending_reg', JSON.stringify({
+        id: hackathon.id,
+        title: hackathon.title,
+        source: hackathon.source,
+        timestamp: Date.now()
+      }));
+    } catch {}
   };
 
   // Active filter count
@@ -349,6 +361,35 @@ export function App() {
         setTinyFishHealth({ success: false, latencyMs: 0, error: 'Connection failed' });
       });
   }, []);
+
+  // Smart Return Check: Detect when user returns from an external registration site (Unstop, Devfolio, etc.)
+  useEffect(() => {
+    const checkPendingRegistration = () => {
+      try {
+        const raw = sessionStorage.getItem('bharathack_pending_reg');
+        if (raw && hackathons.length > 0) {
+          const parsed = JSON.parse(raw);
+          // Check within 24 hours
+          if (Date.now() - (parsed.timestamp || 0) < 24 * 60 * 60 * 1000) {
+            const found = hackathons.find((h) => h.id === parsed.id);
+            if (found && !registeredIds.includes(found.id)) {
+              setPendingConfirmation(found);
+              return;
+            }
+          }
+          sessionStorage.removeItem('bharathack_pending_reg');
+        }
+      } catch {}
+    };
+
+    checkPendingRegistration();
+    window.addEventListener('pageshow', checkPendingRegistration);
+    window.addEventListener('focus', checkPendingRegistration);
+    return () => {
+      window.removeEventListener('pageshow', checkPendingRegistration);
+      window.removeEventListener('focus', checkPendingRegistration);
+    };
+  }, [hackathons, registeredIds]);
 
   // Save bookmark handler
   const handleToggleSave = (id: string) => {
@@ -599,6 +640,7 @@ export function App() {
                 onToggleSave={handleToggleSave}
                 isRegistered={registeredIds.includes(hackathon.id)}
                 onToggleRegistered={handleToggleRegistered}
+                onAttemptRegister={handleAttemptRegister}
                 onOpenDetails={handleOpenHackathonDetails}
                 onFindTeammates={handleOpenTeammateFinder}
               />
@@ -633,6 +675,7 @@ export function App() {
         isSaved={selectedHackathon ? savedIds.includes(selectedHackathon.id) : false}
         isRegistered={selectedHackathon ? registeredIds.includes(selectedHackathon.id) : false}
         onToggleRegistered={handleToggleRegistered}
+        onAttemptRegister={handleAttemptRegister}
         onFindTeammates={handleOpenTeammateFinder}
       />
 
@@ -705,6 +748,69 @@ export function App() {
         }}
         registeredCount={registeredIds.length}
       />
+
+      {/* Smart Registration Confirmation Dialog (Prevents false ticks!) */}
+      {pendingConfirmation && (
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+          <div 
+            className="relative w-full max-w-md bg-white rounded-2xl border border-gray-200 shadow-2xl p-5 sm:p-6 space-y-4 animate-in zoom-in-95 duration-150 text-gray-900"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header info */}
+            <div className="flex items-start gap-3">
+              <div className="p-3 rounded-2xl bg-blue-50 text-blue-600 shrink-0">
+                <Sparkles className="w-6 h-6 text-blue-600" />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-blue-50 text-blue-700 border border-blue-200 font-mono">
+                    {pendingConfirmation.source}
+                  </span>
+                  <span className="text-[11px] text-gray-500 font-mono">Registration Status</span>
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-gray-950 leading-snug">
+                  Kya aapne isme register kar liya?
+                </h3>
+                <p className="text-xs text-gray-600 font-semibold mt-1 line-clamp-1">
+                  {pendingConfirmation.title}
+                </p>
+              </div>
+            </div>
+
+            <p className="text-xs text-gray-500 bg-gray-50 p-3 rounded-xl border border-gray-200 leading-relaxed">
+              Agar aapne official site par form submit kar diya hai to <strong>"Haan"</strong> select karein. Agar sirf link dekh kar wapas aaye hain to <strong>"Nahi"</strong> select karein taaki bina register kiye galat tick na ho.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex items-center gap-2.5 pt-1">
+              <button
+                type="button"
+                onClick={() => {
+                  sessionStorage.removeItem('bharathack_pending_reg');
+                  setPendingConfirmation(null);
+                }}
+                className="flex-1 py-2.5 px-3 rounded-xl border border-gray-300 bg-white hover:bg-gray-100 text-gray-700 font-bold text-xs transition cursor-pointer text-center"
+              >
+                Nahi, Abhi Nahi ✕
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  handleToggleRegistered(pendingConfirmation.id);
+                  sessionStorage.removeItem('bharathack_pending_reg');
+                  setPendingConfirmation(null);
+                }}
+                className="flex-1 py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition cursor-pointer flex items-center justify-center gap-1.5"
+              >
+                <CheckCircle className="w-4 h-4 text-emerald-100" />
+                <span>Haan, Register Ho Gaya!</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
 
     </div>
   );

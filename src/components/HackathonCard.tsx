@@ -28,6 +28,7 @@ interface HackathonCardProps {
   onToggleSave: (id: string) => void;
   isRegistered: boolean;
   onToggleRegistered: (id: string) => void;
+  onAttemptRegister?: (hackathon: Hackathon) => void;
   onOpenDetails: (hackathon: Hackathon) => void;
   onFindTeammates: (hackathonId: string) => void;
 }
@@ -38,6 +39,7 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
   onToggleSave,
   isRegistered,
   onToggleRegistered,
+  onAttemptRegister,
   onOpenDetails,
   onFindTeammates,
 }) => {
@@ -347,8 +349,8 @@ export const HackathonCard: React.FC<HackathonCardProps> = ({
             href={hackathon.registrationLink}
             onClick={(e) => {
               e.stopPropagation();
-              if (!isRegistered) {
-                onToggleRegistered(hackathon.id);
+              if (onAttemptRegister) {
+                onAttemptRegister(hackathon);
               }
               const url = new URL(window.location.href);
               url.searchParams.set('hackathon', hackathon.id);
