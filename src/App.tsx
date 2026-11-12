@@ -659,7 +659,7 @@ export function App() {
             <span>All-India Hackathon Hunting Engine</span>
           </div>
           <div>
-            Official Verified Feeds from <span className="font-semibold text-gray-800">Unstop</span> & <span className="font-semibold text-gray-800">Devfolio</span>
+            Official Verified Feeds from <span className="font-semibold text-gray-800">Unstop</span>, <span className="font-semibold text-gray-800">Devfolio</span>, <span className="font-semibold text-gray-800">DoraHacks</span> & <span className="font-semibold text-gray-800">Internshala</span>
           </div>
           <div>
             IIT • NIT • IIIT • Tech Universities • Pan-India

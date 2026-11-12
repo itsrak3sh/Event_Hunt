@@ -454,7 +454,7 @@ async function fetchAll() {
   teamSize: string;
   perks: string[];
   status: 'open' | 'closing_soon' | 'upcoming';
-  source: 'TinyFish AI Live' | 'Devfolio' | 'Unstop' | 'Direct Campus' | 'Devpost' | 'HackerEarth' | 'MLH';
+  source: 'TinyFish AI Live' | 'Devfolio' | 'Unstop' | 'Direct Campus' | 'Devpost' | 'HackerEarth' | 'MLH' | 'DoraHacks' | 'Internshala';
   featured?: boolean;
 }
 

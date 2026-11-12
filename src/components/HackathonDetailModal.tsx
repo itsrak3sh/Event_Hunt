@@ -230,6 +230,8 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
                 hackathon.source === 'Devpost' ? 'bg-teal-50 text-teal-700 border-teal-200' :
                 hackathon.source === 'HackerEarth' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
                 hackathon.source === 'MLH' ? 'bg-rose-50 text-rose-700 border-rose-200' :
+                hackathon.source === 'DoraHacks' ? 'bg-orange-50 text-orange-700 border-orange-200' :
+                hackathon.source === 'Internshala' ? 'bg-sky-50 text-sky-700 border-sky-200' :
                 'bg-gray-100 text-gray-700 border-gray-200'
               }`}>
                 {hackathon.source}
@@ -447,6 +449,8 @@ export const HackathonDetailModal: React.FC<HackathonDetailModalProps> = ({
                 hackathon.source === 'Devpost' ? 'https://devpost.com/hackathons' :
                 hackathon.source === 'HackerEarth' ? 'https://www.hackerearth.com/challenges/' :
                 hackathon.source === 'MLH' ? 'https://mlh.io/seasons/2027/events' :
+                hackathon.source === 'DoraHacks' ? 'https://dorahacks.io/hackathon' :
+                hackathon.source === 'Internshala' ? 'https://internshala.com/competitions/' :
                 `https://unstop.com/hackathons?searchTerm=${encodeURIComponent(hackathon.title)}`
               )}
               target="_blank"

@@ -33,7 +33,7 @@ export interface Hackathon {
   teamSize: string;
   perks: string[];
   status: 'open' | 'closing_soon' | 'upcoming';
-  source: 'TinyFish AI Live' | 'Devfolio' | 'Unstop' | 'Direct Campus' | 'Devpost' | 'HackerEarth' | 'MLH';
+  source: 'TinyFish AI Live' | 'Devfolio' | 'Unstop' | 'Direct Campus' | 'Devpost' | 'HackerEarth' | 'MLH' | 'DoraHacks' | 'Internshala';
   featured?: boolean;
 }
 
@@ -3969,6 +3969,328 @@ export const SEED_HACKATHONS: Hackathon[] = [
     ],
     "status": "open",
     "source": "Unstop",
+    "featured": false
+  },
+  {
+    "id": "dorahacks-frontier-ai-robotics-2026",
+    "title": "DoraHacks Global AI & Robotics Frontier Sprint 2026",
+    "slug": "dorahacks-frontier-ai-robotics-2026",
+    "tagline": "Global Hackathon for Frontier AI, Autonomous Agents & Robotics Hardware",
+    "organizer": "DoraHacks & Frontier Labs",
+    "institutionType": "Corporate / Private",
+    "institutionName": "DoraHacks Global Developer Hub",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Global / Pan-India",
+      "venue": "Virtual (DoraHacks Developer Portal)"
+    },
+    "prizePool": "$50,00,000 (Approx ₹42.5L)",
+    "prizePoolAmountINR": 4250000,
+    "dates": {
+      "registrationDeadline": "2026-11-28T18:30:00.000Z",
+      "startDate": "2026-11-28T18:30:00.000Z",
+      "endDate": "2026-12-05T18:30:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://dorahacks.io/hackathon",
+    "backupLink": "https://dorahacks.io/hackathon",
+    "isVerified": true,
+    "description": "Verified global challenge hosted on DoraHacks. Build autonomous AI agents, robotics controllers, and cutting-edge hardware integrations.",
+    "tracks": [
+      "Robotics & Hardware",
+      "Autonomous Agents",
+      "Machine Learning",
+      "Open Source Innovation"
+    ],
+    "eligibility": "Open to all university students, mechatronics, and software developers across India & worldwide.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Global grant funding & venture bounties",
+      "Direct mentorship from frontier AI researchers",
+      "Certificate of Participation by DoraHacks"
+    ],
+    "status": "open",
+    "source": "DoraHacks",
+    "featured": true
+  },
+  {
+    "id": "dorahacks-solana-radar-india-2026",
+    "title": "Solana Radar & Renaissance India Hackathon 2026",
+    "slug": "dorahacks-solana-radar-india-2026",
+    "tagline": "National Web3, High-Speed DeFi & Decentralized AI Hackathon",
+    "organizer": "Solana Foundation & DoraHacks",
+    "institutionType": "Corporate / Private",
+    "institutionName": "Solana India Ecosystem",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "hybrid",
+    "location": {
+      "city": "Bengaluru",
+      "state": "Karnataka",
+      "venue": "Bengaluru Tech Park & DoraHacks Online"
+    },
+    "prizePool": "₹85,00,000+ ($100k Bounties)",
+    "prizePoolAmountINR": 8500000,
+    "dates": {
+      "registrationDeadline": "2026-12-15T18:30:00.000Z",
+      "startDate": "2026-12-16T10:00:00.000Z",
+      "endDate": "2026-12-18T18:00:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://dorahacks.io/hackathon",
+    "backupLink": "https://dorahacks.io/hackathon",
+    "isVerified": true,
+    "description": "Premier Indian chapter of the global Solana Hackathon on DoraHacks. Build consumer dApps, DeFi, and DePIN projects with direct incubation grants.",
+    "tracks": [
+      "Web3 & DeFi",
+      "AI on Blockchain",
+      "Consumer Apps",
+      "Decentralized Physical Infrastructure"
+    ],
+    "eligibility": "Open to Indian college developers, builders, and engineering students.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Pre-seed grant opportunities up to $50,000",
+      "Swag bags, hardware kits & hoodies",
+      "Fast-track interviews with top Web3 startups"
+    ],
+    "status": "open",
+    "source": "DoraHacks",
+    "featured": true
+  },
+  {
+    "id": "dorahacks-bnb-chain-innovation-2026",
+    "title": "BNB Chain Ecosystem Innovation Hackathon 2026",
+    "slug": "dorahacks-bnb-chain-innovation-2026",
+    "tagline": "Decentralized AI, Gaming & Smart Contract Builder Sprint",
+    "organizer": "BNB Chain Community & DoraHacks",
+    "institutionType": "Corporate / Private",
+    "institutionName": "DoraHacks Pan-India Chapter",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (DoraHacks Bounties Hub)"
+    },
+    "prizePool": "₹50,00,000+ ($60k)",
+    "prizePoolAmountINR": 5000000,
+    "dates": {
+      "registrationDeadline": "2026-12-24T18:30:00.000Z",
+      "startDate": "2026-12-25T09:00:00.000Z",
+      "endDate": "2026-12-28T18:00:00.000Z",
+      "durationHours": 72
+    },
+    "registrationLink": "https://dorahacks.io/hackathon",
+    "backupLink": "https://dorahacks.io/hackathon",
+    "isVerified": true,
+    "description": "Ecosystem innovation hackathon on DoraHacks. Build decentralized AI applications, Web3 games, and high-performance smart contracts on BNB Chain.",
+    "tracks": [
+      "Smart Contracts",
+      "Gaming & Metaverse",
+      "Decentralized AI",
+      "FinTech"
+    ],
+    "eligibility": "Open to developers, students, and engineers across India.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Direct funding from BNB Chain builder grant",
+      "DoraHacks official credential badge",
+      "Cloud infrastructure credits"
+    ],
+    "status": "open",
+    "source": "DoraHacks",
+    "featured": false
+  },
+  {
+    "id": "internshala-incc-2026",
+    "title": "Internshala National Coding Challenge 2026 (INCC)",
+    "slug": "internshala-incc-2026",
+    "tagline": "India's Biggest Annual Student Algorithmic Coding Challenge",
+    "organizer": "Internshala Tech Community",
+    "institutionType": "Corporate / Private",
+    "institutionName": "Internshala National Student League",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Internshala Official Test Engine)"
+    },
+    "prizePool": "₹2,50,000 in Cash + Guaranteed PPIs",
+    "prizePoolAmountINR": 250000,
+    "dates": {
+      "registrationDeadline": "2026-11-25T18:29:00.000Z",
+      "startDate": "2026-11-26T10:00:00.000Z",
+      "endDate": "2026-11-27T18:00:00.000Z",
+      "durationHours": 24
+    },
+    "registrationLink": "https://internshala.com/competitions/",
+    "backupLink": "https://internshala.com/competitions/",
+    "isVerified": true,
+    "description": "Verified flagship national competition on Internshala. Test your data structures, algorithms, and speed coding skills to win cash prizes and direct interview opportunities.",
+    "tracks": [
+      "Algorithms & DSA",
+      "Python / Java / C++",
+      "Problem Solving",
+      "Data Engineering"
+    ],
+    "eligibility": "Open to all college students (B.Tech / BE / BCA / MCA / BSc) across India.",
+    "teamSize": "1 - 2 Members",
+    "perks": [
+      "Direct interview calls (PPIs) with top product firms",
+      "Cash awards for top 10 coders",
+      "Verified National Certificate of Merit"
+    ],
+    "status": "open",
+    "source": "Internshala",
+    "featured": true
+  },
+  {
+    "id": "internshala-fullstack-genai-2026",
+    "title": "Internshala Full-Stack & GenAI National Campus Hackathon 2026",
+    "slug": "internshala-fullstack-genai-2026",
+    "tagline": "48-Hour Full-Stack & GenAI Sprint with Fast-Track Hiring",
+    "organizer": "Internshala & Industry Hiring Partners",
+    "institutionType": "Corporate / Private",
+    "institutionName": "Internshala University Connect",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Internshala Portal)"
+    },
+    "prizePool": "₹3,00,000 + Tech Internship Offers",
+    "prizePoolAmountINR": 300000,
+    "dates": {
+      "registrationDeadline": "2026-12-05T18:30:00.000Z",
+      "startDate": "2026-12-06T09:00:00.000Z",
+      "endDate": "2026-12-08T18:00:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://internshala.com/competitions/",
+    "backupLink": "https://internshala.com/competitions/",
+    "isVerified": true,
+    "description": "National college hackathon on Internshala. Build real-world full-stack web applications and AI-driven products evaluated by industry CTOs.",
+    "tracks": [
+      "Full-Stack Web (React/Node)",
+      "Generative AI Applications",
+      "Mobile App Development",
+      "SaaS Solutions"
+    ],
+    "eligibility": "Open to undergraduate and postgraduate students from all Indian universities.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Top teams get fast-track full-time / internship offers",
+      "Goodies, swag bags, and premium Internshala subscriptions",
+      "Certificate of Excellence"
+    ],
+    "status": "open",
+    "source": "Internshala",
+    "featured": true
+  },
+  {
+    "id": "internshala-hardware-iot-sprint-2026",
+    "title": "Internshala National IoT & Hardware Innovation Sprint 2026",
+    "slug": "internshala-hardware-iot-sprint-2026",
+    "tagline": "Electronics, Mechatronics, IoT & Embedded Systems Hackathon",
+    "organizer": "Internshala & Hardware Tech Consortia",
+    "institutionType": "Tech School",
+    "institutionName": "All-India Engineering Student Chapters",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "hybrid",
+    "location": {
+      "city": "Delhi NCR",
+      "state": "Delhi",
+      "venue": "Delhi Innovation Hub & Online Submission"
+    },
+    "prizePool": "₹2,00,000 + Hardware Prototyping Grant",
+    "prizePoolAmountINR": 200000,
+    "dates": {
+      "registrationDeadline": "2026-12-12T18:30:00.000Z",
+      "startDate": "2026-12-13T10:00:00.000Z",
+      "endDate": "2026-12-15T18:00:00.000Z",
+      "durationHours": 36
+    },
+    "registrationLink": "https://internshala.com/competitions/",
+    "backupLink": "https://internshala.com/competitions/",
+    "isVerified": true,
+    "description": "Hardware and robotics sprint on Internshala. Build smart IoT sensors, automation prototypes, and micro-controller solutions with industry grants.",
+    "tracks": [
+      "IoT & Smart Devices",
+      "Robotics & Automation",
+      "Embedded Systems",
+      "Sensors & Microcontrollers"
+    ],
+    "eligibility": "Specifically tailored for Mechatronics, Electrical, Electronics, CS and Robotics students.",
+    "teamSize": "1 - 4 Members",
+    "perks": [
+      "Hardware dev kits sponsored for top 20 teams",
+      "Incubation mentoring for viable prototypes",
+      "Industry expert jury feedback & certificates"
+    ],
+    "status": "open",
+    "source": "Internshala",
+    "featured": false
+  },
+  {
+    "id": "internshala-datascience-ai-champ-2026",
+    "title": "Internshala Data Science & AI Championship 2026",
+    "slug": "internshala-datascience-ai-champ-2026",
+    "tagline": "National Machine Learning, Predictive Analytics & AI Challenge",
+    "organizer": "Internshala Analytics Guild",
+    "institutionType": "Corporate / Private",
+    "institutionName": "Internshala Academy",
+    "entryFeeType": "free",
+    "entryFeeAmount": 0,
+    "entryFeeCurrency": "₹",
+    "mode": "online",
+    "location": {
+      "city": "Online",
+      "state": "Pan-India",
+      "venue": "Virtual (Internshala Kaggle-style Arena)"
+    },
+    "prizePool": "₹1,75,000 in Cash",
+    "prizePoolAmountINR": 175000,
+    "dates": {
+      "registrationDeadline": "2026-12-20T18:30:00.000Z",
+      "startDate": "2026-12-21T10:00:00.000Z",
+      "endDate": "2026-12-23T18:00:00.000Z",
+      "durationHours": 48
+    },
+    "registrationLink": "https://internshala.com/competitions/",
+    "backupLink": "https://internshala.com/competitions/",
+    "isVerified": true,
+    "description": "Kaggle-style machine learning competition on Internshala. Solve high-impact predictive analytics and computer vision datasets.",
+    "tracks": [
+      "Predictive Modeling",
+      "Computer Vision",
+      "NLP & LLM Tuning",
+      "Business Intelligence"
+    ],
+    "eligibility": "Open to student developers, data enthusiasts, and AI engineers across India.",
+    "teamSize": "1 - 3 Members",
+    "perks": [
+      "Portfolio review by Senior Data Scientists",
+      "Certificate of Ranking with national percentile",
+      "Cash prizes"
+    ],
+    "status": "open",
+    "source": "Internshala",
     "featured": false
   }
 ];
