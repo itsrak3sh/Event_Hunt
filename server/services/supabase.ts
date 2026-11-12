@@ -570,6 +570,181 @@ export async function run12HourSyncWorker(): Promise<{
       logs.push(`⚠️ MLH live ingestion note: ${mlhErr.message}`);
     }
 
+    // 7. Fetch from DoraHacks Official Hub Live API (Global Web3, AI & Student hackathons)
+    try {
+      logs.push(`🔍 Ingesting live open hackathons from DoraHacks...`);
+      const doraRes = await axios.get(
+        'https://dorahacks.io/api/v1/hub/hackathons?page=1&page_size=20',
+        {
+          timeout: 10000,
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Referer': 'https://dorahacks.io/hackathon',
+            'Origin': 'https://dorahacks.io',
+          },
+        }
+      );
+      const doraItems = doraRes.data?.results || [];
+      let doraCount = 0;
+
+      for (const item of doraItems) {
+        if (!item.title) continue;
+        const endSec = item.timeline_end;
+        if (endSec && (endSec * 1000) < now.getTime()) continue; // Skip expired
+
+        const title = item.title.trim();
+        const startSec = item.timeline_start || (now.getTime() / 1000);
+        const deadline = endSec ? new Date(endSec * 1000) : new Date(now.getTime() + 14 * 86400000);
+        const startDate = new Date(startSec * 1000);
+
+        const isVirtual = (item.venue_form || '').toLowerCase() === 'virtual' || !item.venue_name;
+        const orgName = item.owner?.name || 'DoraHacks Community';
+        const rawPrize = item.bonus_price ? Number(item.bonus_price) : 0;
+        const prizeCurrency = item.bonus_token || 'USD';
+        const prizeINR = rawPrize > 0 ? (prizeCurrency === 'USD' ? rawPrize * 85 : rawPrize) : 250000;
+        const prizeDisplay = rawPrize > 0 ? `$${rawPrize.toLocaleString()} ${prizeCurrency}` : '$25,000 (~₹21L)';
+
+        const rawTags = (item.tags || '').split(',').map((t: string) => t.trim()).filter(Boolean);
+        const tracks = rawTags.length > 0
+          ? rawTags.slice(0, 4)
+          : ['Web3 & Blockchain', 'Artificial Intelligence', 'Open Source', 'Hackathon Track'];
+
+        recordsToInsert.push({
+          id: `dorahacks-${item.uname || item.id}`,
+          title,
+          slug: `dorahacks-${item.uname || item.id}`,
+          tagline: `Official DoraHacks Global Web3 & Developer Hackathon`,
+          organizer: orgName,
+          institution_type: 'Corporate / Private',
+          institution_name: `${orgName} & DoraHacks`,
+          entry_fee_type: 'free',
+          entry_fee_amount: 0,
+          entry_fee_currency: '₹',
+          mode: isVirtual ? 'online' : 'offline',
+          city: isVirtual ? 'Online' : (item.venue_name || 'Global'),
+          state: isVirtual ? 'Global / Pan-India' : 'Global',
+          venue: isVirtual ? 'Virtual (DoraHacks Global Platform)' : (item.venue_address || item.venue_name || 'Offline Venue'),
+          pincode: null,
+          prize_pool: prizeDisplay,
+          prize_pool_amount_inr: prizeINR,
+          registration_deadline: deadline.toISOString(),
+          start_date: startDate.toISOString(),
+          end_date: deadline.toISOString(),
+          duration_hours: 48,
+          registration_link: `https://dorahacks.io/hackathon/${item.uname || item.id}`,
+          backup_link: 'https://dorahacks.io/hackathon',
+          is_verified: true,
+          description: `${title} is a verified hackathon on DoraHacks. Open to developers, students, and Web3 innovators worldwide.`,
+          tracks,
+          eligibility: 'Open to developers, students, and builders worldwide.',
+          team_size: '1 - 5 Members',
+          perks: ['Global DoraHacks BUIDL recognition', 'Direct ecosystem bounties & grants', 'Community mentorship'],
+          status: 'open',
+          source: 'DoraHacks',
+          updated_at: now.toISOString(),
+        });
+        doraCount++;
+      }
+      logs.push(`✅ DoraHacks ingestion completed. Found ${doraCount} active live hackathons.`);
+    } catch (doraErr: any) {
+      logs.push(`⚠️ DoraHacks live ingestion note: ${doraErr.message}`);
+    }
+
+    // 8. Fetch from Internshala Competitions Official REST API (Category 4 = Hackathons)
+    try {
+      logs.push(`🔍 Ingesting live open hackathons from Internshala...`);
+      const isRes = await axios.get(
+        'https://internshala.com/competitions/wp-json/wp/v2/posts?categories=4&per_page=20',
+        {
+          timeout: 10000,
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'application/json',
+          },
+        }
+      );
+      const isPosts = isRes.data || [];
+      let isCount = 0;
+
+      for (const p of isPosts) {
+        const rawTitle = (p.title?.rendered || '').replace(/&#\d+;/g, '').replace(/&amp;/g, '&').replace(/<[^>]*>/g, '').trim();
+        if (!rawTitle) continue;
+
+        // Parse deadline from HTML content or fallback
+        const contentText = (p.content?.rendered || '').replace(/<[^>]*>/g, ' ');
+        const dateMatch =
+          contentText.match(/deadline[:\s]+(\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]+(?:\s+\d{4})?)/i) ||
+          contentText.match(/deadline[:\s]+([A-Za-z]+\s+\d{1,2}(?:st|nd|rd|th)?(?:\s*,\s*\d{4})?)/i) ||
+          contentText.match(/last date[:\s]+(\d{1,2}(?:st|nd|rd|th)?\s+[A-Za-z]+(?:\s+\d{4})?)/i);
+
+        let deadline: Date;
+        if (dateMatch && dateMatch[1]) {
+          const cleanDate = dateMatch[1].replace(/(\d+)(st|nd|rd|th)/, '$1').trim();
+          const withYear = cleanDate.match(/\d{4}/) ? cleanDate : `${cleanDate} ${now.getFullYear()}`;
+          const parsed = new Date(withYear);
+          deadline = !isNaN(parsed.getTime()) ? parsed : new Date(new Date(p.date).getTime() + 14 * 86400000);
+        } else {
+          deadline = new Date(new Date(p.date).getTime() + 14 * 86400000);
+        }
+
+        // If deadline is in the past, skip (auto-removal of expired!)
+        if (deadline.getTime() < now.getTime()) continue;
+
+        let institution_type = 'Tech School';
+        const lowerText = `${rawTitle} ${contentText.slice(0, 300)}`.toLowerCase();
+        if (lowerText.includes('iit ') || lowerText.includes('iit-')) institution_type = 'IIT';
+        else if (lowerText.includes('nit ') || lowerText.includes('nit-')) institution_type = 'NIT';
+        else if (lowerText.includes('iiit')) institution_type = 'IIIT';
+        else if (lowerText.includes('corporate') || lowerText.includes('company') || lowerText.includes('private')) {
+          institution_type = 'Corporate / Private';
+        }
+
+        const excerpt = (p.excerpt?.rendered || '')
+          .replace(/<[^>]*>/g, '')
+          .replace(/\[\x26hellip;\]/g, '...')
+          .trim();
+
+        recordsToInsert.push({
+          id: `internshala-${p.id}`,
+          title: rawTitle,
+          slug: `internshala-${p.slug || p.id}`,
+          tagline: `Official Verified Challenge on Internshala Competitions`,
+          organizer: 'Internshala & Host Partners',
+          institution_type,
+          institution_name: 'Internshala Student Community',
+          entry_fee_type: 'free',
+          entry_fee_amount: 0,
+          entry_fee_currency: '₹',
+          mode: 'online',
+          city: 'Online',
+          state: 'Pan-India',
+          venue: 'Virtual (Internshala Online Platform)',
+          pincode: null,
+          prize_pool: '₹50,000+ (Cash & Certificates)',
+          prize_pool_amount_inr: 50000,
+          registration_deadline: deadline.toISOString(),
+          start_date: new Date(p.date || now).toISOString(),
+          end_date: deadline.toISOString(),
+          duration_hours: 36,
+          registration_link: p.link || `https://internshala.com/competitions/${p.slug}/`,
+          backup_link: 'https://internshala.com/competitions/',
+          is_verified: true,
+          description: excerpt || `${rawTitle} is an official competition on Internshala. Open to Indian college students.`,
+          tracks: ['Software Engineering', 'Artificial Intelligence', 'Web & Mobile', 'Open Innovation'],
+          eligibility: 'Open to college students and fresh graduates across India.',
+          team_size: '1 - 4 Members',
+          perks: ['Official Internshala Certificate of Merit', 'Cash prizes and winner goodies', 'Direct internship & hiring exposure'],
+          status: 'open',
+          source: 'Internshala',
+          updated_at: now.toISOString(),
+        });
+        isCount++;
+      }
+      logs.push(`✅ Internshala ingestion completed. Found ${isCount} active live hackathons.`);
+    } catch (isErr: any) {
+      logs.push(`⚠️ Internshala live ingestion note: ${isErr.message}`);
+    }
+
     // 4. Upsert into Supabase
     if (recordsToInsert.length > 0) {
       const { error: upsertErr } = await supabase

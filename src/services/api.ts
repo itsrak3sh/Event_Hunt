@@ -19,7 +19,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
  */
 function cleanAndFilterHackathons(list: Hackathon[]): Hackathon[] {
   const now = Date.now();
-  const JUNK_DOMAINS = ['instagram.com', 'facebook.com', 'thita.ai', 'insiderone.in', 'internshala.com'];
+  const JUNK_DOMAINS = ['instagram.com', 'facebook.com', 'thita.ai', 'insiderone.in'];
   const GENERIC_URLS = [
     'https://unstop.com/hackathons',
     'https://devfolio.co/hackathons',
@@ -29,6 +29,10 @@ function cleanAndFilterHackathons(list: Hackathon[]): Hackathon[] {
     'https://reskilll.com',
     'https://unstop.com/conferences',
     'https://techfest.org/competitions',
+    'https://internshala.com/competitions',
+    'https://internshala.com/competitions/',
+    'https://dorahacks.io/hackathon',
+    'https://dorahacks.io/hackathon/',
   ];
 
   return list.filter(h => {
